@@ -1,0 +1,84 @@
+var mm_ri = String( Math.random() );
+mm_ri = mm_ri.replace( /0\./g,'' );
+
+var mm_protocol = location.protocol;
+if ( mm_protocol != 'http:' && mm_protocol != 'https:' ){ mm_protocol = 'http:'; }
+
+
+var sync_4815162342 = function()
+{
+this.urls = [
+"http://pixel.mathtag.com/misc/img?mt_id=0&mt_adid=0&mop_seq=0:25&mt_cb=730819&mop_top=",
+"http://ads.yahoo.com/pixel?id=2172018&t=2&piggyback=http%3A%2F%2Fads.yahoo.com%2Fcms%2Fv1%3Fesig%3D1~444de053567fa80a3054a1981c8febcf1176dd9d%26nwid%3D10000355603%26sigv%3D1",
+"http://pixel.mathtag.com/misc/img?mt_id=0&mt_adid=0&mop_seq=1:25&mt_cb=566335&mop_top=10:1397360016|",
+"http://bh.contextweb.com/bh/rtset?do=add&pid=530739&ev=79a55335-31b5-4500-9341-93710f978a5f",
+"http://pixel.mathtag.com/misc/img?mt_id=0&mt_adid=0&mop_seq=2:25&mt_cb=849348&mop_top=10:1397360016|11:1397360016|",
+"http://ce.lijit.com/merge?pid=3&3pid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://r.casalemedia.com/rum?cm_dsp_id=3&external_user_id=79a55335-31b5-4500-9341-93710f978a5f",
+"http://tags.bluekai.com/site/4448?id=79a55335-31b5-4500-9341-93710f978a5f",
+"http://loadm.exelator.com/load/?p=204&g=101&buid=79a55335-31b5-4500-9341-93710f978a5f&j=0",
+"http://e.nexac.com/e/media_math_sync.xgi?na_exid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://beacon.krxd.net/usermatch.gif?partner=mediamath&_kdpid=8dd53e69-ae3f-4829-8f12-05cc5b57b288&mmuuid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://dis.criteo.com/pump/match.aspx?c=2&uid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://www.burstnet.com/user/2/bidder_id=77161&bidder_user_id=79a55335-31b5-4500-9341-93710f978a5f",
+"http://pixel.mathtag.com/misc/img?mt_id=0&mt_adid=0&mop_seq=10:25&mt_cb=563544&mop_top=10:1397360016|11:1397360016|17:1397360016|15:1397360016|10010:1397360016|10008:1397360016|10011:1397360016|10031:1397360016|20:1397360016|25:1397360016|",
+"http://ums.adtechus.com/mapuser?providerid=1005;userid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://ih.adscale.de/adscale-ih/tpui?tpid=39&tpuid=79a55335-31b5-4500-9341-93710f978a5f&cburl=http%3A%2F%2Fcotads.adscale.de%2Fads%2Fpixel%2F1by1.png",
+"http://sync.go.sonobi.com/us.gif?nw=mediamath&nuid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://sync.adap.tv/sync?type=gif&key=mediamathinc&uid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://admaym.com/UserMatch.ashx?bidderid=43&bidderuid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://pix.btrll.com/353806.png",
+"http://y.one.impact-ad.jp/cs?d=70&uid=79a55335-31b5-4500-9341-93710f978a5f&tg=2&et=30&r=no",
+"http://rtb-csync.smartadserver.com/redir/?partnerid=25&partneruserid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://cs.specificclick.net/sync/?bdid=3&fr=1",
+"http://idsync.rlcdn.com/361087.gif?partner_uid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://pixel.mathtag.com/misc/img?mt_id=0&mt_adid=0&mop_seq=20:25&mt_cb=201383&mop_top=10:1397360016|11:1397360016|17:1397360016|15:1397360016|10010:1397360016|10008:1397360016|10011:1397360016|10031:1397360016|20:1397360016|25:1397360016|21:1397360016|26:1397360016|42:1397360016|31:1397360016|37:1397360016|32:1397360016|35:1397360016|39:1397360016|24:1397360016|10017:1397360016|",
+"http://p.acxiom-online.com/pixel/ddp?pid=3006&ord=1000&uid=79a55335-31b5-4500-9341-93710f978a5f&ot=pixel&redir=http%3A%2F%2Fpixel.mathtag.com%2Fload%2Fimg%3Fmt_segld2%3D%23DATTRIBUTES%23%26mt_exid%3D10018%26mt_pi%3Dax%26mt_exuid%3D%23COOKIEID%23",
+"http://adadvisor.net/adscores/g.pixel?sid=9211132948&_mt=79a55335-31b5-4500-9341-93710f978a5f",
+"http://su.addthis.com/red/usync?pid=11112&puid=79a55335-31b5-4500-9341-93710f978a5f",
+"https://analytics.twitter.com/i/adsct?p_user_id=79a55335-31b5-4500-9341-93710f978a5f&p_id=13524",
+"http://d.agkn.com/pixel/2184/?sync=615&che=1324131673&uuid=79a55335-31b5-4500-9341-93710f978a5f",
+"http://pixel.mathtag.com/misc/img?mt_id=0&mt_adid=0&mop_seq=25:25&mt_cb=540829&check=79a55335-31b5-4500-9341-93710f978a5f&mop_top=10:1397360016|11:1397360016|17:1397360016|15:1397360016|10010:1397360016|10008:1397360016|10011:1397360016|10031:1397360016|20:1397360016|25:1397360016|21:1397360016|26:1397360016|42:1397360016|31:1397360016|37:1397360016|32:1397360016|35:1397360016|39:1397360016|24:1397360016|10017:1397360016|10018:1397360016|10009:1397360016|10025:1397360016|43:1397360016|10013:1397360016|",
+]
+
+   this.progress = 0;
+
+   var self = this;
+
+   this.sync = function(url)
+   {
+      var e = new Image();
+      e.src = url;
+   }
+
+   this.batch = function()
+   {
+      for (var i = self.progress; i < self.urls.length; ++i)
+      {
+          self.sync(self.urls[i]);
+      }
+   }
+
+   this.final = function()
+   {
+      self.sync(self.urls[self.urls.length-1]+"&final");
+   }
+
+   this.some = function(howmany)
+   {
+      var count = 0;
+      for (var i = self.progress; i < self.urls.length && count < howmany; ++i)
+      {
+         self.sync(self.urls[self.progress++]);
+         count++;
+      }
+   }
+}
+
+
+var s_4815162342 = new sync_4815162342();
+s_4815162342.some(1);
+setTimeout('s_4815162342.some(2)', 1000);
+setTimeout(s_4815162342.batch, 3000);
+setTimeout(s_4815162342.final, 10000);
+

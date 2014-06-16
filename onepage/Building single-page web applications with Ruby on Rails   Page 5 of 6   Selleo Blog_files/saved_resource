@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="keywords" content="outsourcing, software development, mobile, business, ruby on rails" />
+<meta name="description" content="" />
+<title> | Ruby on Rails Custom Web and Mobile Applications</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="icon" type="image/x-icon" href="http://selleo.com/blog/wp-content/themes/journalcrunch/favicon.ico">
+<link rel="stylesheet" type="text/css" media="all" href="http://selleo.com/blog/wp-content/themes/journalcrunch/style.css" />
+<link rel="stylesheet" type="text/css" media="all" href="http://selleo.com/blog/wp-content/themes/journalcrunch/css/nivo-slider.css" />
+<link rel="stylesheet" type="text/css" media="all" href="http://selleo.com/blog/wp-content/themes/journalcrunch/css/ddsmoothmenu.css" />
+<link rel="stylesheet" type="text/css" media="all" href="http://selleo.com/blog/wp-content/themes/journalcrunch/css/prettyPhoto.css" />
+<link href='http://fonts.googleapis.com/css?family=Sansita+One' rel='stylesheet' type='text/css'>
+<link rel="pingback" href="http://selleo.com/blog/xmlrpc.php" />
+<script type="text/javascript" src="http://selleo.com/blog/wp-content/themes/journalcrunch/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="http://selleo.com/blog/wp-content/themes/journalcrunch/js/jquery.form.js"></script>
+<script type="text/javascript" src="http://selleo.com/blog/wp-content/themes/journalcrunch/js/twittercb.js"></script>
+<script type="text/javascript" src="http://selleo.com/blog/wp-content/themes/journalcrunch/js/ddsmoothmenu.js"></script>
+<script type="text/javascript" src="http://selleo.com/blog/wp-content/themes/journalcrunch/js/jquery.prettyPhoto.js"></script>
+<script type="text/javascript" src="http://selleo.com/blog/wp-content/themes/journalcrunch/js/custom.js"></script>
+<script type="text/javascript" src="http://selleo.com/blog/wp-content/themes/journalcrunch/js/jquery.nivo.slider.pack.js"></script>
+
+<script type='text/javascript' src='http://selleo.com/blog/wp-content/themes/journalcrunch/js/roundabout/jquery.roundabout.min.js?ver=3.5'></script>
+<script type='text/javascript' src='http://selleo.com/blog/wp-content/themes/journalcrunch/js/roundabout/jquery.easing.min.js?ver=3.5'></script>
+<script type='text/javascript' src='http://selleo.com/blog/wp-content/themes/journalcrunch/js/roundabout/jquery.roundabout-shapes.min.js?ver=3.5'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://selleo.com/blog/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://selleo.com/blog/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 3.5" />
+</head>
+<body>
+<!-- Begin #mainWrapper -->
+<div id="mainWrapper">
+	<!-- Begin #wrapper -->
+	<div id="wrapper">
+		<!-- Begin #header -->
+		<div id="header">
+			<!-- Begin #logo -->
+			<div id="logo">
+				<a href="http://selleo.com/blog" class="logo_title"><img src="http://selleo.com/images/selleo/logo_big.png" alt="Selleo" /></a>
+			</div>
+
+			<!-- End #logo -->
+			<!-- Begin #topMenu -->
+			<div id="topMenu" class="ddsmoothmenu"><ul id="menu-nav" class="menu"><li id="menu-item-66" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-home menu-item-66"><a href="http://selleo.com/blog/">Home</a></li>
+<li id="menu-item-34" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-34"><a href="http://selleo.com/blog/category/business-solutions/">Business Solutions</a></li>
+<li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-35"><a href="http://selleo.com/blog/category/software-outsourcing/">Software &#038; Outsourcing</a></li>
+<li id="menu-item-36" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-36"><a href="http://selleo.com/blog/category/technologies/">Technologies</a></li>
+<li id="menu-item-32" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-32"><a href="http://selleo.com/blog/resources/">Resources</a></li>
+<li id="menu-item-33" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-33"><a href="http://selleo.com/blog/contributors/">Contributors</a></li>
+</ul></div>			<!-- End #topMenu -->
+			<!-- Begin #topSearch -->
+			<div id="topSearch">
+				<form id="searchform" action="" method="get">
+					<input type="text" id="s" name="s" value="" />
+				</form>
+			</div>
+			<!-- End #topSearch -->
+			<div id="topText">
+				<p>
+					We create meaningful web and mobile applications<br/>to make a distinctive difference in the way people<br/>learn, work, do business and relax.
+				</p>
+			</div>
+			<!-- BEGIN TOP SOCIAL LINKS -->
+			<div id="topSocial">
+				<ul>
+					<li><a href="http://www.linkedin.com/companies/selleo" class="linkedin" title="Follow Us on Linkedin!">Linkedin</a></li>
+					<li><a href="http://www.twitter.com/selleo" class="twitter " title="Follow Us on Twitter!"><img src="http://selleo.com/blog/wp-content/themes/journalcrunch/images/social/twitter.png" alt="Follow Us on Twitter!" /></a></li>
+					<li><a href="https://www.facebook.com/Ruby.on.Rails.Development.Outsourcing" class="facebook" title="Join Us on Facebook!"><img src="http://selleo.com/blog/wp-content/themes/journalcrunch/images/social/facebook.png" alt="Join Us on Facebook!" /></a></li>
+					<!--<li><a href="#" class="youtube" title="Follow Us on youtube!">youtube</a></li>-->
+					<li><a href="http://www.flickr.com/people/selleo-custom-web-development/" class="flickr" title="Follow Us on flickr!">flickr</a></li>
+					<li><a href="http://selleo.com/blog/feed/" title="RSS" class="rss"><img src="http://selleo.com/blog/wp-content/themes/journalcrunch/images/social/rss.png" alt="Subcribe to Our RSS Feed" /></a></li>
+				</ul>
+			</div>
+
+			<!-- END TOP SOCIAL LINKS -->
+
+		</div>
+		<!-- End #header -->
+		<!-- Begin #content -->
+		<div id="content">
+
+<!-- BEGIN SLIDER -->
+<!-- Begin #featuredPosts -->
+				<div id="featuredPosts">
+						<div class="item ">
+					<h1><a href="http://selleo.com/blog/technologies/the-benefits-of-choosing-ruby-2-0-and-ruby-on-rails-4-0-for-your-project/" title="View the The benefits of choosing Ruby 2.0 and Ruby on Rails 4.0 for your project.">The benefits of choosing Ruby 2.0 and Ruby on Rails 4.0 for your project.</a></h1>
+											<a href="http://selleo.com/blog/technologies/the-benefits-of-choosing-ruby-2-0-and-ruby-on-rails-4-0-for-your-project/" title="The benefits of choosing Ruby 2.0 and Ruby on Rails 4.0 for your project.">
+						<img width="430" height="280" src="http://selleo.com/blog/wp-content/uploads/2013/06/ruby_on_rails_4_benefits-430x280.jpg" class="attachment-featured-post-thumbnail wp-post-image" alt="ruby on rails 4.0 benefits" />						</a>
+										<p>I will start with a bold statement: there has never been a better time to use “Ruby on Rails”. Recently, we have witnessed two major releases of the Ruby programming language and a web development framework, which we know of [...]</p>
+					<a href="http://selleo.com/blog/technologies/the-benefits-of-choosing-ruby-2-0-and-ruby-on-rails-4-0-for-your-project/" title="Read more about The benefits of choosing Ruby 2.0 and Ruby on Rails 4.0 for your project." class="readMore">Read More</a>
+				</div>
+								<div class="item lastItem">
+					<h1><a href="http://selleo.com/blog/business-solutions/mobile-data-collection/" title="View the Mobile data collection">Mobile data collection</a></h1>
+											<a href="http://selleo.com/blog/business-solutions/mobile-data-collection/" title="Mobile data collection">
+						<img width="430" height="280" src="http://selleo.com/blog/wp-content/uploads/2013/05/mobiledatacollection-430x280.jpg" class="attachment-featured-post-thumbnail wp-post-image" alt="mobiledatacollection" />						</a>
+										<p>Mobile data collection in M&amp;E Mobile data collection in monitoring and evaluation (M&amp;E) refers to using mobile devices like mobile phones, tablet computers and PDAs for performing surveys. Data collection has traditionally been performed using paper forms, however, the rapid [...]</p>
+					<a href="http://selleo.com/blog/business-solutions/mobile-data-collection/" title="Read more about Mobile data collection" class="readMore">Read More</a>
+				</div>
+						</div>
+				<!-- End #featuredPosts -->
+						<div class="postBox ">
+				<div class="postBoxInner">
+
+												<a href="http://selleo.com/blog/business-solutions/linking-humanitarian-organizations-with-mobile-data-collection-tool-providers/" title="View the Linking Humanitarian Organizations with Mobile Data Collection Tool Providers" ><img width="227" height="90" src="http://selleo.com/blog/wp-content/uploads/2013/06/nomad1.png" class="attachment-post-image wp-post-image" alt="nomad" /></a>
+						 					<h2><a href="http://selleo.com/blog/business-solutions/linking-humanitarian-organizations-with-mobile-data-collection-tool-providers/" title="Linking Humanitarian Organizations with Mobile Data Collection Tool Providers" >Linking Humanitarian Organizations with Mobile Data Collection Tool Providers</a></h2>
+					<div class="excerpt"><p>Have you ever wondered how mobile solutions can be used by humanitarian and development practitioners or how MDC tools can [...]</p></div>
+					<div class="meta"> Jun 20, 2013</div>
+				</div>
+				<a href="http://selleo.com/blog/business-solutions/linking-humanitarian-organizations-with-mobile-data-collection-tool-providers/" title="Read more about Linking Humanitarian Organizations with Mobile Data Collection Tool Providers" class="readMore">Read More</a>
+			</div>
+									<div class="postBox ">
+				<div class="postBoxInner">
+
+												<a href="http://selleo.com/blog/business-solutions/stoos-connect-in-search-for-better-management-leadership/" title="View the Stoos Connect &#8211; in search for better management &#038; leadership" ><img width="240" height="90" src="http://selleo.com/blog/wp-content/uploads/2013/06/stoosconnect-240x90.jpg" class="attachment-post-image wp-post-image" alt="stoosconnect" /></a>
+						 					<h2><a href="http://selleo.com/blog/business-solutions/stoos-connect-in-search-for-better-management-leadership/" title="Stoos Connect &#8211; in search for better management &#038; leadership" >Stoos Connect &#8211; in search for better management &#038; leadership</a></h2>
+					<div class="excerpt"><p>Stoos Connect was the event launched in January 2013 in Amsterdam in celebration of World Stoos Day by Stoos Satellite [...]</p></div>
+					<div class="meta"> Jun 19, 2013</div>
+				</div>
+				<a href="http://selleo.com/blog/business-solutions/stoos-connect-in-search-for-better-management-leadership/" title="Read more about Stoos Connect &#8211; in search for better management &#038; leadership" class="readMore">Read More</a>
+			</div>
+									<div class="postBox lastBox">
+				<div class="postBoxInner">
+
+												<a href="http://selleo.com/blog/software-outsourcing/impact-mapping-technique-turning-business-goals-into-deliverables/" title="View the Impact Mapping &#8211; turning business goals into deliverables." ><img width="255" height="87" src="http://selleo.com/blog/wp-content/uploads/2013/02/impact-mapping-thumb1-255x87.png" class="attachment-post-image wp-post-image" alt="impact mapping thumb" /></a>
+						 					<h2><a href="http://selleo.com/blog/software-outsourcing/impact-mapping-technique-turning-business-goals-into-deliverables/" title="Impact Mapping &#8211; turning business goals into deliverables." >Impact Mapping &#8211; turning business goals into deliverables.</a></h2>
+					<div class="excerpt"><p>Introduction A website connecting audiologists, manufacturers of hearing technologies and users of hearing devices. A sales lead marketplace and call [...]</p></div>
+					<div class="meta"> Feb 7, 2013</div>
+				</div>
+				<a href="http://selleo.com/blog/software-outsourcing/impact-mapping-technique-turning-business-goals-into-deliverables/" title="Read more about Impact Mapping &#8211; turning business goals into deliverables." class="readMore">Read More</a>
+			</div>
+									<div class="postBox ">
+				<div class="postBoxInner">
+
+												<a href="http://selleo.com/blog/technologies/testing-the-user-perspective-with-ruby-on-rails/" title="View the Testing the user perspective with Ruby on Rails" ><img width="255" height="90" src="http://selleo.com/blog/wp-content/uploads/2012/07/img12a-255x90.jpg" class="attachment-post-image wp-post-image" alt="img12a" /></a>
+						 					<h2><a href="http://selleo.com/blog/technologies/testing-the-user-perspective-with-ruby-on-rails/" title="Testing the user perspective with Ruby on Rails" >Testing the user perspective with Ruby on Rails</a></h2>
+					<div class="excerpt"><p>Just because nobody complains doesn’t mean all parachutes are perfect &#8211; Benny Hill. Why test the user perspective with Ruby [...]</p></div>
+					<div class="meta"> Jul 19, 2012</div>
+				</div>
+				<a href="http://selleo.com/blog/technologies/testing-the-user-perspective-with-ruby-on-rails/" title="Read more about Testing the user perspective with Ruby on Rails" class="readMore">Read More</a>
+			</div>
+									<div class="postBox ">
+				<div class="postBoxInner">
+
+												<a href="http://selleo.com/blog/software-outsourcing/how-to-select-a-software-development-service-provider-process-tips/" title="View the How to select a software development service provider: process tips" ><img width="255" height="90" src="http://selleo.com/blog/wp-content/uploads/2012/05/9662166_s-255x90.jpg" class="attachment-post-image wp-post-image" alt="9662166_s" /></a>
+						 					<h2><a href="http://selleo.com/blog/software-outsourcing/how-to-select-a-software-development-service-provider-process-tips/" title="How to select a software development service provider: process tips" >How to select a software development service provider: process tips</a></h2>
+					<div class="excerpt"><p>What’s your approach? Outsourcing entrepreneurs and firms vary greatly in the way they manage the sourcing process. Some progress through [...]</p></div>
+					<div class="meta"> May 22, 2012</div>
+				</div>
+				<a href="http://selleo.com/blog/software-outsourcing/how-to-select-a-software-development-service-provider-process-tips/" title="Read more about How to select a software development service provider: process tips" class="readMore">Read More</a>
+			</div>
+									<div class="postBox lastBox">
+				<div class="postBoxInner">
+
+												<a href="http://selleo.com/blog/business-solutions/how-to-publish-and-monetize-an-e-magazine-or-e-book/" title="View the How to publish and monetize an e-magazine or e-book" ><img width="255" height="90" src="http://selleo.com/blog/wp-content/uploads/2012/03/ereadersfeatured2-255x90.jpg" class="attachment-post-image wp-post-image" alt="ereadersfeatured2" /></a>
+						 					<h2><a href="http://selleo.com/blog/business-solutions/how-to-publish-and-monetize-an-e-magazine-or-e-book/" title="How to publish and monetize an e-magazine or e-book" >How to publish and monetize an e-magazine or e-book</a></h2>
+					<div class="excerpt"><p>Considering e-publishing? I have recently been approached by an entrepreneur who has quite a lot of content previously published in [...]</p></div>
+					<div class="meta"> Mar 27, 2012</div>
+				</div>
+				<a href="http://selleo.com/blog/business-solutions/how-to-publish-and-monetize-an-e-magazine-or-e-book/" title="Read more about How to publish and monetize an e-magazine or e-book" class="readMore">Read More</a>
+			</div>
+									<div class="postBox ">
+				<div class="postBoxInner">
+
+												<a href="http://selleo.com/blog/technologies/paths-to-your-mobile-application-development-web-apps-hybrid-solutions-or-native-applications/" title="View the Paths to your mobile application development &#8211; web, hybrid or native?" ><img width="255" height="90" src="http://selleo.com/blog/wp-content/uploads/2012/02/aaaaaaa-255x90.jpg" class="attachment-post-image wp-post-image" alt="aaaaaaa" /></a>
+						 					<h2><a href="http://selleo.com/blog/technologies/paths-to-your-mobile-application-development-web-apps-hybrid-solutions-or-native-applications/" title="Paths to your mobile application development &#8211; web, hybrid or native?" >Paths to your mobile application development &#8211; web, hybrid or native?</a></h2>
+					<div class="excerpt"><p>The year 2011 has ended and I think one might justifiably claim that it was a &#8216;year of mobile&#8217; indeed. [...]</p></div>
+					<div class="meta"> Feb 16, 2012</div>
+				</div>
+				<a href="http://selleo.com/blog/technologies/paths-to-your-mobile-application-development-web-apps-hybrid-solutions-or-native-applications/" title="Read more about Paths to your mobile application development &#8211; web, hybrid or native?" class="readMore">Read More</a>
+			</div>
+									<div class="postBox ">
+				<div class="postBoxInner">
+
+												<a href="http://selleo.com/blog/software-outsourcing/cost-of-delay-insights-for-better-product-scope-management/" title="View the Cost of delay – Insights for better product scope management" ><img width="255" height="90" src="http://selleo.com/blog/wp-content/uploads/2012/01/158813_9601-255x90.jpg" class="attachment-post-image wp-post-image" alt="158813_9601" /></a>
+						 					<h2><a href="http://selleo.com/blog/software-outsourcing/cost-of-delay-insights-for-better-product-scope-management/" title="Cost of delay – Insights for better product scope management" >Cost of delay – Insights for better product scope management</a></h2>
+					<div class="excerpt"><p>In Innovation and Entrepreneurship, Peter Drucker discusses the various sources of innovation. One of them is technical knowledge, which is [...]</p></div>
+					<div class="meta"> Jan 12, 2012</div>
+				</div>
+				<a href="http://selleo.com/blog/software-outsourcing/cost-of-delay-insights-for-better-product-scope-management/" title="Read more about Cost of delay – Insights for better product scope management" class="readMore">Read More</a>
+			</div>
+									<div class="postBox lastBox">
+				<div class="postBoxInner">
+
+												<a href="http://selleo.com/blog/business-solutions/product-development-and-tech-entrepreneurship-thought-leaders-to-increase-your-odds-of-success/" title="View the Product development and tech entrepreneurship thought leaders to increase your odds of success" ><img width="255" height="90" src="http://selleo.com/blog/wp-content/uploads/2011/12/selleo2-255x90.jpg" class="attachment-post-image wp-post-image" alt="selleo2" /></a>
+						 					<h2><a href="http://selleo.com/blog/business-solutions/product-development-and-tech-entrepreneurship-thought-leaders-to-increase-your-odds-of-success/" title="Product development and tech entrepreneurship thought leaders to increase your odds of success" >Product development and tech entrepreneurship thought leaders to increase your odds of success</a></h2>
+					<div class="excerpt"><p>The Startup Genome Project is an initiative launched to identify what makes Silicon Valley startups successful as well as to share [...]</p></div>
+					<div class="meta"> Dec 20, 2011</div>
+				</div>
+				<a href="http://selleo.com/blog/business-solutions/product-development-and-tech-entrepreneurship-thought-leaders-to-increase-your-odds-of-success/" title="Read more about Product development and tech entrepreneurship thought leaders to increase your odds of success" class="readMore">Read More</a>
+			</div>
+						
+	
+</div>
+<!-- End #content -->
+	</div>
+	<!-- End #wrapper -->
+	<!-- Begin #footer -->
+	<div id="footer">
+		<div id="footerInner">
+		<div class="boxFooter"><div class="menu-footer-container"><ul id="menu-footer" class="menu"><li id="menu-item-1856" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1856"><a href="http://selleo.com/blog/cookies-policy/">Cookies Policy</a></li>
+</ul></div></div>		<!-- BEGIN COPYRIGHT -->
+                <div id="copyright">
+                        Selleo &copy; 2014		</div>
+		<!-- END COPYRIGHT -->
+			<div id="footer-description">
+						</div>
+		</div>
+	</div>
+	<!-- End #footer -->
+</div>
+<!-- End #mainWrapper -->
+
+<!-- Header Twitter Tooltip -->
+<div class="tooltip">
+				<ul id="twitter_tooltip"></ul>
+				<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/selleo.json?callback=twitterCallback2&amp;count=1"></script>
+			</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37294225-1']);
+  _gaq.push(['_setDomainName', 'selleo.com/blog']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</body>
+</html>

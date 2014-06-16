@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)http://kimrudolph.de/blog/rails-single-page-application-tutorial/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+     
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Single page web application built with Rails 4</title>
+     <meta name="author" content="Kim Rudolph">
+     <meta name="description" content="Random tutorials">
+     <link rel="stylesheet" href="./Single page web application built with Rails 4_files/bootstrap.min.css" type="text/css" media="screen, projection">
+     <link rel="stylesheet" href="./Single page web application built with Rails 4_files/pygments.css" type="text/css" media="screen, projection">
+     <link rel="stylesheet" href="./Single page web application built with Rails 4_files/custom.css" type="text/css" media="screen, projection">
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav class="pull-right">
+          <a href="http://kimrudolph.de/" title="Posts overview">posts</a> /
+          <a href="http://kimrudolph.de/about.html" title="About page">about</a> /
+          <a href="https://github.com/krudolph" title="GitHub profile">github</a>
+        </nav>
+        <h1><a href="http://kimrudolph.de/">Kim Rudolph</a></h1>
+      </header>
+      <article>
+<h2>Rails single page web application</h2>
+
+<p>The goal of this example is to build a <a href="http://en.wikipedia.org/wiki/Single-page_application" title="SPA">single page application</a> using the AJ-part of <a href="http://en.wikipedia.org/wiki/Ajax_(programming)">AJAX</a> and the web framework <a href="http://rubyonrails.org/" title="Ruby on Rails website">Ruby on Rails</a>.</p>
+
+<p>The result should be a small application providing the functionality to track time on tasks grouped by projects. It should create and delete tasks and projects without a full page reload. Tracked time per task is definied with one or many logs having a start and stoptime. Also there have to be those web-2.0-ish flashing elements when entities are being created, updated or deleted.</p>
+
+<div class="screenshot"><img src="./Single page web application built with Rails 4_files/trackapp_screenshot.jpg" alt="Screenshot of Trackapp" title="Screenshot of Trackapp" \=""></div>
+
+<p>Code comments are stripped out intentionally to shrink the size of the code examples and make them more readable. Also user authorization and authentication are missing for the same reason. The tutorial guides through the minimal steps setting up such an application and does not feature a path to a secure and production ready application.</p>
+
+<p>Have a look at the following resources, if you want more detailed and feature rich examples:</p>
+
+<ul>
+<li>official <a href="http://guides.rubyonrails.org/">Ruby On Rails Guides</a> as a reference with example code snippets and a great <a href="http://edgeguides.rubyonrails.org/getting_started.html">getting started section</a></li>
+<li>the <a href="http://api.rubyonrails.org/">api reference</a> for a quick search with usage examples</li>
+<li><a href="http://railsapps.github.com/">railsapp project</a> featuring several example applications</li>
+</ul>
+
+<h3>Installing ruby</h3>
+
+<p>There are a lot of tutorials <a href="http://www.google.de/?q=how+to+install+ruby+1.9.3">how to install ruby</a> so this is a short version using <a href="https://rvm.io/" title="Shell scripts enabling management of multiple ruby environments">rvm</a>.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>curl -L https://get.rvm.io <span class="p">|</span> bash -s stable --ruby
+</code></pre></div>
+
+<p>Be aware that rails 4.0 needs at least ruby 1.9.3. The current stable version should be something like </p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>ruby -v
+ruby 2.0.0p195 <span class="o">(</span>2013-05-14 revision 40734<span class="o">)</span>
+</code></pre></div>
+
+<p>To prevent any failures during the installation of gems, the requirements defined in the <code>ruby</code> part in </p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rvm requirements
+</code></pre></div>
+
+<p>should be installed.</p>
+
+<h3>Installing Ruby on Rails</h3>
+
+<p>That is as simple as installing the latest <code>rails</code> gem.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>gem install rails
+</code></pre></div>
+
+<h3>Creating the application skeleton</h3>
+
+<p>One of the hardest tasks is to settle with a name for a project. As this application should track time, it's called <code>trackapp</code>.
+Ruby on Rails will build an application skeleton by default. That application and folder structure is the same for every Ruby on Rails application. The controllers are always in the <code>app/controllers</code> folder, the models in <code>app/models</code> and the views in <code>app/views</code> etc.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rails new trackapp
+create
+create  README.rdoc
+create  Rakefile
+create  config.ru
+create  .gitignore
+create  Gemfile
+create  app
+...
+create  vendor/assets/stylesheets
+create  vendor/assets/stylesheets/.keep
+run  bundle install
+</code></pre></div>
+
+<p>There is a requirement for an <a href="https://github.com/sstephenson/execjs">ExecJs</a> runtime to compile to JavaScript. <a href="https://github.com/cowboyd/therubyracer">therubyracer</a> is suggested, but has to be uncommented manually in the <code>Gemfile</code>.</p>
+
+<p><code class="text filename">Gemfile</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+<span class="c1"># See https://github.com/sstephenson/execjs#readme for more supported runtimes</span>
+<span class="n">gem</span> <span class="s1">'therubyracer'</span><span class="p">,</span> <span class="ss">platforms</span><span class="p">:</span> <span class="ss">:ruby</span>
+<span class="o">.</span><span class="n">.</span><span class="o">.</span>
+</code></pre></div>
+
+<p>To resolve the depedencies, the <a href="http://gembundler.com/">bundler</a> gem is used.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>bundle install
+</code></pre></div>
+
+<h3>Database schema</h3>
+
+<p>Database changes, like creating new tables, are defined in migration files. A migration is needed to initially setup the database tables for the projects, tasks and logs.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rails generate migration SetupProjectsTasksLogs
+</code></pre></div>
+
+<p>The <a href="http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/SchemaStatements.html#method-i-create_table">create_table</a> block contains the fields to add to the defined table. <code>t.references :project</code> is a shortcut for the field <code>t.integer :project_id</code>.</p>
+
+<p><code class="text filename">db/migrate/x_setup_projects_tasks_logs.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">SetupProjectsTasksLogs</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Migration</span>
+  <span class="k">def</span> <span class="nf">change</span>
+
+    <span class="n">create_table</span> <span class="ss">:projects</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+    <span class="k">end</span>
+
+    <span class="n">create_table</span> <span class="ss">:tasks</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">string</span> <span class="ss">:name</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">boolean</span> <span class="ss">:done</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">references</span> <span class="ss">:project</span><span class="p">,</span> <span class="ss">index</span><span class="p">:</span> <span class="kp">true</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">timestamps</span>
+    <span class="k">end</span>
+
+    <span class="n">create_table</span> <span class="ss">:logs</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">references</span> <span class="ss">:task</span><span class="p">,</span> <span class="ss">index</span><span class="p">:</span> <span class="kp">true</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">timestamp</span> <span class="ss">:start</span>
+      <span class="n">t</span><span class="o">.</span><span class="n">timestamp</span> <span class="ss">:stop</span>
+    <span class="k">end</span>
+
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>To perform the changes, the database needs to be created and then migrated to the <code>SetupProjectsTasksLogs</code> state. A local sqlite database is used by default.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rake db:create db:migrate
+</code></pre></div>
+
+<h3>Models</h3>
+
+<p>There are serveral ways to scaffold any models, views, controllers, tests etc., but that often results in a lot of empty files. Adding the files manually is complicated at first, because the strict naming guidelines have to be followed. The advantage is a clean setup of only those files that are needed.</p>
+
+<p>The model files <code>project.rb</code>, <code>task.rb</code> and <code>log.rb</code> in <code>app/models</code> describe each entity and the dependencies between the entities. </p>
+
+<p>A project <a href="http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#method-i-has_many">has many</a> tasks and also many logs. The logs are not referenced directly, but the <code>:through =&gt; :tasks</code> enables the access like <code>Project.logs</code> using a join on the tasks table.</p>
+
+<p>Entity validations are definied with the <a href="http://api.rubyonrails.org/classes/ActiveModel/Validations/ClassMethods.html#method-i-validates">validates</a> method. In this case, only the name has to be checked. It is not allowed to create new projects with an empty name.</p>
+
+<p>The <code>:dependent =&gt; :destroy</code> part defines how to keep data integrity if a referenced object is deleted. A deleted project results in the deletion of all its tasks and logs as they are not needed anymore. That garantees that no unlinked tasks or logs remain in the database.</p>
+
+<p>Both, projects and tasks, provide a <code>logged</code> method to sum up the time spend on a project or task.</p>
+
+<p><code class="text filename">app/models/project.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Project</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+
+  <span class="n">has_many</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">dependent</span><span class="p">:</span> <span class="ss">:destroy</span>
+  <span class="n">has_many</span> <span class="ss">:logs</span><span class="p">,</span> <span class="ss">through</span><span class="p">:</span> <span class="ss">:tasks</span>
+
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="p">{</span> <span class="ss">message</span><span class="p">:</span> <span class="s1">'Please provide a name'</span> <span class="p">}</span>
+
+  <span class="k">def</span> <span class="nf">logged</span>
+    <span class="n">logs</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:duration</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>A task <a href="http://api.rubyonrails.org/classes/ActiveRecord/Associations/ClassMethods.html#method-i-belongs_to">belongs to</a> a project and also has a <a href="http://api.rubyonrails.org/classes/ActiveRecord/Scoping/Default/ClassMethods.html#method-i-default_scope">default scope</a>, which orders the tasks by its status and the time they were created if not defined otherwise. That keeps the recent tasks on top of the tasks list.
+Tasks must have a linked project defined by the <a href="http://api.rubyonrails.org/classes/ActiveModel/Validations/HelperMethods.html#method-i-validates_presence_of">validates presence of</a> method.</p>
+
+<p><code class="text filename">app/models/task.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Task</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+
+  <span class="n">belongs_to</span> <span class="ss">:project</span>
+  <span class="n">has_many</span> <span class="ss">:logs</span><span class="p">,</span> <span class="ss">dependent</span><span class="p">:</span> <span class="ss">:destroy</span>
+
+  <span class="n">default_scope</span> <span class="p">{</span> <span class="n">order</span><span class="p">(</span><span class="ss">:done</span><span class="p">,</span> <span class="ss">:created_at</span> <span class="o">=&gt;</span> <span class="ss">:desc</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">validates</span> <span class="ss">:name</span><span class="p">,</span> <span class="ss">presence</span><span class="p">:</span> <span class="p">{</span> <span class="ss">message</span><span class="p">:</span> <span class="s1">'Please provide a name'</span> <span class="p">}</span>
+  <span class="n">validates_presence_of</span> <span class="ss">:project</span>
+
+  <span class="k">def</span> <span class="nf">work?</span>
+    <span class="o">!</span><span class="n">logs</span><span class="o">.</span><span class="n">empty?</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">logs</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">stop</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">logged</span>
+    <span class="n">logs</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:duration</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>A log uses the methods mentioned above and also calculates the seconds between the start and stop time.</p>
+
+<p><code class="text filename">app/models/log.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">Log</span> <span class="o">&lt;</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">Base</span>
+
+  <span class="n">belongs_to</span> <span class="ss">:task</span>
+
+  <span class="n">default_scope</span> <span class="p">{</span> <span class="n">order</span><span class="p">(</span><span class="ss">:stop</span><span class="p">)</span> <span class="p">}</span>
+
+  <span class="n">validates_presence_of</span> <span class="ss">:task</span>
+
+  <span class="k">def</span> <span class="nf">duration</span>
+    <span class="p">((</span><span class="n">stop?</span> <span class="p">?</span> <span class="n">stop</span><span class="o">.</span><span class="n">to_time</span> <span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span> <span class="o">-</span> <span class="n">start</span><span class="o">.</span><span class="n">to_time</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<h3>Test fixtures</h3>
+
+<p>The test classes need real data to perform the tests on. To simplify that, the test objects are defined as fixtures in the <code>test/fixtures</code> folder. The test data should represent the different possibilites of the object stages including all dependencies. The two tracking cases are</p>
+
+<ul>
+<li>a project <code>tree</code> with a finished task and two complete logs</li>
+<li>a project <code>car</code> with an unfinished task referencing a complete and a running log</li>
+</ul>
+
+<p><code class="text filename">test/fixtures/projects.rb</code></p>
+
+<div class="highlight"><pre><code class="yaml"><span class="l-Scalar-Plain">tree</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+  <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Cutting a tree</span>
+<span class="l-Scalar-Plain">car</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2</span>
+  <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Washing the car</span>
+</code></pre></div>
+
+<p><code class="text filename">test/fixtures/tasks.rb</code></p>
+
+<div class="highlight"><pre><code class="yaml"><span class="l-Scalar-Plain">finished</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+  <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Easy task</span>
+  <span class="l-Scalar-Plain">done</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
+  <span class="l-Scalar-Plain">project_id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+<span class="l-Scalar-Plain">unfinished</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2</span>
+  <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Hard task</span>
+  <span class="l-Scalar-Plain">project_id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2</span>
+</code></pre></div>
+
+<p><code class="text filename">test/fixtures/logs.rb</code></p>
+
+<div class="highlight"><pre><code class="yaml"><span class="l-Scalar-Plain">hour</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">task_id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+  <span class="l-Scalar-Plain">start</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2000-01-01 12:00:00</span>
+  <span class="l-Scalar-Plain">stop</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2000-01-01 13:00:00</span>
+<span class="l-Scalar-Plain">long</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">task_id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
+  <span class="l-Scalar-Plain">start</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2000-01-01 11:00:00</span>
+  <span class="l-Scalar-Plain">stop</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2000-01-01 12:34:56</span>
+<span class="l-Scalar-Plain">minutes</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">task_id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2</span>
+  <span class="l-Scalar-Plain">start</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2000-01-01 12:00:00</span>
+  <span class="l-Scalar-Plain">stop</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2000-01-01 12:11:10</span>
+<span class="l-Scalar-Plain">running</span><span class="p-Indicator">:</span>
+  <span class="l-Scalar-Plain">task_id</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2</span>
+  <span class="l-Scalar-Plain">start</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2000-01-01 12:00:00</span>
+</code></pre></div>
+
+<h3>Model tests</h3>
+
+<p>Test for the models should be created in the <code>test/models</code> folder. At least there should be a simple test for each created model method.</p>
+
+<p>The <code>ProjectTest</code> checks</p>
+
+<ul>
+<li>the <code>validates</code> implementation on the <code>:name</code> attribute</li>
+<li>that all dependent tasks and logs will be deleted if the project is deleted and a query would throw a <code>RecordNotFound</code> exception </li>
+<li>the logged time aggregation of all dependent logs </li>
+</ul>
+
+<p><code class="text filename">test/models/project_test.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">'test_helper'</span>
+
+<span class="k">class</span> <span class="nc">ProjectTest</span> <span class="o">&lt;</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
+
+  <span class="nb">test</span> <span class="s1">'should not save without a name'</span> <span class="k">do</span>
+    <span class="n">project</span> <span class="o">=</span> <span class="n">projects</span><span class="p">(</span><span class="ss">:tree</span><span class="p">)</span>
+    <span class="n">project</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="n">assert</span> <span class="o">!</span><span class="n">project</span><span class="o">.</span><span class="n">valid?</span><span class="p">,</span> <span class="s1">'Saves without a name'</span>
+    <span class="n">assert_equal</span> <span class="s1">'Please provide a name'</span><span class="p">,</span> <span class="n">project</span><span class="o">.</span><span class="n">errors</span><span class="o">[</span><span class="ss">:name</span><span class="o">].</span><span class="n">first</span><span class="p">,</span> <span class="s1">'Does not throw an error message'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should destroy all dependend tasks and logs'</span> <span class="k">do</span>
+    <span class="n">project</span> <span class="o">=</span> <span class="n">projects</span><span class="p">(</span><span class="ss">:tree</span><span class="p">)</span>
+    <span class="n">assert_equal</span> <span class="mi">1</span><span class="p">,</span> <span class="n">project</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">assert_equal</span> <span class="mi">2</span><span class="p">,</span> <span class="n">project</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">logs</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">project</span><span class="o">.</span><span class="n">destroy</span>
+    <span class="n">assert_raises</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">RecordNotFound</span> <span class="k">do</span>
+      <span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="n">assert_raises</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">RecordNotFound</span> <span class="k">do</span>
+      <span class="n">logs</span><span class="p">(</span><span class="ss">:long</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="n">assert_raises</span> <span class="no">ActiveRecord</span><span class="o">::</span><span class="no">RecordNotFound</span> <span class="k">do</span>
+      <span class="n">logs</span><span class="p">(</span><span class="ss">:hour</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should calculate the logged time correctly'</span> <span class="k">do</span>
+    <span class="n">assert_equal</span> <span class="mi">9296</span><span class="p">,</span> <span class="n">projects</span><span class="p">(</span><span class="ss">:tree</span><span class="p">)</span><span class="o">.</span><span class="n">logged</span><span class="p">,</span> <span class="s1">'Does not calculate the logged time correctly'</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>The <code>TaskTest</code> checks</p>
+
+<ul>
+<li>that it is invalid if it does not belong to any project</li>
+<li>the <code>validates</code> implementation on the <code>:name</code> attribute</li>
+<li>the logged time aggregation of all dependent logs</li>
+<li>the status logic based on the logs works correctly</li>
+</ul>
+
+<p><code class="text filename">test/models/task_test.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">'test_helper'</span>
+
+<span class="k">class</span> <span class="nc">TaskTest</span> <span class="o">&lt;</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
+
+  <span class="nb">test</span> <span class="s1">'should not save without a project'</span> <span class="k">do</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span>
+    <span class="n">task</span><span class="o">.</span><span class="n">project</span> <span class="o">=</span> <span class="kp">nil</span>
+    <span class="n">assert</span> <span class="o">!</span><span class="n">task</span><span class="o">.</span><span class="n">valid?</span><span class="p">,</span> <span class="s1">'Saves without a project'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should not save without a name'</span> <span class="k">do</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span>
+    <span class="n">task</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="n">assert</span> <span class="o">!</span><span class="n">task</span><span class="o">.</span><span class="n">valid?</span><span class="p">,</span> <span class="s1">'Saves without a name'</span>
+    <span class="n">assert_equal</span> <span class="s1">'Please provide a name'</span><span class="p">,</span> <span class="n">task</span><span class="o">.</span><span class="n">errors</span><span class="o">[</span><span class="ss">:name</span><span class="o">].</span><span class="n">first</span><span class="p">,</span> <span class="s1">'Does not throw an error message'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should calculate the logged time correctly'</span> <span class="k">do</span>
+    <span class="n">assert_equal</span> <span class="mi">9296</span><span class="p">,</span> <span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span><span class="o">.</span><span class="n">logged</span><span class="p">,</span> <span class="s1">'Does not calculate the logged time correctly'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should return the correct work status'</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="o">!</span><span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span><span class="o">.</span><span class="n">work?</span><span class="p">,</span> <span class="s1">'Does not return work status'</span>
+    <span class="n">assert</span> <span class="n">tasks</span><span class="p">(</span><span class="ss">:unfinished</span><span class="p">)</span><span class="o">.</span><span class="n">work?</span><span class="p">,</span> <span class="s1">'Does not return work status'</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>The <code>LogTest</code> checks that it is</p>
+
+<ul>
+<li>ok that the stop time is not set</li>
+<li>invalid if the log does not belong to any task</li>
+<li>possible to get the correct time difference between the start and stop time</li>
+</ul>
+
+<p><code class="text filename">test/models/log_test.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">'test_helper'</span>
+
+<span class="k">class</span> <span class="nc">LogTest</span> <span class="o">&lt;</span> <span class="no">ActiveSupport</span><span class="o">::</span><span class="no">TestCase</span>
+
+  <span class="nb">test</span> <span class="s1">'should save without a stop time'</span> <span class="k">do</span>
+    <span class="n">assert</span> <span class="n">logs</span><span class="p">(</span><span class="ss">:running</span><span class="p">)</span><span class="o">.</span><span class="n">valid?</span><span class="p">,</span> <span class="s1">'Does not save without a stop time'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should not save without a task'</span> <span class="k">do</span>
+    <span class="n">log</span> <span class="o">=</span> <span class="n">logs</span><span class="p">(</span><span class="ss">:hour</span><span class="p">)</span>
+    <span class="n">log</span><span class="o">.</span><span class="n">task</span> <span class="o">=</span> <span class="kp">nil</span>
+    <span class="n">assert</span> <span class="o">!</span><span class="n">log</span><span class="o">.</span><span class="n">valid?</span><span class="p">,</span> <span class="s1">'Saves without a task'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should return the correct duration'</span> <span class="k">do</span>
+    <span class="n">assert_equal</span> <span class="mi">3600</span><span class="p">,</span> <span class="n">logs</span><span class="p">(</span><span class="ss">:hour</span><span class="p">)</span><span class="o">.</span><span class="n">duration</span><span class="p">,</span> <span class="s1">'Does not calculate duration right'</span>
+    <span class="n">assert_equal</span> <span class="mi">670</span><span class="p">,</span> <span class="n">logs</span><span class="p">(</span><span class="ss">:minutes</span><span class="p">)</span><span class="o">.</span><span class="n">duration</span><span class="p">,</span> <span class="s1">'Does not calculate duration right'</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>Now the test execution should create 11 small and happy dots, one for each non failing test case.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rake <span class="nb">test</span>:models
+</code></pre></div>
+
+<h3>Routing</h3>
+
+<p>The tracking application should respond to several request URLs and different HTTP verbs. </p>
+
+<p><a href="http://api.rubyonrails.org/classes/ActionDispatch/Routing/Mapper/Resources.html">Resources</a> helpers create the default CRUD routings: index, new, create, show, edit, update and destroy. As the goal is a single page application, rendering new pages for entity updates (new, edit) is not needed. While projects can be switched with the show action and the initial page loads with the index action, those are not needed for tasks. But tasks need additional routings for starting and stopping logs and also marking a task as finished. Those are defined as resource members.</p>
+
+<p><code>root to:</code> defines the action, which is executed when a request points to <code>/</code>.</p>
+
+<p><code class="text filename">config/routes.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="no">Trackapp</span><span class="o">::</span><span class="no">Application</span><span class="o">.</span><span class="n">routes</span><span class="o">.</span><span class="n">draw</span> <span class="k">do</span>
+
+  <span class="n">resources</span> <span class="ss">:projects</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span><span class="ss">:index</span><span class="p">,</span> <span class="ss">:show</span><span class="p">,</span> <span class="ss">:create</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span>
+
+  <span class="n">resources</span> <span class="ss">:tasks</span><span class="p">,</span> <span class="ss">only</span><span class="p">:</span> <span class="o">[</span><span class="ss">:create</span><span class="p">,</span> <span class="ss">:destroy</span><span class="o">]</span> <span class="k">do</span>
+    <span class="n">member</span> <span class="k">do</span>
+      <span class="n">get</span> <span class="ss">:start</span><span class="p">,</span> <span class="ss">:stop</span><span class="p">,</span> <span class="ss">:finish</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="n">root</span> <span class="ss">to</span><span class="p">:</span> <span class="s1">'projects#index'</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>The generated and valid routes can be checked with the <a href="http://rake.rubyforge.org/" title="Ruby Make">rake</a> <code>routes</code> command. </p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rake routes
+     Prefix Verb   URI Pattern                 Controller#Action
+   projects GET    /projects<span class="o">(</span>.:format<span class="o">)</span>         projects#index
+            POST   /projects<span class="o">(</span>.:format<span class="o">)</span>         projects#create
+    project GET    /projects/:id<span class="o">(</span>.:format<span class="o">)</span>     projects#show
+            DELETE /projects/:id<span class="o">(</span>.:format<span class="o">)</span>     projects#destroy
+ start_task GET    /tasks/:id/start<span class="o">(</span>.:format<span class="o">)</span>  tasks#start
+  stop_task GET    /tasks/:id/stop<span class="o">(</span>.:format<span class="o">)</span>   tasks#stop
+finish_task GET    /tasks/:id/finish<span class="o">(</span>.:format<span class="o">)</span> tasks#finish
+      tasks POST   /tasks<span class="o">(</span>.:format<span class="o">)</span>            tasks#create
+       task DELETE /tasks/:id<span class="o">(</span>.:format<span class="o">)</span>        tasks#destroy
+       root GET    /                           projects#index
+</code></pre></div>
+
+<h3>Controllers</h3>
+
+<p>Controllers must match the routings listed above with a method for each action.</p>
+
+<p>The usage of <code>Project.includes(task: :logs)</code> enables fetching all tasks and logs needed for the initial page load. That prevents querying each task and each log individually while rendering the view.</p>
+
+<p>Non controller action matching view delegations have to be specified. In this case the <code>render :show</code> on the destroy action will point to the projects show view. An additional view is not neccessary, because the deletion of projects will also result in rendering another project.</p>
+
+<p><code class="text filename">app/controllers/projects_controller.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">ProjectsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+  <span class="k">def</span> <span class="nf">index</span>
+    <span class="vi">@projects</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">all</span>
+    <span class="vi">@project</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">tasks</span><span class="p">:</span> <span class="ss">:logs</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@project</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">tasks</span><span class="p">:</span> <span class="ss">:logs</span><span class="p">)</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@project</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span><span class="p">)</span>
+    <span class="vi">@projects</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">all</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="vi">@deleted</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">destroy</span>
+    <span class="vi">@project</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">includes</span><span class="p">(</span><span class="ss">tasks</span><span class="p">:</span> <span class="ss">:logs</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
+    <span class="n">render</span> <span class="ss">:show</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>The start, stop and finish actions result in a refresh of the single task view and therefore share one view.</p>
+
+<p><code class="text filename">app/controllers/tasks_controller.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">class</span> <span class="nc">TasksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+  <span class="k">def</span> <span class="nf">create</span>
+    <span class="vi">@task</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:project_id</span><span class="o">]</span><span class="p">)</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="n">params</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+    <span class="vi">@task</span><span class="o">.</span><span class="n">destroy</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">finish</span>
+    <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+    <span class="vi">@task</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">done</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+    <span class="n">render</span> <span class="ss">:refresh</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">start</span>
+    <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+    <span class="vi">@log</span> <span class="o">=</span> <span class="no">Log</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">task</span><span class="p">:</span> <span class="vi">@task</span><span class="p">,</span> <span class="ss">start</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
+    <span class="n">render</span> <span class="ss">:refresh</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">stop</span>
+    <span class="vi">@task</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+    <span class="vi">@log</span> <span class="o">=</span> <span class="vi">@task</span><span class="o">.</span><span class="n">logs</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="ss">stop</span><span class="p">:</span> <span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
+    <span class="n">render</span> <span class="ss">:refresh</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>Controller tests will be defined after the views.</p>
+
+<h3>Styling assets</h3>
+
+<p>Moving on from the known plain HTML/Erb template language and css format, there are projects like <a href="http://haml.info/" title="HTML Abstraction Markup Language">Haml</a>, <a href="http://slim-lang.com/">Slim</a> and <a href="http://sass-lang.com/">Sass</a> as replacements, advertising themselves as more lightweight and therefore easier to work with. Haml and Slim strip as many unneeded tags and identifiers as possible from templates. The Sass projects supports the <code>.scss</code> format as a superset of css and the more radical sass format, removing braces and semicolons completely. Haml, Slim and Sass rely heavily on correct indentation.</p>
+
+<p>As there are many choices, this tutorial will stick to slim and sass, because both support the most minimal syntax. Rails recognizes the <code>.slim</code> file extension as <code>handlers</code> when it is looking for a fitting view to render. So the view files have to be named like <code>task.html.slim</code>.</p>
+
+<p>The <code>slim-rails</code> gem is needed as an asset dependency in the <code>Gemfile</code>.</p>
+
+<p><code class="text filename">Gemfile</code></p>
+
+<div class="highlight"><pre><code class="bash">...
+gem <span class="s1">'slim-rails'</span>
+...
+</code></pre></div>
+
+<p><code>bundle install</code> installs that dependency.</p>
+
+<p>JavaScript and stylesheets are located in the <code>assets</code> folder. This application should use Sass, so the default css behaviour has to be modified. There are small steps needed to teach the application to work with Sass.</p>
+
+<p>Rename the <code>application.css</code> located in <code>assets/stylesheets</code> to <code>application.sass</code>. Then remove the line <code>*= require_tree .</code> which would enable searching for any stylesheets automatically. Using Sass, importing the needed files gives more control over which files should be added and allows a custom order of files included. A disadvantage is the manual work to add each file individually. In this case, the files used are:</p>
+
+<p><code class="text filename">app/assets/css/application.sass</code></p>
+
+<div class="highlight"><pre><code class="css"><span class="c">/*</span>
+<span class="c"> ...</span>
+<span class="c"> *= require_self</span>
+<span class="c"> */</span>
+<span class="k">@import</span> <span class="s1">'colors'</span>
+<span class="k">@import</span> <span class="s1">'logs'</span>
+<span class="k">@import</span> <span class="s1">'tasks'</span>
+<span class="k">@import</span> <span class="s1">'projects'</span>
+</code></pre></div>
+
+<p>E.g. the <code>@import 'colors'</code> points to the <code>colors.sass</code> file in the same directory. The actual stylesheets are too large to show them here, but they can be viewed at the <a href="https://github.com/krudolph/trackapp/tree/master/app/assets/stylesheets">trackapp repository stylesheets folder</a>. </p>
+
+<h3>Dynamic assets</h3>
+
+<p>Rails supports <a href="http://coffeescript.org/">CoffeeScript</a> by default. CoffeeScript does to JavaScript what Slim does to the HTML/Erb templates. It provides a language that compiles to plain JavaScript. As it makes writing JavaScript a lot easier, the JavaScript templates are written in CoffeeScript.</p>
+
+<p>As mentioned, the application needs those web-2.0-ish flashing elements. The needed logic is implemented as a <code>notice()</code>-method, which is extracted to the <code>functions.js.coffee</code> file.</p>
+
+<p><code class="text filename">app/assets/javascript/functions.js.coffee</code></p>
+
+<div class="highlight"><pre><code class="coffeescript"><span class="vi">@notice = </span><span class="nf">(element, color) -&gt;</span>
+  <span class="nx">element</span><span class="p">.</span><span class="nx">animate</span> <span class="p">{</span><span class="nv">backgroundColor: </span><span class="nx">color</span><span class="p">},</span> <span class="mi">800</span>
+  <span class="nx">element</span><span class="p">.</span><span class="nx">animate</span> <span class="p">{</span><span class="nv">backgroundColor: </span><span class="s">"</span><span class="err">#</span><span class="s">fff"</span><span class="p">},</span> <span class="mi">800</span>
+</code></pre></div>
+
+<p>A <code>toggable</code>-method is also added to register an event to a task link to toggle the container showing the logs.</p>
+
+<p><code class="text filename">app/assets/javascript/functions.js.coffee</code></p>
+
+<div class="highlight"><pre><code class="coffeescript"><span class="vi">@toggable = </span><span class="nf">(parent) -&gt;</span>
+  <span class="nx">parent</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s">'.show-logs'</span><span class="p">).</span><span class="nx">on</span> <span class="s">'click'</span><span class="p">,</span> <span class="nf">-&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s">'.task:first'</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s">'.task-logs'</span><span class="p">).</span><span class="nx">toggle</span> <span class="s">'slow'</span>
+</code></pre></div>
+
+<h3>Adding a third party resource</h3>
+
+<p>The application definitely needs color highlighting on elements when they are being updated. The jQuery <a href="http://api.jquery.com/animate/">animate</a> method needs the <a href="https://github.com/jquery/jquery-color">color plugin</a> to support color changes as defined in the <code>notice()</code> method.</p>
+
+<p>As it is a third party library, which is not available as a gem, the dependency has to be added manually. The file belongs in the <code>vendor</code> path as <code>vendor/assets/javascripts/jquery-color-2.1.2.min.js</code>. It also has to be referenced in the <code>app/assets/application.js</code> file. Otherwise it would not be recognized as a needed asset.</p>
+
+<p><code class="text filename">app/assets/javascript/application.js</code></p>
+
+<div class="highlight"><pre><code class="javascript"><span class="p">...</span>
+<span class="c1">//= require turbolinks</span>
+<span class="c1">//= require jquery.color-2.1.2.min</span>
+<span class="p">...</span>
+</code></pre></div>
+
+<h3>Helping hands with the view</h3>
+
+<p>Following the <a href="http://en.wikipedia.org/wiki/Don%27t_repeat_yourself" title="Don&#39;t repeat yourself">DRY</a> principle, often needed view logic should be extracted in a helper class. That helps keeping the view code smaller and also provides a single place if the method logic needs an update. </p>
+
+<p>The application should print logged time in a familiar clock format like <code>12:05:17</code>. That logic is extracted at <code>app/helpers/logs_helper.rb</code> using the <a href="http://www.ruby-doc.org/core-1.9.3/Kernel.html#method-i-format">format</a> method.</p>
+
+<p><code class="text filename">app/helpers/logs_helper.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="k">module</span> <span class="nn">LogsHelper</span>
+
+  <span class="k">def</span> <span class="nf">format_logged</span><span class="p">(</span><span class="n">total</span><span class="p">)</span>
+    <span class="nb">format</span><span class="p">(</span><span class="s2">"%02d:%02d:%02d"</span><span class="p">,</span> <span class="n">total</span><span class="o">/</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span><span class="p">),</span> <span class="p">(</span><span class="n">total</span><span class="o">/</span><span class="mi">60</span><span class="p">)</span> <span class="o">%</span> <span class="mi">60</span><span class="p">,</span> <span class="n">total</span> <span class="o">%</span> <span class="mi">60</span><span class="p">)</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>The corresponding test in <code>test/helpers/logs_helper_test.rb</code> should check if the calculation works.</p>
+
+<p><code class="text filename">test/helpers/logs_helper_test.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">'test_helper'</span>
+
+<span class="k">class</span> <span class="nc">LogsHelperTest</span> <span class="o">&lt;</span> <span class="no">ActionView</span><span class="o">::</span><span class="no">TestCase</span>
+
+  <span class="nb">test</span> <span class="s1">'should format logged time'</span> <span class="k">do</span>
+    <span class="n">assert_equal</span> <span class="s1">'01:00:00'</span><span class="p">,</span> <span class="n">format_logged</span><span class="p">(</span><span class="mi">3600</span><span class="p">),</span> <span class="s1">'Does not format logged time'</span>
+    <span class="n">assert_equal</span> <span class="s1">'34:17:36'</span><span class="p">,</span> <span class="n">format_logged</span><span class="p">(</span><span class="mi">123456</span><span class="p">),</span> <span class="s1">'Does not format logged time'</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>Now the test execution should create 1 small and happy dot.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rake <span class="nb">test</span>:helpers
+</code></pre></div>
+
+<h3>Views</h3>
+
+<p>Coming from the backend, the visual part is defined as views. Defining <code>= yield</code> shows the location where the content will be included in the main application template. The templating engine Slim provides serveral methods and references to keep the promise of writing only the neccessary code, e.g. the <a href="http://rdoc.info/github/slim-template/slim#Doctype_tag">doctype</a> helper.</p>
+
+<p>The code highlighter <code>pygments</code> does not have slim sytax support yet, so the <code>slim</code> formatted files are not colorized.</p>
+
+<p><code class="text filename">app/views/layouts/application.html.slim</code></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">doctype html
+html
+  head
+    title Trackapp
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" =&gt; true
+    = javascript_include_tag "application", "data-turbolinks-track" =&gt; true
+    = csrf_meta_tags
+
+  body
+    = yield
+</code></pre></div>
+<p>Partials describe the display of a single entity. A partial view is prefixed with an underscore and referenced in other views by an include like <code>render @task</code> as a shortcut for <code>render :partial =&gt; @task</code>. That would render the specified <code>Task</code>. The method <code>render @project.tasks</code> would render the <code>_task.html.slim</code> partial for each member of the collection. </p>
+
+<div class="screenshot"><img src="./Single page web application built with Rails 4_files/trackapp_screenshot_hints.jpg" alt="Screenshot of trackapp with markers" title="Screenshot of trackapp with markers" \=""></div>
+
+<p>A <code>Project</code> is rendered as a single link in the <code>projects/_project.html.slim</code> partial view, just containing of a link as a <code>Project</code> is only visualized as a switch at the sidebar <code>(1)</code>.</p>
+
+<p><code class="text filename">app/views/projects/_project.html.slim</code></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">= link_to project.name, project_path(project), {class: "project project-#{project.id}", remote: true}
+</code></pre></div>
+<p>The <code>Task</code> partial in <code>tasks/_task.html.slim</code> shows a whole block <code>(2)</code>, which will be replaced completely on any update referencing the task.</p>
+
+<p><code class="text filename">app/views/tasks/_task.html.slim</code></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">div[class="task task-#{task.id} #{'task-work' if task.work?} #{'task-done' if task.done?}"]
+
+  .time #{format_logged(task.logged)}
+
+  - if task.work?
+    = link_to 'stop', stop_task_path(task), { class: 'task-action action-stop', remote: true }
+
+  - if task.done?
+    = link_to 'delete', task, { class: 'task-action action-delete', remote: true, method: :delete }
+
+  - if !task.done? &amp;&amp; !task.work?
+    = link_to 'start', start_task_path(task), { class: 'task-action action-start', remote: true }
+
+    = link_to 'done', finish_task_path(task), { class: 'task-action action-done', remote: true }
+
+  .task-title
+    - if task.work?
+      span.icon &amp;#9874;
+    - elsif task.done?
+      span.icon &amp;#10003;
+    - else
+      span.icon &amp;#9417;
+    span #{task.name}
+    - if !task.logs.empty?
+      span.show-logs  &amp;#8609;
+
+  div[class="task-logs logs-#{task.id}"]
+    = render task.logs
+</code></pre></div>
+<p>A single <code>Log</code> partial view is defined in <code>logs/_log.html.slim</code> and is rendered as a subset of a task partial <code>(3)</code>.</p>
+
+<p><code class="text filename">app/views/logs/_log.html.slim</code></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">div[class="log#{' log-work' if !log.stop?}"]
+
+  span.log-summary #{format_logged(log.duration)}
+
+  span #{l(log.start, format: :long)} 
+
+  - if log.stop
+    span &amp;#8611; #{l(log.stop, format: :long)}
+</code></pre></div>
+<p>The sidebar to switch through projects is described in the <code>projects/index.html.slim</code> file. The <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/FormTagHelper.html#method-i-form_tag">form tag</a> creates a form with a single input field to submit a new project <code>(4)</code>. The second one does the equivalent to an new task <code>(5)</code>.</p>
+
+<p><code class="text filename">app/views/projects/index.html.slim</code></p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">ul.tabs
+  li
+    = form_tag('/projects', method: :post, remote: true) do
+      = text_field_tag(:name, nil, placeholder: 'New project')
+  - @projects.each_with_index do |project, index|
+    li[class="#{'active' if index == 0}#{' last' if index == @projects.size-1}"]
+      = render project 
+
+.project-time= format_logged(@project.logged)
+
+= link_to 'delete project', projects_path(id: @project.id, format: 'js'), { class: 'project-delete', remote: true, method: :delete }
+
+.task-create
+  = form_tag('/tasks', method: :post, remote: true) do
+    = text_field_tag(:name, nil, placeholder: 'New task')
+    = hidden_field_tag(:project_id, "#{@projects.empty? ? 0 : @projects.first.id}")
+
+.taskpane
+  = render @project.tasks
+</code></pre></div>
+<p>To visually refresh any changes on a task object, the <code>tasks/refresh.js.coffee</code> JavaScript response replaces the task partial, updates the projects total time and highlight both elements to indicate a change. The method <code>j()</code> is an alias for <a href="http://api.rubyonrails.org/classes/ActionView/Helpers/JavaScriptHelper.html#method-i-escape_javascript">escape_javascript</a>, which makes any JavaScript rendered in the task partial non executable.</p>
+
+<p><code class="text filename">app/views/tasks/refresh.js.coffee</code></p>
+
+<div class="highlight"><pre><code class="js+erb"><span class="nx">$</span><span class="p">(</span><span class="s1">'.logs-</span><span class="cp">&lt;%=</span><span class="vi">@task</span><span class="o">.</span><span class="n">id</span><span class="cp">%&gt;</span><span class="s1">'</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s1">'.task:first'</span><span class="p">).</span><span class="nx">replaceWith</span> <span class="s1">'</span><span class="cp">&lt;%=</span> <span class="n">j</span><span class="p">(</span><span class="n">render</span> <span class="vi">@task</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="s1">'</span>
+<span class="nx">notice</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.task-</span><span class="cp">&lt;%=</span> <span class="vi">@task</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s1">'</span><span class="p">),</span> <span class="s1">'#fff68f'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.project-time'</span><span class="p">).</span><span class="nx">html</span> <span class="s1">'</span><span class="cp">&lt;%=</span> <span class="n">escape_javascript</span><span class="p">(</span><span class="n">format_logged</span><span class="p">(</span><span class="vi">@task</span><span class="o">.</span><span class="n">project</span><span class="o">.</span><span class="n">logged</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="s1">'</span>
+<span class="nx">notice</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.project-time'</span><span class="p">),</span> <span class="s1">'#fff68f'</span>
+<span class="nx">toggable</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.task-</span><span class="cp">&lt;%=</span><span class="vi">@task</span><span class="o">.</span><span class="n">id</span><span class="cp">%&gt;</span><span class="s1">'</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The <code>projects/create.js.coffee</code> JavaScript response view switches between a successful project creation and a validation error. If the creation failed, the <code>name</code> attribute error will be shown in the only form field. If the creation was successful, the new project will be appended to the sidebar.</p>
+
+<p><code class="text filename">app/views/projects/create.js.coffee</code></p>
+
+<div class="highlight"><pre><code class="js+erb"><span class="cp">&lt;%</span> <span class="k">if</span> <span class="vi">@project</span><span class="o">.</span><span class="n">valid?</span> <span class="cp">%&gt;</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.tabs li'</span><span class="p">).</span><span class="nx">removeClass</span> <span class="s1">'last'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.tabs'</span><span class="p">).</span><span class="nx">append</span> <span class="s1">'&lt;li class=\"last\"&gt;</span><span class="cp">&lt;%=</span> <span class="n">j</span><span class="p">(</span><span class="n">render</span> <span class="vi">@project</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="s1">&lt;/li&gt;'</span>
+<span class="nx">notice</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.project-</span><span class="cp">&lt;%=</span> <span class="vi">@project</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s1">'</span><span class="p">),</span> <span class="s1">'#eaeaae'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.tabs input'</span><span class="p">).</span><span class="nx">val</span> <span class="s1">''</span>
+
+<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
+
+<span class="nx">notice</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.tabs input'</span><span class="p">),</span> <span class="s1">'#ff6666'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.tabs input'</span><span class="p">).</span><span class="nx">val</span> <span class="s1">''</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.tabs input'</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">'placeholder'</span><span class="p">,</span> <span class="s1">'</span><span class="cp">&lt;%=</span> <span class="vi">@project</span><span class="o">.</span><span class="n">errors</span><span class="o">[</span><span class="ss">:name</span><span class="o">].</span><span class="n">first</span> <span class="cp">%&gt;</span><span class="s1">'</span>
+
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre></div>
+
+<p>The <code>tasks/create.js.coffee</code> file describes the equivalent functionality for tasks.</p>
+
+<p><code class="text filename">app/views/tasks/create.js.coffee</code></p>
+
+<div class="highlight"><pre><code class="js+erb"><span class="cp">&lt;%</span> <span class="k">if</span> <span class="vi">@task</span><span class="o">.</span><span class="n">valid?</span> <span class="cp">%&gt;</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.taskpane'</span><span class="p">).</span><span class="nx">prepend</span> <span class="s1">'</span><span class="cp">&lt;%=</span> <span class="n">j</span><span class="p">(</span><span class="n">render</span> <span class="vi">@task</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="s1">'</span>
+<span class="nx">notice</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.task-</span><span class="cp">&lt;%=</span> <span class="vi">@task</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s1">'</span><span class="p">),</span> <span class="s1">'#eaeaae'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.task-create #name'</span><span class="p">).</span><span class="nx">val</span> <span class="s1">''</span>
+
+<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>
+
+<span class="nx">notice</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.task-create #name'</span><span class="p">),</span> <span class="s1">'#ff6666'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.task-create #name'</span><span class="p">).</span><span class="nx">val</span> <span class="s1">''</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.task-create #name'</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">'placeholder'</span><span class="p">,</span> <span class="s1">'</span><span class="cp">&lt;%=</span> <span class="vi">@task</span><span class="o">.</span><span class="n">errors</span><span class="o">[</span><span class="ss">:name</span><span class="o">].</span><span class="n">first</span> <span class="cp">%&gt;</span><span class="s1">'</span>
+
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+</code></pre></div>
+
+<p>Deleting, showing and switching to projects is handled in the <code>projects/show.js.coffee</code> file. Showing or switching to a project highlights the selected and replaces the taskpane with its tasks. If a project is deleted, the view partial for that deleted project is hidden and then the actual show statement is triggered.</p>
+
+<p><code class="text filename">app/views/projects/show.js.coffee</code></p>
+
+<div class="highlight"><pre><code class="js+erb"><span class="cp">&lt;%</span> <span class="k">if</span> <span class="o">!</span><span class="vi">@deleted</span><span class="o">.</span><span class="n">nil?</span> <span class="cp">%&gt;</span>
+
+<span class="nx">notice</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.project-</span><span class="cp">&lt;%=</span> <span class="vi">@deleted</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s1">'</span><span class="p">),</span> <span class="s1">'#ff6666'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.project-</span><span class="cp">&lt;%=</span> <span class="vi">@deleted</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s1">'</span><span class="p">).</span><span class="nx">hide</span> <span class="s1">'slow'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.tabs li:last-child'</span><span class="p">).</span><span class="nx">prev</span><span class="p">(</span><span class="s1">'li'</span><span class="p">).</span><span class="nx">addClass</span> <span class="s1">'last'</span>
+<span class="nx">notice</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.project-</span><span class="cp">&lt;%=</span> <span class="vi">@project</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s1">'</span><span class="p">),</span> <span class="s1">'#fff68f'</span>
+
+<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.taskpane'</span><span class="p">).</span><span class="nx">replaceWith</span> <span class="s1">'&lt;div class="taskpane"&gt;</span><span class="cp">&lt;%=</span> <span class="n">j</span><span class="p">(</span><span class="n">render</span> <span class="vi">@project</span><span class="o">.</span><span class="n">tasks</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="s1">&lt;/div&gt;'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.tabs li'</span><span class="p">).</span><span class="nx">removeClass</span> <span class="s1">'active'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.project-</span><span class="cp">&lt;%=</span> <span class="vi">@project</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s1">'</span><span class="p">).</span><span class="nx">parents</span><span class="p">(</span><span class="s1">'li:first'</span><span class="p">).</span><span class="nx">addClass</span> <span class="s1">'active'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.task-create #project_id'</span><span class="p">).</span><span class="nx">val</span> <span class="s1">'</span><span class="cp">&lt;%=</span> <span class="vi">@project</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s1">'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.project-delete'</span><span class="p">).</span><span class="nx">attr</span> <span class="s1">'href'</span><span class="p">,</span> <span class="s1">'</span><span class="cp">&lt;%=</span> <span class="n">project_path</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="vi">@project</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="s1">'js'</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="s1">'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.project-time'</span><span class="p">).</span><span class="nx">html</span> <span class="s1">'</span><span class="cp">&lt;%=</span> <span class="n">j</span><span class="p">(</span><span class="n">format_logged</span><span class="p">(</span><span class="vi">@project</span><span class="o">.</span><span class="n">logged</span><span class="p">))</span> <span class="cp">%&gt;</span><span class="s1">'</span>
+
+<span class="nx">toggable</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.task'</span><span class="p">)</span>
+</code></pre></div>
+
+<p>If a task is destroyed, <code>tasks/destroy.js.coffee</code> hides the corresponding view partial.</p>
+
+<p><code class="text filename">app/views/tasks/destroy.js.coffee</code></p>
+
+<div class="highlight"><pre><code class="js+erb"><span class="nx">notice</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'.task-</span><span class="cp">&lt;%=</span> <span class="vi">@task</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s1">'</span><span class="p">),</span> <span class="s1">'#ff6666'</span>
+<span class="nx">$</span><span class="p">(</span><span class="s1">'.task-</span><span class="cp">&lt;%=</span> <span class="vi">@task</span><span class="o">.</span><span class="n">id</span> <span class="cp">%&gt;</span><span class="s1">'</span><span class="p">).</span><span class="nx">hide</span> <span class="s1">'slow'</span>
+</code></pre></div>
+
+<h3>Controller tests</h3>
+
+<p>The <code>ProjectsControllerTest</code> checks each of the four methods: index, show, create and destroy. Test fixtures are used to help creating new objects like they were used in the model tests. The controller <a href="http://api.rubyonrails.org/classes/ActionController/TestCase.html">test basics</a> provide methods to keep the test cases small. </p>
+
+<p>Provided assertions are</p>
+
+<ul>
+<li><code>assigns(:project)</code> checking if the instance variable for the requested project is set</li>
+<li><code>assert_response :success</code> checking for the correct response code <code>200</code></li>
+<li><code>assert_template</code> checking the mapped template</li>
+</ul>
+
+<p>There is also the block helper <a href="http://api.rubyonrails.org/classes/ActiveSupport/Testing/Assertions.html#method-i-assert_difference">assert_difference</a> to check if the count of the projects increased if a valid request hits the <code>:create</code> method.</p>
+
+<p><code class="text filename">test/controllers/projects_controller_test.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">'test_helper'</span>
+
+<span class="k">class</span> <span class="nc">ProjectsControllerTest</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">TestCase</span>
+
+  <span class="nb">test</span> <span class="s1">'should get project index'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="ss">:index</span>
+    <span class="n">assert_response</span> <span class="ss">:success</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:project</span><span class="p">)</span> <span class="o">==</span> <span class="n">projects</span><span class="p">(</span><span class="ss">:tree</span><span class="p">)</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:projects</span><span class="p">)</span> <span class="o">==</span> <span class="n">projects</span>
+    <span class="n">assert_template</span> <span class="s1">'projects/index'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should get project'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="ss">:show</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:js</span>
+    <span class="n">assert_response</span> <span class="ss">:success</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:project</span><span class="p">)</span> <span class="o">==</span> <span class="n">projects</span><span class="p">(</span><span class="ss">:tree</span><span class="p">)</span>
+    <span class="n">assert_template</span> <span class="s1">'projects/show'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should create a new project'</span> <span class="k">do</span>
+    <span class="n">assert_difference</span><span class="p">(</span><span class="s1">'Project.count'</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">post</span> <span class="ss">:create</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">'A test project'</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:js</span>
+    <span class="k">end</span>
+    <span class="n">assert_response</span> <span class="ss">:success</span>
+    <span class="n">assert_not_nil</span> <span class="n">assigns</span><span class="p">(</span><span class="ss">:project</span><span class="p">)</span>
+    <span class="n">assert_template</span> <span class="s1">'projects/create'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should delete a project'</span> <span class="k">do</span>
+    <span class="n">deleted</span> <span class="o">=</span> <span class="n">projects</span><span class="p">(</span><span class="ss">:tree</span><span class="p">)</span>
+    <span class="n">assert_difference</span><span class="p">(</span><span class="s1">'Project.count'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">delete</span> <span class="ss">:destroy</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:js</span>
+    <span class="k">end</span>
+    <span class="n">assert_response</span> <span class="ss">:success</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:deleted</span><span class="p">)</span> <span class="o">==</span> <span class="n">deleted</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:project</span><span class="p">)</span> <span class="o">==</span> <span class="n">projects</span><span class="p">(</span><span class="ss">:car</span><span class="p">)</span>
+    <span class="n">assert_template</span> <span class="s1">'projects/show'</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>In addition to the equivalent tests for tasks, the <code>TasksControllerTest</code> also includes assertions for changes on the depending logs.</p>
+
+<p><code class="text filename">test/controllers/tasks_controller_test.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="nb">require</span> <span class="s1">'test_helper'</span>
+
+<span class="k">class</span> <span class="nc">TasksControllerTest</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">TestCase</span>
+
+  <span class="nb">test</span> <span class="s1">'should create a new task'</span> <span class="k">do</span>
+    <span class="n">assert_difference</span><span class="p">(</span><span class="s1">'Task.count'</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">post</span> <span class="ss">:create</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">name</span><span class="p">:</span> <span class="s1">'A test task'</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:js</span>
+    <span class="k">end</span>
+    <span class="n">assert_response</span> <span class="ss">:success</span>
+    <span class="n">assert_not_nil</span> <span class="n">assigns</span><span class="p">(</span><span class="ss">:task</span><span class="p">)</span>
+    <span class="n">assert_template</span> <span class="s1">'tasks/create'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should close a task'</span> <span class="k">do</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="n">tasks</span><span class="p">(</span><span class="ss">:unfinished</span><span class="p">)</span>
+    <span class="n">get</span> <span class="ss">:finish</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:js</span>
+    <span class="n">assert</span> <span class="n">task</span><span class="o">.</span><span class="n">reload</span><span class="o">.</span><span class="n">done?</span>
+    <span class="n">assert_response</span> <span class="ss">:success</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:task</span><span class="p">)</span> <span class="o">==</span> <span class="n">task</span>
+    <span class="n">assert_template</span> <span class="s1">'tasks/refresh'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should delete a task'</span> <span class="k">do</span>
+    <span class="n">deleted</span> <span class="o">=</span> <span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span>
+    <span class="n">assert_difference</span><span class="p">(</span><span class="s1">'Task.count'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">delete</span> <span class="ss">:destroy</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:js</span>
+    <span class="k">end</span>
+    <span class="n">assert_response</span> <span class="ss">:success</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:task</span><span class="p">)</span> <span class="o">==</span> <span class="n">deleted</span>
+    <span class="n">assert_template</span> <span class="s1">'tasks/destroy'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should create a new log on start'</span> <span class="k">do</span>
+    <span class="n">assert_difference</span><span class="p">(</span><span class="s1">'tasks(:finished).logs.size'</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">get</span> <span class="ss">:start</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:js</span>
+    <span class="k">end</span>
+    <span class="n">assert_response</span> <span class="ss">:success</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:task</span><span class="p">)</span> <span class="o">==</span> <span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:log</span><span class="p">)</span> <span class="o">==</span> <span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span><span class="o">.</span><span class="n">logs</span><span class="o">.</span><span class="n">last</span>
+    <span class="n">assert_template</span> <span class="s1">'tasks/refresh'</span>
+  <span class="k">end</span>
+
+  <span class="nb">test</span> <span class="s1">'should update a log on stop'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="ss">:stop</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="ss">:js</span>
+    <span class="n">assert_response</span> <span class="ss">:success</span>
+    <span class="n">assert</span> <span class="o">!</span><span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span><span class="o">.</span><span class="n">logs</span><span class="o">.</span><span class="n">last</span><span class="o">.</span><span class="n">stop</span><span class="o">.</span><span class="n">nil?</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:task</span><span class="p">)</span> <span class="o">==</span> <span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span>
+    <span class="n">assigns</span><span class="p">(</span><span class="ss">:log</span><span class="p">)</span> <span class="o">==</span> <span class="n">tasks</span><span class="p">(</span><span class="ss">:finished</span><span class="p">)</span><span class="o">.</span><span class="n">logs</span><span class="o">.</span><span class="n">last</span>
+    <span class="n">assert_template</span> <span class="s1">'tasks/refresh'</span>
+  <span class="k">end</span>
+
+<span class="k">end</span>
+</code></pre></div>
+
+<p>Now the test execution should create 9 small and happy dots, one for each non failing test case.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rake <span class="nb">test</span>:controllers
+</code></pre></div>
+
+<h3>Seeding and harvesting</h3>
+
+<p>The application would be empty on the first start and it would be be nice to preload it with some data. The way to do so is to define objects to start with in the <code>seeds.rb</code> file found in the <code>db</code> folder.</p>
+
+<p>Defined is a project with finished, running, working and new tasks.</p>
+
+<p><code class="text filename">db/seeds.rb</code></p>
+
+<div class="highlight"><pre><code class="ruby"><span class="o">.</span><span class="n">.</span><span class="o">.</span>
+<span class="n">project</span> <span class="o">=</span> <span class="no">Project</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s1">'Cut a tree'</span><span class="p">)</span>
+
+<span class="n">done</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s1">'Buy an axe'</span><span class="p">,</span> <span class="ss">project</span><span class="p">:</span> <span class="n">project</span><span class="p">,</span> <span class="ss">done</span><span class="p">:</span> <span class="kp">true</span><span class="p">)</span>
+<span class="no">Log</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">task</span><span class="p">:</span> <span class="n">done</span><span class="p">,</span> <span class="ss">start</span><span class="p">:</span> <span class="n">done</span><span class="o">.</span><span class="n">created_at</span><span class="p">,</span> <span class="ss">stop</span><span class="p">:</span> <span class="n">done</span><span class="o">.</span><span class="n">created_at</span> <span class="o">+</span> <span class="mi">1</span><span class="o">.</span><span class="n">minute</span><span class="p">)</span>
+
+<span class="n">running</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s1">'Locate the tree'</span><span class="p">,</span> <span class="ss">project</span><span class="p">:</span> <span class="n">project</span><span class="p">)</span>
+<span class="no">Log</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">task</span><span class="p">:</span> <span class="n">running</span><span class="p">,</span> <span class="ss">start</span><span class="p">:</span> <span class="n">running</span><span class="o">.</span><span class="n">created_at</span><span class="p">,</span> <span class="ss">stop</span><span class="p">:</span> <span class="n">running</span><span class="o">.</span><span class="n">created_at</span> <span class="o">+</span> <span class="mi">1</span><span class="o">.</span><span class="n">minute</span><span class="p">)</span>
+<span class="no">Log</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">task</span><span class="p">:</span> <span class="n">running</span><span class="p">,</span> <span class="ss">start</span><span class="p">:</span> <span class="n">running</span><span class="o">.</span><span class="n">created_at</span> <span class="o">+</span> <span class="mi">2</span><span class="o">.</span><span class="n">minutes</span><span class="p">,</span> <span class="ss">stop</span><span class="p">:</span> <span class="n">running</span><span class="o">.</span><span class="n">created_at</span> <span class="o">+</span> <span class="mi">4</span><span class="o">.</span><span class="n">minutes</span><span class="p">)</span>
+
+<span class="n">work</span> <span class="o">=</span> <span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s1">'Chop chop chop'</span><span class="p">,</span> <span class="ss">project</span><span class="p">:</span> <span class="n">project</span><span class="p">)</span>
+<span class="no">Log</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">task</span><span class="p">:</span> <span class="n">work</span><span class="p">,</span> <span class="ss">start</span><span class="p">:</span> <span class="n">work</span><span class="o">.</span><span class="n">created_at</span><span class="p">,</span> <span class="ss">stop</span><span class="p">:</span> <span class="n">work</span><span class="o">.</span><span class="n">created_at</span> <span class="o">+</span> <span class="mi">1</span><span class="o">.</span><span class="n">minute</span><span class="p">)</span>
+<span class="no">Log</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="ss">task</span><span class="p">:</span> <span class="n">work</span><span class="p">,</span> <span class="ss">start</span><span class="p">:</span> <span class="n">work</span><span class="o">.</span><span class="n">created_at</span> <span class="o">+</span> <span class="mi">5</span><span class="o">.</span><span class="n">minutes</span><span class="p">,</span> <span class="ss">stop</span><span class="p">:</span> <span class="n">work</span><span class="o">.</span><span class="n">created_at</span> <span class="o">+</span> <span class="mi">8</span><span class="o">.</span><span class="n">minutes</span><span class="p">)</span>
+
+<span class="no">Task</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="nb">name</span><span class="p">:</span> <span class="s1">'Take pictures'</span><span class="p">,</span> <span class="ss">project</span><span class="p">:</span> <span class="n">project</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The following command adds the data to the database.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rake db:seed
+</code></pre></div>
+
+<h3>Testing with a browser</h3>
+
+<p>The application should be complete. Boot it up to click around.</p>
+
+<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rails server
+</code></pre></div>
+
+<p>It starts at <a href="http://localhost:3000/">localhost:3000</a>.</p>
+
+<h3>The result</h3>
+
+<p>A working example of a single page application based on Ruby on Rails. It is not feature complete and the next steps to try on would be something like editing the names of projects and tasks or reopening tasks.</p>
+
+<p>The full application can be found at the <a href="https://github.com/krudolph/trackapp">trackapp GitHub repository</a>.</p>
+
+</article>
+
+    </div>
+  
+
+</body></html>

@@ -1,0 +1,109 @@
+html{
+	background-color: black;
+	width:80%;
+	margin:0 auto;
+}
+body{
+	background-color: purple;
+	padding:10px;
+	min-height:3200px;
+}
+.section{
+	background-color: white;
+	margin:10px auto;
+	min-height:3000px;
+	border-radius: 20px;
+}
+/*-----NAVBAR-----*/
+.navbar{
+	clear:both;
+	padding:0 0 0 0;
+}
+.navbar ul{
+	list-style-type: none;
+}
+.navbar ul li{
+	display:inline;
+	width:60px;
+	float:left;
+}
+ .navbar ul li a{
+ 	display:block;/*making the whole area clickable*/
+ 	height:20px;
+ 	width:60px;
+ 	background-color: grey;
+ 	list-style-type: none;
+ }
+
+ .navbar ul li a:hover{
+ 	background-color: green;
+ }
+ /*----NAVBAR END----*/
+ .banner{
+ 	height:200px;
+ 	width:100%;
+ 	background-color: black;
+ }
+ /*for now aside will have general attributes*/
+ .content{
+ 	min-height:3184px;
+ 	width:45%;
+ 	float:left;
+ 	clear:left;
+ }
+ .content ul li{
+	display:block;
+}
+/*.contents ul li{
+	display:block;
+	visibility: visible;*/
+}
+
+div ul{
+	list-style-type: none;
+}
+ ul li ul{
+ 	list-style-type: none;
+ }
+
+
+
+ /*----SOCIAL-----*/
+ .social{
+	height:100px;
+	width:100%;
+	border:1px solid grey;
+	
+}
+ .social img{
+ 	height:90px;
+ 	width:90px;
+ 	border:5px solid black;
+ 	float:left;
+}
+
+ /*---PROJECTS----*/
+ .projects{
+	height:100px;
+	width:100%;
+	border:1px solid grey;
+}
+#star-six {
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-bottom: 100px solid red;
+	position: relative;
+}
+#star-six:after {
+	width: 0;
+	height: 0;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+	border-top: 100px solid red;
+	position: absolute;
+	content: "";
+	top: 30px;
+	left: -50px;
+}

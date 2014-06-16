@@ -1,0 +1,109 @@
+/** Gravity Forms **/
+.magic-action-box {
+	margin-top: 40px;
+	margin-bottom: -20px;
+}
+#secondary .magic-action-box {
+	margin: 0 !important;
+}
+#secondary .magic-action-box .gform_wrapper .gform_body li {
+	width: 100%;
+}
+.magic-action-box .gform_wrapper .gform_body li { 
+	margin-left: 0; 
+	margin-right: 0;
+	float: left;
+	width: 48%;
+	clear: none;
+}
+.magic-action-box .mab-main-copy p {
+	margin-bottom: 10px;
+}
+@media (max-width: 480px) {
+	.magic-action-box .gform_wrapper .gform_body li {
+		float: none;
+		clear: both;
+	}
+}
+.magic-action-box .validation_error {
+	display: none;
+}
+.magic-action-box .mab-heading {
+	font-size: 28px;
+	line-height: 1.6;
+}
+.mab-wrap {
+	padding: 20px;
+	border: 1px #CCCCCC solid;
+	background-color: #F5F5F5;
+}
+	#secondary .mab-wrap {
+		background-color: #2e2e30;
+		color: #929292;
+	}
+	#secondary .magic-action-box .mab-heading {
+		border-bottom: 1px rgba(255,255,255,0.2) solid;
+		color: #fff;
+		padding-bottom: 16px;
+		line-height: 1.25em;
+		margin: 0 -20px 0.666em -20px;
+		padding: 0 20px 16px 20px;
+	}
+.magic-action-box .gform_button {
+	padding: 7px 15px 7px;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.magic-action-box .gform_wrapper input[type=text], .magic-action-box .gform_wrapper input[type=url], .magic-action-box .gform_wrapper input[type=email], .magic-action-box .gform_wrapper input[type=tel], .magic-action-box .gform_wrapper input[type=number], .magic-action-box .gform_wrapper input[type=password]{
+	padding: 6px;
+	max-width: 100%;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+	#secondary .magic-action-box .gform_wrapper input[type=text], 
+	#secondary .magic-action-box .gform_wrapper input[type=url], 
+	#secondary .magic-action-box .gform_wrapper input[type=email], 
+	#secondary .magic-action-box .gform_wrapper input[type=tel], 
+	#secondary .magic-action-box .gform_wrapper input[type=number], 
+	#secondary .magic-action-box .gform_wrapper input[type=password]{
+		background-color: #fafafa;
+		border-color: #ffffff;
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	#secondary .magic-action-box .mab-main-copy {
+		margin-bottom: 20px;
+	}
+	#secondary .magic-action-box .gform_footer{
+		clear: none;
+		float: left;
+	}
+	#secondary .magic-action-box .gform_body {
+		width: 77%;
+	}
+	#secondary .gform_wrapper .ginput_container {
+		padding-right: 14px;
+	}
+	#secondary .magic-action-box input[type=submit] {
+		width: 55px;
+		margin: 0;
+	}
+
+.magic-action-box .gform_wrapper .ginput_complex .ginput_full input{ width: 97% !important; }
+
+.magic-action-box .gform_wrapper .ginput_complex .ginput_right input, .magic-action-box .gform_wrapper .ginput_complex .ginput_right select{ width: 94% !important; }
+
+.magic-action-box .gform_wrapper .field_name_first input, .magic-action-box .gform_wrapper .ginput_complex .ginput_left input, .magic-action-box .gform_wrapper .ginput_complex .ginput_left select{ width: 94% !important;}
+
+.magic-action-box .gform_wrapper .ginput_complex .ginput_right select, .magic-action-box .gform_wrapper .ginput_complex .ginput_left select{ width: 99% !important;}
+
+.magic-action-box .gform_wrapper .gform_fields select.medium{ width: 49%; }
+
+.magic-action-box .gform_wrapper select, .magic-action-box .gform_wrapper.gf_browser_chrome .ginput_complex select, .magic-action-box .gform_wrapper .ginput_complex select, .magic-action-box .gform_wrapper .ginput_complex .ginput_right select{ padding: 3px 0; }
+
+.magic-action-box .gform_wrapper.gf_browser_chrome .ginput_complex select, .magic-action-box .gform_wrapper.gf_browser_chrome .ginput_complex .ginput_right select{ padding: 3px 0;}

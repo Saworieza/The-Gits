@@ -1,0 +1,431 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: 'Lora', sans-serif;
+  background: #fff;
+  -webkit-font-smoothing: antialiased; }
+
+.move {
+  overflow-x: hidden;
+  position: relative;
+  right: 0; }
+
+/*================================================
+SCROLL
+=================================================*/
+::-webkit-scrollbar {
+  background: #fff;
+  width: 7px; }
+
+::-webkit-scrollbar-thumb {
+  background: #aaa; }
+
+/*================================================
+COULEUR SELECTION
+=================================================*/
+*::-moz-selection {
+  background: #fa4c4c;
+  color: #FFFFFF; }
+
+*::-webkit-selection {
+  background: #fa4c4c;
+  color: #FFFFFF; }
+
+*::-o-selection {
+  background: #fa4c4c;
+  color: #FFFFFF; }
+
+*::selection {
+  background: #fa4c4c;
+  color: #FFFFFF; }
+
+/*================================================
+GENERAL
+=================================================*/
+a {
+  text-decoration: none; }
+
+a img {
+  border: none; }
+
+div#top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #fff;
+  z-index: 96; }
+
+div#bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #fff;
+  z-index: 97; }
+
+div#left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 100%;
+  background: #fff;
+  z-index: 98; }
+
+div#right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background: #fff;
+  z-index: 99; }
+
+.clear {
+  clear: both; }
+
+/*================================================
+LOADING
+=================================================*/
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 130; }
+  #overlay img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -16px 0 0 -16px; }
+
+/*================================================
+NAVIGATION
+=================================================*/
+nav {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: 100%;
+  padding: 17px 30px 17px 10px;
+  background: #fff;
+  overflow: scroll;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box; }
+  nav ul {
+    list-style: none; }
+    nav ul li h3 {
+      color: #262626;
+      font-size: 14px;
+      line-height: 26px;
+      font-weight: 700;
+      margin-bottom: 23px;
+      display: inline-block;
+      border-bottom: solid 2px #555; }
+    nav ul li span {
+      font-family: 'Inconsolata', sans-serif;
+      color: #838383;
+      font-size: 12px;
+      line-height: 18px;
+      font-weight: 400;
+      display: block;
+      -webkit-transition: all 0.2s ease;
+      -moz-transition: all 0.2s ease;
+      transition: all 0.2s ease; }
+    nav ul li ul {
+      margin-bottom: 16px; }
+      nav ul li ul li h2 {
+        color: #262626;
+        font-size: 18px;
+        line-height: 23px;
+        font-weight: 700;
+        display: inline-block;
+        background: url("../img/icons/bgMenu.png") center center no-repeat;
+        -webkit-transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease;
+        transition: all 0.5s ease; }
+      nav ul li ul li h2:hover {
+        background: url("../img/icons/hover.png") center center no-repeat;
+        background-size: 60px 20px; }
+      nav ul li ul li h2.active {
+        background: url("../img/icons/hover.png") center center no-repeat;
+        background-size: 60px 20px; }
+
+#navButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 95; }
+  #navButton img {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 18px;
+    width: 15px !important;
+    height: 15px !important;
+    background: #ddd; }
+
+#navButton.nav1 {
+  cursor: w-resize; }
+
+#navButton.nav2 {
+  cursor: e-resize; }
+
+#navButtonVideo {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 51px;
+  height: 51px;
+  background: #ddd;
+  z-index: 96; }
+  #navButtonVideo img {
+    padding: 18px;
+    width: 15px !important;
+    height: 15px !important;
+    background: #ddd; }
+
+#navButtonVideo.nav1 {
+  cursor: w-resize; }
+
+#navButtonVideo.nav2 {
+  cursor: e-resize; }
+
+@media screen and (max-width: 767px) {
+  #navButton img {
+    display: block; } }
+@media screen and (max-width: 400px) {
+  #navButton img {
+    top: 10px;
+    right: 10px;
+    display: block; }
+
+  #navButtonVideo {
+    top: 10px;
+    right: 10px; } }
+/*================================================
+DESCRIPTION
+=================================================*/
+#description {
+  position: relative;
+  padding: 40px 10px 60px 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box; }
+  #description div h3 {
+    color: #262626;
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 700;
+    margin-bottom: 23px;
+    display: inline-block;
+    border-bottom: solid 2px #555; }
+  #description div h2 {
+    color: #262626;
+    font-size: 30px;
+    line-height: 26px;
+    font-weight: 700;
+    margin-bottom: 22px; }
+  #description div p {
+    color: #666;
+    font-size: 13px;
+    line-height: 19px;
+    margin-top: 10px; }
+    #description div p a {
+      color: #666;
+      border-bottom: dotted 1px #999;
+      cursor: alias; }
+    #description div p a:hover {
+      color: #000;
+      border-bottom: dotted 1px #333; }
+  #description div .button {
+    color: #fff;
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 20px;
+    margin-right: 5px;
+    background: url("../img/icons/arrow.svg") #fa4c4c no-repeat;
+    background-position: 110px 17px;
+    background-size: 17px 7px;
+    cursor: pointer;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transition: all 0.2s ease; }
+  #description div .button:hover {
+    padding: 10px 40px 10px 15px;
+    background-position: 96px 17px; }
+  #description div .buttonCV {
+    margin-top: 10px;
+    background-position: 140px 17px; }
+  #description div .buttonCV:hover {
+    background-position: 132px 17px; }
+  #description div .buttonVimeo {
+    background-position: 133px 17px; }
+  #description div .buttonVimeo:hover {
+    background-position: 127px 17px; }
+  #description div .buttonDownload {
+    background-position: 130px 17px; }
+  #description div .buttonDownload:hover {
+    background-position: 117px 17px; }
+  #description div #linkSN {
+    list-style: none;
+    margin-top: 60px; }
+    #description div #linkSN a {
+      color: #666;
+      font-size: 13px;
+      display: inline-block;
+      margin-right: 6px;
+      border-bottom: dotted 1px #999;
+      cursor: alias; }
+    #description div #linkSN a:hover {
+      color: #000 !important; }
+
+@media screen and (max-width: 767px) {
+  #description #linkSN {
+    margin-top: 20px !important; } }
+/*================================================
+CONTENT
+=================================================*/
+#content {
+  position: relative;
+  padding: 0 20px 20px 20px; }
+  #content img {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 18px; }
+  #content img:last-child {
+    margin-bottom: 0; }
+  #content div.imgLeft {
+    padding: 0 10px 16px 0; }
+  #content div.imgRight {
+    padding: 0 0 16px 10px; }
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 1900px) {
+  #description {
+    padding: 40px 0 60px 0; }
+    #description div {
+      padding: 0; } }
+@media screen and (max-width: 400px) {
+  div#top {
+    height: 10px; }
+
+  div#bottom {
+    height: 10px; }
+
+  div#left {
+    width: 10px; }
+
+  div#right {
+    width: 10px; }
+
+  #content {
+    padding: 0 10px 10px 10px; }
+    #content img {
+      margin-bottom: 8px; }
+    #content div.imgLeft {
+      padding: 0 0 6px 0; }
+    #content div.imgRight {
+      padding: 0 0 6px 0; } }
+/*================================================
+LIKE / TWEET / PIN IT
+=================================================*/
+#likes {
+  font-family: 'Inconsolata', sans-serif;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 30; }
+  #likes #socialNetworks {
+    margin-left: 10px; }
+    #likes #socialNetworks ul {
+      list-style: none; }
+      #likes #socialNetworks ul li {
+        width: 170px;
+        height: 40px;
+        background: #eaeaea;
+        position: relative;
+        overflow: hidden;
+        border-radius: 2px;
+        margin-left: 20px; }
+        #likes #socialNetworks ul li .network {
+          width: 130px;
+          height: 40px;
+          background: #eaeaea;
+          position: absolute;
+          top: 0;
+          left: 40px;
+          border-radius: 2px;
+          z-index: 110;
+          -ms-transition: all 0.3s ease;
+          -moz-transition: all 0.3s ease;
+          -webkit-transition: all 0.3s ease;
+          -o-transition: all 0.3s ease;
+          transition: all 0.3s ease; }
+          #likes #socialNetworks ul li .network p {
+            font-size: 10px;
+            color: #999;
+            line-height: 40px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-align: center; }
+        #likes #socialNetworks ul li .button {
+          position: absolute;
+          z-index: 100; }
+      #likes #socialNetworks ul li:hover .network {
+        left: 175px; }
+      #likes #socialNetworks ul li:first-child {
+        margin-left: 0; }
+      #likes #socialNetworks ul li.facebook {
+        background: url("../img/socialNetworks/facebook.svg") no-repeat #eaeaea;
+        background-size: auto 100%;
+        background-position: left center; }
+        #likes #socialNetworks ul li.facebook .button {
+          top: 10px;
+          left: 60px; }
+      #likes #socialNetworks ul li.twitter {
+        background: url("../img/socialNetworks/twitter.svg") no-repeat #eaeaea;
+        background-size: auto 100%;
+        background-position: left center; }
+        #likes #socialNetworks ul li.twitter .button {
+          top: 10px;
+          left: 65px; }
+      #likes #socialNetworks ul li.pinterest {
+        background: url("../img/socialNetworks/pinterest.svg") no-repeat #eaeaea;
+        background-size: auto 100%;
+        background-position: left center; }
+        #likes #socialNetworks ul li.pinterest .button {
+          top: 10px;
+          left: 82px; }
+
+@media screen and (max-width: 400px) {
+  #likes {
+    display: none;
+    margin-bottom: 10px; }
+    #likes #socialNetworks {
+      margin-left: 0; }
+      #likes #socialNetworks ul li {
+        display: block;
+        clear: both;
+        margin-left: 0;
+        margin-top: 10px; }
+      #likes #socialNetworks ul li:first-child {
+        margin-top: 0; } }

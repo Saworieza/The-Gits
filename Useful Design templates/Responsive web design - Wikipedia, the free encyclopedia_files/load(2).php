@@ -1,0 +1,2 @@
+mw.loader.implement("mediawiki.notify",function($,jQuery){(function(mw,$){'use strict';mw.notify=function(message,options){var d=$.Deferred();mw.loader.using('mediawiki.notification',function(){d.resolve(mw.notification.notify(message,options));},d.reject);return d.promise();};}(mediaWiki,jQuery));},{},{});
+/* cache key: enwiki:resourceloader:filter:minify-js:7:4ffc5de26673bfb88682c9dda869d37a */

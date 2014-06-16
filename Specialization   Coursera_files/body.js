@@ -1,0 +1,1 @@
+define(["underscore","backbone"],function(_,Backbone){var body=Backbone.View.extend({name:"body",attributes:{role:"article"},className:"coursera-body"});return body});

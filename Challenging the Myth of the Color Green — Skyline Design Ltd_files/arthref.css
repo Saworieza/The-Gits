@@ -1,0 +1,238 @@
+.arthref{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 99;
+}
+.arthref .overlay{
+	z-index: 100;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background: rgba(255,255,255, 0.985);
+	pointer-events: none;
+	display: none;
+
+	-webkit-transition: all 200ms ease-in-out;
+	-moz-transition: all 200ms ease-in-out;
+	-o-transition: all 200ms ease-in-out;
+	-ms-transition: all 200ms ease-in-out;
+	transition: all 200ms ease-in-out;
+}
+.single-inspiration .arthref .overlay {
+	background: rgba(0,0,0, 0.9);
+}
+.arthref .opaque{
+	background: rgba(0, 0, 0, 0.2) !important;
+}
+.arthref .overlay.active{
+	opacity: 1;
+	pointer-events: all;
+}
+.arthref .icon-container{
+	z-index: 101;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	text-align: center;
+}
+.arthref .icon-container:before{
+	content: '';
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.arthref .icon-container .centered{
+	display: inline-block;
+	padding: 20rem 1rem;
+	vertical-align: middle;
+	text-align: left;
+	width: 90%;
+	max-width: 480px;
+}
+.arthref .icon-container .centered:before{
+	content: "Yay, Share This!";
+	display: block;
+	position: relative;
+	color: rgba(0,0,0,0.65);
+	text-align: center;
+	font-family: 'Superclarendon', serif;
+	margin-bottom: 8px;
+	font-size: 1.8rem;
+	border-bottom: 1px dotted rgba(0,0,0,0.075);
+	padding-bottom: 22px;
+}
+.single-inspiration .arthref .icon-container .centered:before {
+	content: "So cool...";
+	color: rgba(255,255,255,0.65);
+}
+.arthref .icon-container ul{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+	opacity: 0;
+	
+	-webkit-transition: all 200ms ease-in-out;
+	-moz-transition: all 200ms ease-in-out;
+	-o-transition: all 200ms ease-in-out;
+	-ms-transition: all 200ms ease-in-out;
+	transition: all 200ms ease-in-out;
+	
+	pointer-events: none;
+}
+.arthref .icon-container ul.active{
+	opacity: 1;
+	pointer-events: auto;
+}
+
+.arthref .icon-container ul li{
+	display: inline-block;
+	width: 80px;
+	height: 110px;
+	margin: 10px;
+}
+.arthref .icon-container ul li a{
+	background-color: #617385;
+	border-radius: 2px;
+	display: block;
+	width: 80px;
+	height: 80px;
+	margin: 0 0 10px 0;
+}
+.arthref .icon-container ul li span{
+	text-align: center;
+	font-family: 'Fjord One', sans-serif;
+	font-size: 1.5rem;
+	color: #34a792;
+	font-style: normal !important;
+}
+
+.arthref .icon-container ul li a.aEMail span{ background-position: -320px 0px; }
+.arthref .icon-container ul li a.aWordpress span{ background-position: -400px 0px; }
+
+.arthref .icon-container ul li a.aForrst span{ background-position: 0px -80px; }
+
+.arthref .icon-container ul li a.aTumblr span{ background-position: -80px -160px; }
+.arthref .icon-container ul li a.aFacebook span{ background-position: -160px -160px; }
+.arthref .icon-container ul li a.aLinkedIn span{ background-position: -480px -160px; }
+
+.arthref .icon-container ul li a.aBehance span{ background-position: -80px -240px; }
+.arthref .icon-container ul li a.aTwitter span{ background-position: -400px -240px; }
+
+.arthref .icon-container ul li a.aPinterest span{ background-position: -240px -320px; }
+.arthref .icon-container ul li a.aGooglePlus span{ background-position: -400px -320px; }
+
+.arthref .icon-container ul li a.aStumbleUpon span{ background-position: 0px -400px; }
+.arthref .icon-container ul li a.aRSS span{ background-position: -160px -400px; }
+
+.arthref .icon-container ul li a.aFlickr span{ background-position: -80px -480px; }
+.arthref .icon-container ul li a.aDribbble span, .arthref .icon-container ul li a.aDribble span{ background-position: -160px -480px; }
+.arthref .icon-container ul li a.aInstagram span{ background-position: -240px -480px; }
+
+/* */
+.arthref .icon-container ul li a.aEMail{ background-color: #434343; }
+.arthref .icon-container ul li a.aWordpress{ background-color: #444; }
+
+.arthref .icon-container ul li a.aForrst{ background-color: #254619; }
+
+.arthref .icon-container ul li a.aTumblr{ background-color: #365471; }
+.arthref .icon-container ul li a.aFacebook{ background-color: #3b5998; }
+.arthref .icon-container ul li a.aLinkedIn{ background-color: #2086bc; }
+
+.arthref .icon-container ul li a.aBehance{ background-color: #0d8af8; }
+.arthref .icon-container ul li a.aTwitter{ background-color: #00b6f3;  }
+
+.arthref .icon-container ul li a.aPinterest{ background-color: #cb2027; }
+.arthref .icon-container ul li a.aGooglePlus{ background-color: #cf4231;  }
+
+.arthref .icon-container ul li a.aStumbleUpon{ background-color: #eb4924; }
+
+.arthref .icon-container ul li a.aFlickr{ background-color: #ff0084; }
+.arthref .icon-container ul li a.aDribbble, .arthref .icon-container ul li a.aDribble{ background-color: #ff0084; }
+.arthref .icon-container ul li a.aInstagram{ background-color: #723f2d; }
+
+.arthref .icon-container ul li a span{ display: block; width: 80px; height: 80px; background: url('../img/icons-social.png') no-repeat; }
+
+.arthref .icon-container ul li a{
+	background-image: -webkit-radial-gradient(center center, 80px 80px, rgba(255,255,255,.15) 0%, rgba(0,0,0,.15) 100%);
+	background-image: -moz-radial-gradient(center center, 80px 80px, rgba(255,255,255,.15) 0%, rgba(0,0,0,.15) 100%);
+	background-image: -o-radial-gradient(center center, 80px 80px, rgba(255,255,255,.15) 0%, rgba(0,0,0,.15) 100%);
+	background-image: -ms-radial-gradient(center center, 80px 80px, rgba(255,255,255,.15) 0%, rgba(0,0,0,.15) 100%);
+	background-image: radial-gradient(center center, 80px 80px, rgba(255,255,255,.15) 0%, rgba(0,0,0,.15) 100%);
+}
+.arthref .icon-container ul li:hover a{
+	background-image: -webkit-radial-gradient(center center, 80px 80px, rgba(255,255,255,.3) 0%, rgba(0,0,0,.3) 100%);
+	background-image: -moz-radial-gradient(center center, 80px 80px, rgba(255,255,255,.3) 0%, rgba(0,0,0,.3) 100%);
+	background-image: -o-radial-gradient(center center, 80px 80px, rgba(255,255,255,.3) 0%, rgba(0,0,0,.3) 100%);
+	background-image: -ms-radial-gradient(center center, 80px 80px, rgba(255,255,255,.3) 0%, rgba(0,0,0,.3) 100%);
+	background-image: radial-gradient(center center, 80px 80px, rgba(255,255,255,.3) 0%, rgba(0,0,0,.3) 100%);
+}
+
+/* Animations */
+.arthref .launchpad .icon-container ul{
+	-webkit-transform-origin: center 20%;
+	-webkit-transform: scale(0.8);
+	
+	-moz-transform-origin: center 20%;
+	-moz-transform: scale(0.8);
+
+	-o-transform-origin: center 20%;
+	-o-transform: scale(0.8);
+
+	-ms-transform-origin: center 20%;
+	-ms-transform: scale(0.8);
+
+	transform-origin: center 20%;
+	transform: scale(0.8);
+}
+.arthref .launchpad.active .icon-container ul{
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-o-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+.arthref .launchpadReverse .icon-container ul{
+	-webkit-transform-origin: center 20%;
+	-webkit-transform: scale(1.2);
+	
+	-moz-transform-origin: center 20%;
+	-moz-transform: scale(1.2);
+
+	-o-transform-origin: center 20%;
+	-o-transform: scale(1.2);
+
+	-ms-transform-origin: center 20%;
+	-ms-transform: scale(1.2);
+
+	transform-origin: center 20%;
+	transform: scale(1.2);
+}
+.arthref .launchpadReverse.active .icon-container ul{
+	-webkit-transform: scale(1);
+	-moz-transform: scale(1);
+	-o-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+.arthref .slideTop{ top: -100%; }
+.arthref .slideTop.active{ top: 0; }
+.arthref .slideRight{ left: 100%; }
+.arthref .slideRight.active{ left: 0; }
+.arthref .slideBottom{ top: 100%; }
+.arthref .slideBottom.active{ top: 0; }
+.arthref .slideLeft{ left: -100%; }
+.arthref .slideLeft.active{ left: 0; }
+.arthref .chain .icon-container ul li{ opacity: 0; }
+.blurred{
+	-webkit-transition: -webkit-filter 300ms ease-in-out;
+	-moz-transition: -moz-filter 300ms ease-in-out;
+	-o-transition: -o-filter 300ms ease-in-out;
+	-ms-transition: -ms-filter 300ms ease-in-out;
+	transition: filter 300ms ease-in-out;
+	-webkit-filter: blur(15px); 
+}

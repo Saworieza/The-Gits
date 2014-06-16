@@ -1,0 +1,1 @@
+document.write('<span class="topsponsorad"><a href="http://www.inetinteractive.com/ads/click.php?id=232&url=http%3A%2F%2Fresearch.webhostingtalk.com%2Fcontent36674%2F" target="_self"> <strong>STAMINUS ALERT:</strong> - The hidden costs of DDoS attacks for hosting companies. Learn more about how to avoid these costs and protect your clients. </a></span>');

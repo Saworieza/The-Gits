@@ -1,0 +1,281 @@
+html{
+	background-color: grey;
+	width:60%;
+	height:100%;
+	margin:0 auto;
+}
+body{
+	background-color:blue;
+	margin:0;
+	overflow:scroll;
+}
+/*-------------SLIDE STUFF-----------------*/
+/*Prevents slides from flashing*/
+#slides{
+	display: none;
+}
+
+/*-------------SLIDE STUFF-----------------*/
+.container{
+	padding:20px 50px;	
+	margin:0 auto; 
+}
+h1{
+	font-size:5em;
+	font-family:Georgia;
+	color:#fff;
+}
+.shadow{
+	 text-shadow:4px 3px 0 #222;
+}
+h2{
+	font-size:5em;
+	font-family:Georgia;
+}
+.inset-shadow{
+	color:transparent;
+	text-shadow:1px 1px 2px rgba(255,255,255,0.6),0 0 0 #222;
+
+}
+/*a clever manipulation of divs, floats clears and margin can give a pretty decent website without having to use position*/
+/*also note. when working with divs, divs within divs positioning of the classes and ids is quite problematic. there are times they wont show then there are others you wont contrl it*/
+/*display is a big son of a gun. learn it well*/
+
+/*css check out display table css3 flexgrid flexbox*/
+.silver{
+	height:70px;
+	width:450px;
+	float:left;
+	background-color: silver;
+	margin:0px 25px 0px 25px;
+}
+.navbar{
+	height:30px;
+	width:450px;
+	background-color:green;
+	float:left;
+	
+}
+.navbar ul {
+	float:left;
+	list-style-type: none;
+	margin:0;
+	padding: 0;
+}
+.navbar ul li{
+	display: inline;
+	float: left;
+}
+.navbar ul li a{
+	display: block;
+	width:60px;
+}
+.grey{
+	height:100px;
+	width:450px;
+	margin:0px 25px 0px 25px;
+	float:left;
+	clear:left;
+	background-color: grey;
+}
+.purple{
+	height:40px;
+	width:450px;
+	margin:2px 25px 0px 25px;
+	float:left;
+	background-color:purple;
+}
+.blue{
+	height:200px;
+	width:148px;
+	float:left;
+	clear:both;
+
+	margin:2px 2px 2px 25px;
+	padding:px;
+	background-color: blue;
+	}
+	/*me thinks that the float thingi works with the imediate neighbour. lets experiment a litlle and see*/
+	/*turns out it does*/
+.brue{
+	height:200px;
+	width:148px;
+	float:left;
+	clear:right;
+
+	margin:2px 2px 2px 0px;
+	padding:px;
+	background-color: white;
+	}
+.bue{
+	height:200px;
+	width:148px;
+	float:left;
+	clear:right;
+
+	margin:2px 25px 2px 0px;
+	padding:px;
+	background-color: white;
+	}
+
+.biue{
+	height:110px;
+	width:148px;
+	float:left;
+	clear:right;
+
+	margin:0px 0px 0px 0px;
+	padding:px;
+	background-color: blue;
+	}
+
+.ba{
+	height:18px;
+	width:148px;
+	float:left;
+	clear:right;
+
+	margin:2px 0px 0px 0px;
+	padding:px;
+	background-color: blue;
+	}
+.baba{
+	height:68px;
+	width:148px;
+	float:left;
+	clear:right;
+
+	margin:2px 0px 0px 0px;
+	padding:px;
+	background-color: blue;
+	}
+
+.mama{
+	height:130px;
+	width:148px;
+	float:left;
+	clear:right;
+
+	margin:0px 0px 0px 0px;
+	padding:px;
+	background-color: blue;
+	}
+.bibi{
+	height:68px;
+	width:148px;
+	float:left;
+	clear:right;
+
+	margin:2px 0px 0px 0px;
+	padding:px;
+	background-color: blue;
+	}
+
+.footer{
+	height:50px;
+	width:450px;
+	background-color:black;
+	clear:both;
+
+	margin:2px 25px 0px 25px;
+}
+
+#muguga{
+	height: 500px;
+	width:500px;
+	background-color:white;
+}
+.loom{
+	height:70px;
+	width:70px;
+	border-radius:100%;
+	background-color:transparent;
+	border:2px solid black;
+	float:left;
+	clear:left;
+}
+.loom:hover{
+	zoom:100%;
+	background-color:black;
+}
+.zoom{
+	height:70px;
+	width:70px;
+	border-radius:100%;
+	background-color:transparent;
+	border:2px solid black;
+	float:right;
+	clear:left;
+}
+.zoom:hover{
+	zoom:100%;
+	background-color:black;
+}
+
+/*some ux/ui prototype im working on*/
+.prototype{
+	height:700px;
+	width:500px;
+	border:1px solid black;
+	clear:both;
+	background-color: silver;
+	padding:;
+}
+
+.cats{
+	height:70px;
+	width:70px;
+	border:1px solid black;
+	background-color: magenta;
+/*using position absolute and hover..make the folowing appear from .icon 
+when it is hovered. also use the timing funtion to make them appear a little
+bit after each other. then submit to codeplayer for money*/
+
+	float:left;
+	clear:right;
+	display: inline;
+
+	/*position: absolute;
+	top:71%;
+	bottom:10px;
+	left:10px;*/
+}
+.cats1{
+	position:absolute;
+	bottom:50px;
+	left:320px;
+	
+}
+.cats1:hover{
+	zoom:200%;
+}
+
+/*Don’t try to apply both the float property and any type of positioning other than static (explained
+below) or relative to the same style. Float and absolute or fixed positioning can’t work together on the
+same element.*/
+.icon{
+	height:70px;
+	width:70px;
+	border-radius: 50px;
+	background-color: green;
+
+	float: left;
+	clear:both;
+
+	/*using the position cleverly enables you to place anything 
+	where you want it using the top, left/right n bottom measurements
+	only catch is during page resizing that can be affected. use % to maintain style n relativity*/
+	/*using positiion absolute enables you to place an icon exactly where you want it. it disregards other elements
+	in the page and if it has to it will be on top of them*/
+	position: relative;
+	top:71%;
+	bottom:10px;
+	left:10px;
+
+}
+
+.icon:hover{
+ zoom:100%;
+ background-color: #003173;
+ border:1px solid brown;
+}

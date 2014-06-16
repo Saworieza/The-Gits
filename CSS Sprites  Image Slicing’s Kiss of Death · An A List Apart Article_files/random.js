@@ -1,0 +1,1 @@
+document.writeln("\u003Cdiv class=\"job\"\u003E\n  \u003Ca href=\"https://weworkremotely.com/jobs/619\"\u003EKBMax is looking for a C# Backend Developer.\u003C/a\u003E\n\u003C/div\u003E\n");

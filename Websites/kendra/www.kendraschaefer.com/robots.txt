@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /mandapop/
+Disallow: /nadine/
+Disallow: /lmcppt/
+Disallow: /indieblog/
+Disallow: /bbtest/
+Disallow: /drupal/
+Disallow: /phppractice/
+Disallow: /blarg/
+Disallow: /pixellary/
+Disallow: /meilin/
+Disallow: /thepixellary/clients/
+Disallow: /praguesubway/

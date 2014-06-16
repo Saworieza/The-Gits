@@ -1,0 +1,221 @@
+/**
+* @author    JoomlaShine.com http://www.joomlashine.com
+* @copyright Copyright (C) 2008 - 2011 JoomlaShine.com. All rights reserved.
+* @license   JoomlaShine.com Proprietary License
+*/
+/* ============================== JSN MEGAZINE CUSTOM CSS ============================== */
+/* =============== GENERAL LAYOUT =============== */
+#jsn-usermodules1 {
+	background-image: none;
+}
+.jsn-demo-page #jsn-pos-user1 {
+	width: 60%;
+}
+.jsn-demo-page #jsn-pos-user2 {
+	width: 37%;
+}
+body.jsn-joomla-30 ul li.newsflash-item {
+	list-style: none;
+}
+/* =============== CATEGORY BLOG LAYOUT =============== */
+.com-content.jsn-demo-page .category-blog .componentheading,
+.jsn-demo-page.blog .componentheading {
+	border-bottom: 3px solid #000;
+}
+.com-content.jsn-demo-page .category-blog .componentheading span,
+.jsn-demo-page.blog .componentheading span {
+	display: inline-block;
+	padding: 10px 15px;
+	line-height: 20px;
+	color: #fff;
+	text-transform: uppercase;
+	background-color: #000;
+}
+.com-content.jsn-demo-page .category-blog .intro-text,
+.jsn-demo-page.blog .intro-text {
+	position: relative;
+}
+.com-content.jsn-demo-page .category-blog .intro-text .category-name,
+.jsn-demo-page.blog .intro-text .category-name {
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: #fff;
+	padding: 10px 15px;
+	background: #000\9;
+	background: rgba(0,0,0,0.85);
+}
+.com-content.jsn-demo-page .category-blog .intro-text + .readon,
+.jsn-demo-page.blog .intro-text + p.readmore a {
+	float: right;
+}
+/* =============== NEWS FLASH MODULE =============== */
+.jsn-modulecontainer.jsn-news-flash1 .intro-text {
+	overflow: hidden;
+}
+.jsn-modulecontainer.jsn-news-flash1 .intro-text img {
+	display: block;
+}
+.jsn-modulecontainer.jsn-news-flash1 .intro-text p {
+	display: none;
+}
+.jsn-modulecontainer.jsn-news-flash1 .jsn-article {
+	position: relative;
+	margin-bottom: 10px;
+}
+.jsn-modulecontainer.jsn-news-flash1 .jsn-article .contentheading {
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin: 0;
+	z-index: 100;
+}
+.jsn-modulecontainer.jsn-news-flash1 .jsn-article .contentheading a {
+	font-size: 16px;
+	padding: 10px 15px;
+	background-color: #000\9;
+	background-color: rgba(0,0,0,0.8);
+	display: block;
+	transition: all 0.2s ease-in-out;
+	-moz-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+}
+.jsn-modulecontainer.jsn-news-flash1 .jsn-article:hover .contentheading a {
+	color: #fff;
+	text-decoration: none;
+	background-color: #000;
+}
+
+.jsn-modulecontainer.jsn-news-flash2 .jsn-moduletitle {
+	border-bottom: 3px solid #000;
+	padding: 0;
+	margin: 20px 0 35px;
+}
+.jsn-modulecontainer.jsn-news-flash2 .jsn-moduletitle span {
+	display: inline-block;
+	padding: 10px 15px;
+	line-height: 20px;
+	color: #fff;
+	text-transform: uppercase;
+	background-color: #000;
+}
+/* =============== LOGIN MODULE =============== */
+body.jsn-joomla-25 .jsn-modulecontainer.jsn-user-login #modlgn-username,
+body.jsn-joomla-25 .jsn-modulecontainer.jsn-user-login #modlgn-passwd {
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+body.jsn-joomla-30 .jsn-modulecontainer.jsn-user-login #modlgn-username,
+body.jsn-joomla-30 .jsn-modulecontainer.jsn-user-login #modlgn-passwd {
+	width: 65%;	
+}
+/* =============== HOMEPAGE SLIDESHOW =============== */
+.promo-top .galleria-info {
+	top: 50% !important;
+	left: 10% !important;
+	margin-top: -60px;
+	width: auto !important;
+}
+.promo-top .galleria-info .galleria-info-text {
+	background: none !important;
+}
+.promo-top .galleria-info-title,
+.promo-top .galleria-info-description {
+	display: inline-block !important;
+	float: left;
+	clear: both;
+}
+.promo-top .galleria-info-title {
+	color: #fff !important;
+	text-transform: uppercase;
+	font-size: 2.4em !important;
+	margin: 0;
+	background: rgba(0,0,0,0.8);
+	padding: 10px 15px;
+}
+.promo-top .galleria-info-description {
+	color: #fff !important;
+	padding: 5px 15px;
+	font-size: 1.8em !important;
+	background: rgba(0,0,0,0.5);
+}
+/* =============== DEMO CONTACT INFO =============== */
+.demo-contact-info .jsn-uniform .jsn-row-container {
+	margin: 0;
+}
+.demo-contact-info .jsn-uniform .jsn-row-container .form-actions {
+	margin: 0 0 15px;
+	padding: 0 7px;
+}
+.demo-contact-info .jsn-uniform .jsn-row-container .form-actions .btn-toolbar {
+	margin: 0;
+}
+.demo-contact-info .jsn-uniform .jsn-row-container .form-actions .btn-toolbar .jsn-form-submit {
+	background: #000;
+	box-shadow: none;
+	border: none;
+	padding: 10px 20px;
+	color: #fff;
+	text-shadow: none;
+	border-radius: 0;
+}
+.demo-contact-info .jsn-uniform .jsn-row-container .control-group {
+	padding: 5px;
+}
+.demo-contact-info .jsn-uniform .jsn-row-container .control-group.ui-state-highlight {
+	border: none !important;
+	background: none !important;
+}
+.demo-contact-info .jsn-uniform .jsn-row-container label {
+	display: none !important;
+}
+
+.demo-contact-info .jsn-uniform .jsn-row-container input.email {
+	border-radius: 0;
+	margin: 0;
+	padding: 15px 10px;
+}
+.demo-contact-info .jsn-uniform .demo-contact-desc {
+	margin: 5px 0;
+	padding: 10px;
+}
+@media only screen and (max-width: 480px), (max-device-width: 480px) {
+	.promo-top .galleria-info {
+		left: 0 !important;
+	}
+	.promo-top .galleria-info-title {
+		font-size: 1.3em !important;
+	}
+	.promo-top .galleria-info-description {
+		font-size: 1.2em !important;
+	}
+	.jsn-homepage #jsn-promo {
+		padding: 0;
+	}
+}
+@media only screen and (max-width: 320px), (max-device-width: 320px) {
+	.promo-top .galleria-info {
+		top: 45% !important;
+	}
+	.promo-top .galleria-info-title {
+		font-size: 1.3em !important;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

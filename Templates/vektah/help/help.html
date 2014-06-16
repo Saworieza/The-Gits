@@ -1,0 +1,398 @@
+<!DOCTYPE HTML>
+
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<title>Zeences HTML Help Documentation</title>
+<link rel="stylesheet" type="text/css" href="inc/layout.css" media="all" />
+
+<!--[if IE 7]>
+
+<link rel="stylesheet" type="text/css" href="style/css/ie.css" media="screen" />
+
+<![endif]-->
+
+<script type="text/javascript" src="inc/js/jquery-1.4.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+//Hide the tooglebox when page load
+$(".togglebox").hide();
+//slide up and down when click over heading 2
+$("h2").click(function(){
+// slide toggle effect set to slow you can set it to fast too.
+$(this).toggleClass("active").next(".togglebox").slideToggle("slow");
+return true;
+});
+});
+
+</script>
+
+</head>
+
+<body>
+
+<!-- Begin Second Wrapper -->
+
+<div id="wrapper">
+  <div id="logo"><a href="help.html">
+    <h4> "Zeences HTML" Documentation by "elemis" </h4>
+    </a>
+    <div class="clear"></div>
+  </div>
+  
+  <!-- Begin Question Block -->
+  
+  <div class="question-container">
+    <div class="info">
+      <div class="info-left"> Created: 07/09/2011<br>
+        By: elemis<br>
+        Email: <a href="http://themeforest.net/user/elemis">Contact form</a> </div>
+      <div class="info-right"> Thank you for purchasing our theme. If you have any questions that are beyond the scope of this help file, please feel free to send us an email using the contact form on our profile page <a href="http://themeforest.net/user/elemis">here</a>. If you wish to hire us for customizations we can help you for extra.</div>
+    </div>
+  </div>
+  <!-- End Question Block -->
+  
+  <div class="title">
+    <h3>Customization</h3>
+    <hr class="knot" />
+  </div>
+  
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Full Screen Background Images</h2>
+	<div class="togglebox">
+	<div>
+		<p>To add your fullscreen images edit the image paths of following lines in the html files:</p> 
+		<img src="inc/images/1.jpg" alt="background" />
+		<p>You can add more images or remove them if you have less or more than 6 images.</p>
+		
+		<p>To change the background image rotating settings open <strong>style/js/scripts.js</strong>. You can edit the highlighted lines:</p>
+		<img src="inc/images/3.jpg" alt="background" />
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Content Background Opacity</h2>
+	<div class="togglebox">
+	<div>
+		<p>You can change the background opacity through <strong>style/js/scripts.js</strong> line 62:</p> 
+		<img src="inc/images/9.jpg" alt="opacity" />
+		<p>In the above example background color opacity is 80%. You can increase or decrease the value .80 as you need.</p>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Colors</h2>
+	<div class="togglebox">
+	<div>
+		<p>There are 5 color options available:</p> 
+		<ul>
+			<li><strong>Blue:</strong> blue.css</li>
+			<li><strong>Green:</strong> green.css</li>
+			<li><strong>Lime:</strong> lime.css</li>
+			<li><strong>Purple:</strong> purple.css</li>
+			<li><strong>Red:</strong> red.css</li>	
+		</ul>
+		<p>You will need to state which color you will use inside <strong>every</strong> html file. The default color of the theme files is "red" (as seen in the example below). If you want to change it to other available color options you will need to change the highlighted part with one of the available colors.</p>
+		
+		<img src="inc/images/2.jpg" alt="colors">
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Fonts</h2>
+	<div class="togglebox">
+	<div>
+		<p>There are 13 font options available for headings:</p> 
+		<ul>
+			<li><strong>Adelle:</strong> adelle.css</li>
+			<li><strong>Arvo:</strong> arvo.css</li>
+			<li><strong>Carto:</strong> carto.css</li>
+			<li><strong>Classic:</strong> classic.css</li>
+			<li><strong>Copse:</strong> copse.css</li>
+			<li><strong>Delicious:</strong> delicious.css</li>
+			<li><strong>Mido:</strong> mido.css</li>
+			<li><strong>Museo:</strong> museo.css</li>
+			<li><strong>Otari:</strong> otari.css</li>
+			<li><strong>Puritan:</strong> puritan.css</li>
+			<li><strong>Quicksand:</strong> quicksand.css</li>
+			<li><strong>Titillium:</strong> titillium.css</li>
+			<li><strong>Vegur:</strong> vegur.css</li>
+		</ul>
+		<p>You will need to state which font you want to use inside <strong>every</strong> html file. The default font is "museo" (as seen in the example below). If you want to change with another available font option you will need to change the highlighted part with the new font name.</p>
+		
+		<img src="inc/images/4.jpg" alt="fonts">
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Editing Menu</h2>
+	<div class="togglebox">
+	<div>
+	<p>Below you can see a menu example:</p>
+	<pre>
+&lt;div id="menu" class="menu opacity"&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href="#" <strong>class="active"</strong>&gt;1. Item&lt;/a&gt;&lt;/li&gt;
+
+			&lt;li&gt;&lt;a href="#"&gt;2. Item&lt;/a&gt;
+				&lt;ul&gt;
+					&lt;li&gt;&lt;a href="#"&gt;2.1 Item&lt;/a&gt;&lt;/li&gt;
+					&lt;li&gt;&lt;a href="#"&gt;2.2 Item&lt;/a&gt;
+
+						&lt;ul&gt;
+							&lt;li&gt;&lt;a href="#"&gt;2.2.1 Item&lt;/a&gt;&lt;/li&gt;
+							&lt;li&gt;&lt;a href="#"&gt;2.2.2 Item&lt;/a&gt;&lt;/li&gt;
+
+							&lt;li&gt;&lt;a href="#"&gt;2.2.3 Item&lt;/a&gt;
+								&lt;ul&gt;
+									&lt;li&gt;&lt;a href="#"&gt;2.2.3.1 Item&lt;/a&gt;&lt;/li&gt;
+									&lt;li&gt;&lt;a href="#"&gt;2.2.3.2 Item&lt;/a&gt;&lt;/li&gt;
+
+								&lt;/ul&gt;
+							&lt;/li&gt;
+						&lt;/ul&gt;
+					&lt;/li&gt;
+				&lt;/ul&gt;
+			&lt;/li&gt;
+
+		&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+ <!-- Begin Question Block -->
+ <div class="toggle">
+ 
+ 	<h2 class="trigger">HTML elements and Carousel</h2>
+ 	<div class="togglebox">
+ 	<div>
+ 	
+ 		<ul>
+ 			<li><strong>Buttons, Information Boxes and Images:</strong> Buttons, images and information boxes are inside <strong>button-boxes-images.html</strong></li>
+ 			<li><strong>Typography:</strong> Lists, blockquote, dropcap, highlight and other typographic styles are inside <strong>typography.html</strong></li>
+ 			<li><strong>Tab, Toggle and Tables:</strong> Tabs, toggle and table examples are inside <strong>tab-toggle-table.html</strong></li>
+ 			<li><strong>Tables:</strong> Table and pricing table examples are inside <strong>tables.html</strong></li>
+ 			<li><strong>Testimonials:</strong> Testimonial style examples are inside <strong>testimonials.html</strong></li>
+ 			<li><strong>Columns:</strong> Available column layouts are inside <strong>columns.html</strong></li>
+ 			<li><strong>Carousel:</strong> You can see the carousel example in <strong>index</strong> files and <strong>portfolio-post.html</strong>. Note that image size must be <strong>164x130px</strong></li>
+ 		</ul>
+ 	</div>
+ 	</div>
+ </div>
+ <!-- End Question Block -->
+
+<div class="title">
+    <h3>Sliders</h3>
+    <hr class="knot" />
+</div>
+
+
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Awkward Slider</h2>
+	<div class="togglebox">
+	<div>
+		<p>In the theme package <strong>index3.html</strong> and <strong>index4.html</strong> include Awkward Slider. Image size must be <strong>900x400px</strong>. Basic usage of the slider is as follows:</p>
+		<img src="inc/images/7.jpg" alt="awkward">
+		
+		<p>You can change the slider settings by editing the script in the html files:</p> 
+		<img src="inc/images/8.jpg" alt="awkward">
+
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+
+<div class="title">
+    <h3>Portfolio</h3>
+    <hr class="knot" />
+</div>
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Editing Portfolio</h2>
+	<div class="togglebox">
+	<div>
+	<p>Basic usage of the portfolio is as follows:</p>
+	<img src="inc/images/10.jpg" alt="portfolio">
+	<p>The important parts are highlighted above. </p>
+	<p>You can add any number of categories and change their names in the filtering-nav.</p>
+	<p>You can use <strong>details</strong>, <strong>zoom</strong> or <strong>play</strong> as overlay icons when hovered over the thumbnails.</p>
+	<p>If you would like to make the images open up with lightbox make sure you have <strong>rel="prettyPhoto"</strong> attribute in your <strong>a</strong> tags.</p>
+	<p>portfolio.html in the theme package is 5 columns. But you can change it as 4 or 3 columns by editing the <strong>col5</strong> class in the div tags as <strong>col4</strong> or <strong>col3</strong>.</p> 
+	<p>If you are using <strong>5 columns</strong> then the thumbnail image with must be <strong>164px</strong>. Height can be any value.</p>
+	<p>If you are using <strong>4 columns</strong> then the thumbnail image with must be <strong>210px</strong>. Height can be any value.</p>
+	<p>If you are using <strong>3 columns</strong> then the thumbnail image with must be <strong>288px</strong>. Height can be any value.</p>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<div class="title">
+    <h3>Contact</h3>
+    <hr class="knot" />
+</div>
+
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Receiving messages</h2>
+	<div class="togglebox">
+	<div>
+		<p>To receive the messages sent through the contact form in <strong>contact.html</strong> or in the <strong>footer area</strong>, open up <strong>contact/form-handler.php</strong> and edit <strong>line 5</strong>:</p> 
+		<pre>$emailto = 'name@domain.com';</pre>
+		
+		<p>For SMTP support edit <strong>line 4</strong>. Set to "1" if you want to use SMTP to send the email. Default is "0", which uses the standard PHP mail function.</p>
+		<pre>$use_smtp = '1';</pre>
+		
+		<p>If using SMTP you will also need to fill in the 4 SMTP variables - <strong>lines 64 - 67</strong>.</p>
+		
+		<pre>
+$SmtpServer = 'SMTP SERVER';
+$SmtpPort = 'SMTP PORT';
+$SmtpUser = 'SMTP USER';
+$SmtpPass = 'SMTP PASSWORD';
+		</pre>
+		
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+
+
+  <!-- End Question Block -->
+  <div class="title">
+  <h3>Sources</h3>
+  <hr class="knot" />
+</div>
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Scripts</h2>
+	<div class="togglebox">
+	<div> 
+		<ul>
+			<li>DDSmoothMenu: <a href="http://www.dynamicdrive.com/dynamicindex1/ddsmoothmenu.htm">[Source]</a></li>
+			<li>Carousel: <a href="http://sorgalla.com/jcarousel/">[Source]</a></li>
+			<li>Awkward Slider: <a href="http://www.awkwardgroup.com/sandbox/awkward-showcase-a-jquery-plugin/">[Source]</a></li>
+			<li>Masonry: <a href="http://masonry.desandro.com/">[Source]</a></li>
+			<li>PrettyPhoto: <a href="http://www.no-margin-for-errors.com/projects/prettyphoto-jquery-lightbox-clone/">[Source]</a></li>
+			<li>Super BG Image: <a href="http://dev.andreaseberhard.de/jquery/superbgimage/">[Source]</a></li>
+			<li>Tabs: <a href="http://www.sohtanaka.com/web-design/examples/tabs/">[Source]</a></li>
+  			<li>Toggle: <a href="http://www.sohtanaka.com/web-design/examples/toggle/">[Source]</a></li>
+			<li>Transify: <a href="http://jorenrapini.com/blog/css/transify-a-jquery-plugin-to-easily-apply-transparency-opacity-to-an-elements-background">[Source]</a></li>
+		</ul>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Fonts</h2>
+	<div class="togglebox">
+	<div> 
+		<ul>
+			<li>Adelle: <a href="http://www.fontsquirrel.com/fonts/Adelle-Basic">[Source]</a></li>
+			<li>Arvo: <a href="http://www.fontsquirrel.com/fonts/arvo">[Source]</a></li>
+			<li>Carto Gothic: <a href="http://www.fontsquirrel.com/fonts/CartoGothic-Std">[Source]</a></li>
+			<li>Charis: <a href="http://www.fontsquirrel.com/fonts/Charis-SIL">[Source]</a></li>
+			<li>Classic Round: <a href="http://www.fontsquirrel.com/fonts/classic-round">[Source]</a></li>
+			<li>Copse: <a href="http://www.fontsquirrel.com/fonts/copse">[Source]</a></li>
+			<li>Delicious: <a href="http://www.fontsquirrel.com/fonts/Delicious">[Source]</a></li>
+			<li>Mido: <a href="http://www.fontsquirrel.com/fonts/Mido">[Source]</a></li>
+			<li>Museo: <a href="http://www.fontsquirrel.com/fonts/Museo">[Source]</a></li>
+			<li>Otari: <a href="http://www.fontsquirrel.com/fonts/Otari">[Source]</a></li>
+			<li>PT Sans: <a href="http://www.fontsquirrel.com/fonts/PT-Sans">[Source]</a></li>
+			<li>Puritan: <a href="http://www.fontsquirrel.com/fonts/Puritan-2.0">[Source]</a></li>
+			<li>Quicksand: <a href="http://www.fontsquirrel.com/fonts/Quicksand">[Source]</a></li>
+			<li>Titillium: <a href="http://www.fontsquirrel.com/fonts/TitilliumText">[Source]</a></li>
+			<li>Vegur: <a href="http://www.fontspace.com/arro/vegur">[Source]</a></li>
+		</ul>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Icons</h2>
+	<div class="togglebox">
+	<div> 
+		<ul>
+			<li>Meta: <a href="http://www.iconsweets.com/">[Source 1]</a> and <a href="http://iconsweets2.com/">[Source 2]</a></li>
+			<li>Services: <a href="http://blog.twg.ca/2010/11/retina-display-icon-set/">[Source]</a></li>
+			<li>Social Media: <a href="http://www.komodomedia.com/blog/2009/06/social-network-icon-pack/">[Source]</a></li>
+		</ul>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+
+<!-- Begin Question Block -->
+<div class="toggle">
+
+	<h2 class="trigger">Backgrounds</h2>
+	<div class="togglebox">
+	<div> 
+		<ol>
+			<li><a href="http://www.flickr.com/photos/22746515@N02/4638522131/sizes/o/in/photostream/">bg1 [Source]</a></li>
+			<li><a href="http://mifti-stock.deviantart.com/art/Glitter-Texture-04-88971105?q=boost%3Apopular%20in%3Aresources%2Ftextures&qo=145">bg2 [Source]</a></li>
+			<li><a href="http://froozen-tears.deviantart.com/art/bokeh-textures-112791430?q=boost%3Apopular%20in%3Aresources%2Ftextures&qo=329">bg3 [Source]</a></li>
+			<li><a href="http://keymoon.deviantart.com/gallery/12539672?offset=48#/d152nzd">bg4 [Source]</a></li>
+			<li><a href="http://browse.deviantart.com/?qh=&section=&global=1&q=robot+orgasm#/d209mx2">bg5 [Source]</a></li>
+			<li><a href="http://sanami276.deviantart.com/art/textures-105-100542093?q=boost%3Apopular%20in%3Aresources%2Ftextures&qo=133">bg6 [Source]</a></li>
+		</ol>
+	</div>
+	</div>
+</div>
+<!-- End Question Block -->
+   
+  <div class="title">
+    <h3>Thank You</h3>
+    <hr class="knot" />
+  </div>
+  
+  <!-- Begin Question Block -->
+  
+  <div class="question-container">
+    <div class="info"> Once again, thank you so much for purchasing this theme. As we said at the beginning, we'd be glad to help you if you have any questions relating to this theme. No guarantees, but we'll do our best to assist. If you have a more general question relating to the themes on ThemeForest, you might consider visiting the forums and asking your question in the "Item Discussion" section. <em><a href="http://themeforest.net/user/elemis">elemis</a></em></div>
+  </div>
+  
+  <!-- End Question Block --> 
+  
+</div>
+<!-- End Wrapper -->
+
+</body>
+</html>

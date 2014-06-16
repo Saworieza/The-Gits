@@ -1,0 +1,737 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0067)http://www.elated.com/articles/changing-page-elements-with-the-dom/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="wf-museoslab1museoslab2-n1-active wf-museoslab1museoslab2-i1-active wf-museoslab1museoslab2-n3-active wf-museoslab1museoslab2-i3-active wf-museoslab1museoslab2-n5-active wf-museoslab1museoslab2-i5-active wf-museoslab1museoslab2-n7-active wf-museoslab1museoslab2-i7-active wf-museoslab1museoslab2-n8-active wf-museoslab1museoslab2-i8-active wf-museoslab1museoslab2-n9-active wf-museoslab1museoslab2-i9-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<title>Changing Page Elements with the DOM</title>
+
+<link rel="stylesheet" type="text/css" href="./Changing Page Elements with the DOM_files/common.css">
+<link rel="shortcut icon" href="http://www.elated.com/favicon.ico">
+
+<!--[if lt IE 7]>
+<link rel="stylesheet" type="text/css" href="/css-v4/common_ie6.css" />
+<![endif]-->
+
+<!--[if lt IE 6]>
+<link rel="stylesheet" type="text/css" href="/css-v4/common_ie5.css" />
+<![endif]-->
+
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="/css-v4/common_ie7.css" />
+<![endif]-->
+
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="/css-v4/common_ie8.css" />
+<![endif]-->
+
+<!--[if IE]>
+<link rel="stylesheet" type="text/css" href="/css-v4/common_ie.css" />
+<![endif]-->
+
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+
+<link href="http://feeds.elated.com/ElatedNewStuff" rel="alternate" type="application/rss+xml" title="ELATED New Stuff to Love RSS feed">
+<link href="http://www.elated.com/forums/feed/" rel="alternate" type="application/rss+xml" title="ELATED.com: All Forums RSS feed">
+
+<meta name="description" content="Learn how to use the JavaScript DOM to alter the content of your Web pages. This article shows you how to change element content, how to add and remove elements in the page, how to move elements around, and how to work with element attributes.">
+<meta name="keywords" content="childNodes, firstChild, nodeValue, createElement, appendChild, insertBefore, removeChild, replaceChild, getAttributeNode, value, createAttribute, setAttributeNode, removeAttributeNode, setAttribute, removeAttribute">
+
+<script type="text/javascript" src="./Changing Page Elements with the DOM_files/asn2oby.js"></script>
+<style type="text/css">.tk-museo-slab{font-family:museo-slab-1,museo-slab-2,serif;}</style><link rel="stylesheet" href="http://use.typekit.com/k/asn2oby-d.css?3bb2a6e53c9684ffdc9a9bf31c5b2a627977989472a78da41420b0f89da34af656636c39cfb1a0ab38cbc4dbc96f92376c1049b63fdcdb09790e70151b39f8826c9ea166bcca47a449f3ba15cb381bdd43435a6f8ad5c5620d271f4a4c14b50540e2089288e87af8d3d40f61491e9cdfb0eb659cf9e071c978fc049d4081c43afa9c704cd707dc8a915cbfb950cd3662cb88dd921c19ad7fb261a82d"><script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+<meta name="verify-v1" content="bZxhH3gV6zseypmVBcX82D6vtzG/Nhh4MMFd2sOkO6E=">
+
+
+<script type="text/javascript" src="./Changing Page Elements with the DOM_files/shCore.js"></script>
+<script type="text/javascript" src="./Changing Page Elements with the DOM_files/shBrushCss.js"></script>
+<script type="text/javascript" src="./Changing Page Elements with the DOM_files/shBrushJScript.js"></script>
+<script type="text/javascript" src="./Changing Page Elements with the DOM_files/shBrushPerl.js"></script>
+<script type="text/javascript" src="./Changing Page Elements with the DOM_files/shBrushPhp.js"></script>
+<script type="text/javascript" src="./Changing Page Elements with the DOM_files/shBrushRuby.js"></script>
+<script type="text/javascript" src="./Changing Page Elements with the DOM_files/shBrushXml.js"></script>
+
+<script type="text/javascript" async="" src="./Changing Page Elements with the DOM_files/bsa.js"></script><script type="text/javascript" id="_bsap_js_10b1f1363e440baccdafa512ee9c9b28" src="./Changing Page Elements with the DOM_files/s_10b1f1363e440baccdafa512ee9c9b28.js" async="async"></script><style type="text/css" id="bsa_css">div.bsap_1246938{width:100%;display:block}div.bsap_1246938 a{width:125px}div.bsap_1246938 a img{padding:0}div.bsap_1246938 a em{font-style:normal}div.bsap_1246938 a{float: left;display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0 10px 8px 0;text-align:center;text-decoration:none;overflow:hidden;}div.bsap_1246938 img{border:0;clear:right;}div.bsap_1246938 a.adhere{color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}div.bsap_1246938 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}div.bsap_1246938 a{line-height:100%}div.bsap_1246938 a.adhere{width:125px;height:125px;line-height:1000%}html>body div.bsap_1246938 a.adhere{width:123px;height:123px}div.bsap_1246938 img.s{height:0;width:0}.one{position:relative}.one .bsa_it_ad{display:block;padding:15px;border:1px solid #e1e1e1;background:#f9f9f9;font-family:helvetica,arial,sans-serif;line-height:100%;position:relative}.one .bsa_it_ad a{text-decoration:none}.one .bsa_it_ad a:hover{text-decoration:none}.one .bsa_it_ad .bsa_it_t{display:block;font-size:12px;font-weight:bold;color:#212121;line-height:125%;padding:0 0 5px 0}.one .bsa_it_ad .bsa_it_d{display:block;font-size:11px;color:#434343;font-size:12px;line-height:135%}.one .bsa_it_ad .bsa_it_i{float:left;margin:0 15px 10px 0}.one .bsa_it_p{display:block;text-align:right;position:absolute;bottom:10px;right:15px}.one .bsa_it_p a{font-size:10px;color:#666;text-decoration:none}.one .bsa_it_ad .bsa_it_p a:hover{font-style:italic}div.bsap_1268327{width:100%;display:block}div.bsap_1268327 a{width:300px}div.bsap_1268327 a img{padding:0}div.bsap_1268327 a em{font-style:normal}div.bsap_1268327 a{display:block;font-size:11px;color:#888;font-family:verdana,sans-serif;margin:0;text-align:center;text-decoration:none;overflow:hidden;float:left;}div.bsap_1268327 img{border:0;clear:right;}div.bsap_1268327 a.adhere{color:#666;font-weight:bold;font-size:12px;border:1px solid #ccc;background:#e7e7e7;text-align:center;}div.bsap_1268327 a.adhere:hover{border:1px solid #999;background:#ddd;color:#333;}div.bsap_1268327 a{line-height:100%}div.bsap_1268327 a.adhere{width:300px;height:250px;line-height:2000%}html>body div.bsap_1268327 a.adhere{width:298px;height:248px}div.bsap_1268327 img.s{height:0;width:0}div.bsap_1268327{line-height:9px}div.bsap_1268327 .bsap_adhere a{height:19px;width:298px;font-size:10px;background:#f1f1f1;border:1px solid #e1e1e1;border-top:none;border-bottom-left-radius:4px;-moz-border-radius-bottomleft:4px;-webkit-border-bottom-left-radius:4px;border-bottom-right-radius:4px;-moz-border-radius-bottomright:4px;-webkit-border-bottom-right-radius:4px;text-shadow:1px 1px 0 #fff;line-height:16px}.bsap_backfillframe{border:0}</style></head>
+
+<body data-twttr-rendered="true">
+
+<!-- BuySellAds.com Ad Code -->
+<script type="text/javascript">
+(function(){
+  var bsa = document.createElement('script');
+     bsa.type = 'text/javascript';
+     bsa.async = true;
+     bsa.src = '//s3.buysellads.com/ac/bsa.js';
+  (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+})();</script>
+<!-- END BuySellAds.com Ad Code -->
+
+<!-- Begin Outer Container -->
+
+
+<div id="container">
+
+  <a name="top"></a>
+
+  <div id="pageHeader">
+    <h3><a href="http://www.elated.com/"><span>Elated: Helping People Make Websites Since 1997</span></a></h3>
+
+    <form id="globalSearch" method="get" action="http://www.elated.com/">
+      <div>
+        <input type="hidden" name="action" value="search_content">
+                        <input type="hidden" name="searchContext" value="articles">
+
+        <input id="searchQuery" name="searchQuery" type="text" value="Search articles..." class="textField" onfocus="this.select(); if(this.value.slice(-3)==&#39;...&#39;) this.value=&#39;&#39;" onblur="if(this.value==&#39;&#39;) this.value=&#39;Search articles...&#39;">
+        <div id="searchButton"><input id="searchSubmit" type="image" src="./Changing Page Elements with the DOM_files/search-button.png" value="search"></div>
+        <div class="clear">&nbsp;</div>
+      </div>
+    </form>
+
+    
+<ul id="nav">
+  <li id="navArticles" class="highlight"><a href="http://www.elated.com/articles/">Articles</a>
+    <span class="tri"></span><ul>
+      <li><a href="http://www.elated.com/articles/cat/graphics/">Web Graphics and Multimedia</a>
+        <span class="tri2"></span><ul>
+            <li><a href="http://www.elated.com/articles/cat/photoshop/">Photoshop</a></li>
+            <li><a href="http://www.elated.com/articles/cat/paint-shop-pro/">Paint Shop Pro</a></li>
+          </ul>
+      </li>
+      <li><a href="http://www.elated.com/articles/cat/authoring/">Website Authoring</a>
+        <span class="tri2"></span><ul>
+            <li><a href="http://www.elated.com/articles/cat/style/">Web Design and Style</a></li>
+            <li><a href="http://www.elated.com/articles/cat/html/">HTML</a></li>
+            <li><a href="http://www.elated.com/articles/cat/xhtml/">XHTML</a></li>
+            <li><a href="http://www.elated.com/articles/cat/css/">CSS</a></li>
+          </ul>
+      </li>
+      <li><a href="http://www.elated.com/articles/cat/development/">Web Development</a>
+        <span class="tri2"></span><ul>
+            <li><a href="http://www.elated.com/articles/cat/javascript/">JavaScript</a></li>
+            <li><a href="http://www.elated.com/articles/cat/php/">PHP</a></li>
+            <li><a href="http://www.elated.com/articles/cat/perl-cgi/">Perl and CGI Scripting</a></li>
+            <li><a href="http://www.elated.com/articles/cat/asp/">ASP</a></li>
+          </ul>
+      </li>
+      <li><a href="http://www.elated.com/articles/cat/management/">Website Management</a>
+        <span class="tri2"></span><ul>
+            <li><a href="http://www.elated.com/articles/cat/ftp/">Using FTP</a></li>
+            <li><a href="http://www.elated.com/articles/cat/apache/">Apache</a></li>
+            <li><a href="http://www.elated.com/articles/cat/unix/">UNIX and Linux</a></li>
+          </ul>
+      </li>
+      <li><a href="http://www.elated.com/articles/cat/website-marketing/">Website Marketing</a>
+        <span class="tri2"></span><ul>
+            <li><a href="http://www.elated.com/articles/cat/ecommerce/">eCommerce</a></li>
+          </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="http://www.elated.com/forums/">Forums</a></li>
+  <li><a href="http://www.elated.com/faq/">FAQ</a></li>
+  <li><a href="http://store.elated.com/">Ebooks</a></li>
+  <li><a href="http://www.elated.com/newsletter/">Newsletter</a></li>
+  <li><a href="http://www.elated.com/aboutus/">About Elated</a></li>
+  <li><a rel="nofollow" href="http://buysellads.com/buy/detail/25436" onclick="pageTracker._trackEvent(&#39;Advertise Link&#39;, &#39;Main Nav&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);">Advertise</a></li>
+</ul>
+
+
+  </div>
+
+  <div class="clear" style="width: 960px; height: 10px;"> </div>
+
+  <div id="mainWrap">
+  <div id="main">
+  <div id="mainTop"></div>
+
+
+    <script type="text/javascript" src="./Changing Page Elements with the DOM_files/bbc.js"></script>
+
+    <div id="mainContent">
+
+    
+
+      <div class="breadcrumbs"><a href="http://www.elated.com/">Home</a> : <a href="http://www.elated.com/articles/">Articles</a> : Changing Page Elements with the DOM</div>
+
+      <!-- google_ad_section_start -->
+
+      <h1>Changing Page Elements with the DOM</h1>
+
+      <div style="margin-bottom: 20px; overflow: hidden;">
+
+<!-- BuySellAds.com Zone Code -->
+<div id="bsap_1268327" class="bsap_1268327 bsap"><iframe width="300" height="250" id="backfill_1268327_frame" src="./Changing Page Elements with the DOM_files/backfill1.html" frameborder="0" class="bsap_backfillframe" scrolling="no"></iframe></div>
+<!-- End BuySellAds.com Zone Code -->
+
+      </div>
+
+      <div id="articleMeta">
+      
+        <p class="breadcrumbs" style="margin: 0;">Tutorial by Matt Doyle | Level: Intermediate | Published on 28 November 2008</p>
+        
+        <div style="float: left; margin: 0; padding: 10px 0 0 0; position: relative;" class="breadcrumbs">Categories:</div>
+        <div style="float: left; margin: 0; padding: 10px 0 0 0; position: relative;" class="breadcrumbs"><ul style="list-style: none; margin-left: -1.1em;"><li style="margin-bottom: 0;"><a href="http://www.elated.com/articles/cat/development/">Web Development</a> &gt; <a href="http://www.elated.com/articles/cat/javascript/">JavaScript</a> &gt; <a href="http://www.elated.com/articles/cat/document-object-model/">The Document Object Model</a></li>
+</ul></div>
+
+      </div>
+
+       <div id="articleShareTop">
+
+        <div class="twitter">
+          <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./Changing Page Elements with the DOM_files/tweet_button.1401325387.html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-vertical" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 56px; height: 62px;"></iframe><script type="text/javascript" src="./Changing Page Elements with the DOM_files/widgets.js"></script>
+        </div>
+
+      </div>
+ 
+      <p id="articleSummary">Learn how to use the JavaScript DOM to alter the content of your Web pages. This article shows you how to change element content, how to add and remove elements in the page, how to move elements around, and how to work with element attributes.</p>
+
+      <p>So far, you've looked at how to <a href="http://www.elated.com/articles/javascript-retrieving-page-elements-via-the-dom/">get hold of page elements</a> using JavaScript and the DOM, and how to <a href="http://www.elated.com/articles/looking-inside-dom-page-elements/">look inside those elements</a> to retrieve their contents.</p>
+
+<p>In this tutorial, you'll take your skills a step further, and learn how to <em>change</em> elements. You'll see how to:</p>
+
+<ul>
+  <li>Change the content inside an element</li>
+  <li>Add and remove elements in the page</li>
+  <li>Move an element to a different position in the page, and</li>
+  <li>Manipulate element attributes.</li>
+</ul>
+
+<p>Once you know how to manipulate DOM elements you can start creating flexible, JavaScript-generated Web content.</p>
+
+<h2>Changing the contents of an element</h2>
+
+<p>In the last tutorial you learned how to read the contents of an element using properties such as <code>childNodes</code>, <code>firstChild</code>, and <code>nodeValue</code>. As well as reading the value of a node with the <code>nodeValue</code> property, you can also change its value simply by assigning a new value to <code>nodeValue</code>.</p>
+
+<p>For example, say your page contains a paragraph element inside a <code>div</code> element:</p>
+
+<pre class="code"><code>
+&lt;div id="welcome"&gt;&lt;p&gt;Welcome to the Widget Company!&lt;/p&gt;&lt;/div&gt;
+</code></pre>
+
+<p>You already know that you can read the text inside the paragraph using:</p>
+
+<pre class="code"><code>
+var welcome = document.getElementById( "welcome" );
+alert( welcome.firstChild.firstChild.nodeValue );
+</code></pre>
+
+<p><em>Changing</em> the paragraph's text is as simple as assigning a new value to the child text node's <code>nodeValue</code> property:</p>
+
+<pre class="code"><code>
+var welcome = document.getElementById( "welcome" );
+welcome.firstChild.firstChild.nodeValue = "Welcome to Widgets R Us!";
+</code></pre>
+
+<p>What if you want to make more radical changes to your page? Let's say you want to add a horizontal rule (<code>hr</code>) element after the paragraph. To do this, you can't just change a node's <code>nodeValue</code>. Instead, you need to add a new child element to the <code>"welcome" div</code> element, as discussed in the following section.</p>
+
+
+<h2>Adding, removing and replacing elements</h2>
+
+<p>You know that a Web page is made up of a tree of DOM nodes. For example, a paragraph containing a string of text and an image is represented by a <code>p</code> element node with two child nodes: a text node, and an <code>img</code> element node.</p>
+
+<p>This means that, in order to alter the contents of an element that itself contains child elements, you need to be able to add and remove those child elements. Here's how to do it.</p>
+
+
+<h3>Adding elements</h3>
+
+<p>To add an element to the DOM tree, you first need to create the element. You do this using the <code>document.createElement()</code> method, passing in the tag name of the element you want to create:</p>
+
+<pre class="code"><code>
+<var>elementVar</var> = document.createElement( <var>tagName</var> );
+</code></pre>
+
+<p>Once you've created your element node, you can then add it as a child to an existing node in the document using <code>element.appendChild()</code>:</p>
+
+<pre class="code"><code>
+element.appendChild( <var>elementVar</var> );
+</code></pre>
+
+<p>The following example adds a horizontal rule (<code>hr</code>) element after the paragraph inside our <code>"welcome"</code> <code>div</code>:</p>
+
+<pre class="code"><code>
+var welcome = document.getElementById( "welcome" );
+var horizRule = document.createElement( "hr" );
+welcome.appendChild( horizRule );
+</code></pre>
+
+<p>What if you wanted to insert the horizontal rule <em>before</em> the paragraph? You can use <code>element.insertBefore()</code> to insert an element before a specified child node, rather than at the end of the list of child nodes. <code>insertBefore()</code> takes two parameters: the element to insert, and the child node to insert the element before.</p>
+
+<p>So to insert the horizontal rule before the paragraph, first create the <code>hr</code> element, then retrieve the paragraph node, then call the <code>div</code> element's <code>insertBefore()</code> method, as follows:</p>
+
+<pre class="code"><code>
+var welcome = document.getElementById( "welcome" );
+var horizRule = document.createElement( "hr" );
+var paragraph = welcome.firstChild;
+welcome.insertBefore( horizRule, paragraph );
+</code></pre>
+
+
+<h3>Removing elements</h3>
+
+<p>To remove an element from the page, first retrieve the element using, for example, <code>document.getElementById()</code> or <code>element.firstChild</code>. Once you have the element, you can then remove it from its parent element by calling <code>parent.removeChild()</code>, passing in the element to remove:</p>
+
+<pre class="code"><code>
+<var>removedElement</var> = <var>element</var>.removeChild( <var>elementToRemove</var> );
+</code></pre>
+
+<p><code>removeChild()</code> removes the element from the DOM tree and returns it. You can just ignore the returned object, or store it for later use if required.</p>
+
+<p>For example, here's how to remove the <code>hr</code> element that you just added after your paragraph:</p>
+
+<pre class="code"><code>
+var welcome = document.getElementById( "welcome" );
+var horizRule = welcome.lastChild;
+welcome.removeChild( horizRule );
+</code></pre>
+
+<p class="infoBox">You can use <code>appendChild()</code> and <code>removeChild()</code> to add or remove any type of DOM node, not just elements — provided, of course, that the node in question can be added to or removed from the parent element.</p>
+
+
+<h3>Replacing elements</h3>
+
+<p>You can also replace one element in the DOM tree with another. For example, you could replace the <code>hr</code> element in the previous example with a new <code>p</code> element:</p>
+
+<pre class="code"><code>
+var welcome = document.getElementById( "welcome" );
+var horizRule = welcome.lastChild;
+welcome.removeChild( horizRule );
+var newPara = document.createElement( "p" );
+newPara.appendChild( document.createTextNode( "Feel free to have a browse." ) );
+welcome.appendChild( newPara );
+</code></pre>
+
+<div class="infoBox">
+  <p>Note the use of a new method, <code>document.createTextNode()</code>. This works much like <code>document.createElement()</code>, but it returns a text node containing the supplied text.</p>
+  <p>Also notice that you can add child nodes to a node with <code>appendChild()</code>, even though the parent node isn't yet part of the main document's DOM tree. For example, in the above code the text node is added to the <code>newPara</code> element before <code>newPara</code> is added to the <code>"welcome" div</code> element.</p>
+</div>
+
+<p>Although the above approach works, there's a cleaner way to replace an element, and that is to use <code>element.replaceChild()</code>. This method takes the new child to use, followed by the child to replace, and returns the replaced child (which you can ignore if you don't need it). So the above code can be rewritten as:</p>
+
+<pre class="code"><code>
+var welcome = document.getElementById( "welcome" );
+var horizRule = welcome.lastChild;
+var newPara = document.createElement( "p" );
+newPara.appendChild( document.createTextNode( "Feel free to have a browse." ) );
+welcome.replaceChild( newPara, horizRule );
+</code></pre>
+
+
+<h3>Moving elements around</h3>
+
+<p>Now that you know how to add, remove, and replace elements, you can easily move elements from one part of the DOM tree to another. Here's a simple example. Imagine that your page contains the following list:</p>
+
+<pre class="code"><code>
+&lt;ul&gt;
+  &lt;li id="widget1"&gt;&lt;a href="superwidget.html"&gt;SuperWidget&lt;/a&gt;&lt;/li&gt;
+  &lt;li id="widget2"&gt;&lt;a href="megawidget.html"&gt;MegaWidget&lt;/a&gt;&lt;/li&gt;
+  &lt;li id="widget3"&gt;&lt;a href="wonderwidget.html"&gt;WonderWidget&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>To move the SuperWidget list item to the end of the list, you could use:</p>
+
+<pre class="code"><code>
+var superWidget = document.getElementById( "widget1" );
+var ul = superWidget.parentNode;
+ul.appendChild( superWidget );
+</code></pre>
+
+<p>Notice that you don't need to remove the SuperWidget list item from the list before you then append it. When you use <code>appendChild()</code>, <code>insertBefore()</code>, or <code>replaceChild()</code> to add an element that already exists in the page, the element is automatically removed from its old position in the page. In other words, the element is moved rather than copied.</p>
+
+
+<h2>Changing attributes</h2>
+
+<p>So far you've looked at changing the contents of elements: you've altered the value of a text node inside an element, and manipulated the child nodes of an element. How about changing the <em>attributes</em> of an element?</p>
+
+
+<h3>Changing an attribute's value</h3>
+
+<p>In the last tutorial you learned how to retrieve an element's attribute node using <code>getAttributeNode()</code>. Once you have the attribute, you can change its <code>value</code> property. This immediately updates the attribute's value in the page. Say you have a photo of your cat in your Web page:</p>
+
+<pre class="code"><code>
+&lt;div&gt;
+  &lt;img id="photo" src="cat.jpg" alt="My cat" /&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>To replace the cat photo with a dog photo, updating both the <code>src</code> and <code>alt</code> attributes, you could write:</p>
+
+<pre class="code"><code>
+var photo = document.getElementById( "photo" );
+var photoSrc = photo.getAttributeNode( "src" );
+var photoAlt = photo.getAttributeNode( "alt" );
+photoSrc.value = "dog.jpg";
+photoAlt.value = "My dog";
+</code></pre>
+
+
+<h3>Adding and removing attribute nodes</h3>
+
+<p>To add a new attribute node to an element, first create the attribute node by calling <code>document.createAttribute()</code>, passing in the name of the attribute to create. The method returns the attribute node:</p>
+
+<pre class="code"><code>
+<var>attributeNode</var> = document.createAttribute( <var>attributeName</var> ); 
+</code></pre>
+
+<p>Then you can assign a value to your new attribute node's <code>value</code> property:
+
+</p><pre class="code"><code>
+<var>attributeNode</var>.value = <var>value</var>; 
+</code></pre>
+
+<p>Finally, add the attribute to the element by calling <code>element.setAttributeNode()</code>:</p>
+
+<pre class="code"><code>
+element.setAttributeNode( <var>attributeNode</var> ); 
+</code></pre>
+
+<p class="infoBox">If an attribute with the same name already exists for the element, it is replaced by the new attribute node. The old attribute node is then returned by <code>element.setAttributeNode()</code>.</p>
+
+<p>Here's an example that adds the attribute <code>width="50"</code> to your "photo" <code>img</code> element:</p>
+
+<pre class="code"><code>
+var photo = document.getElementById( "photo" );
+var widthAttr = document.createAttribute( "width" );
+widthAttr.value = 50;
+photo.setAttributeNode( widthAttr );
+</code></pre>
+
+<p>To remove an attribute node, call <code>element.removeAttributeNode()</code>, passing in the node to remove:</p>
+
+<pre class="code"><code>
+var photo = document.getElementById( "photo" );
+var widthAttr = photo.getAttributeNode( "width" );
+photo.removeAttributeNode( widthAttr );
+</code></pre>
+
+<p class="infoBox"><code>removeAttributeNode()</code> returns the removed attribute node, which you can store for later, or ignore.</p>
+
+
+<h3>Attribute shortcuts</h3> 
+
+<p>If you're thinking that all of this retrieving, creating, adding, and removing of attribute nodes is somewhat tedious, you'd be right. Fortunately the DOM provides a couple of shortcut methods to make life easier. These methods work directly with <code>element</code> objects, rather than dealing with attribute nodes:</p>
+
+<dl>
+  <dt><code>element.setAttribute( name, value )</code></dt>
+  <dd>Adds an attribute with a name of <code>name</code> and a value of <code>value</code> to the element. If an attribute with the same name already exists in the element, its value is changed to <code>value</code>.</dd>
+  <dt><code>element.removeAttribute( name )</code></dt>
+  <dd>Removes the attribute called <code>name</code> from the element.<p></p>
+</dd></dl>
+
+<p>For example:</p>
+
+<pre class="code"><code>
+var photo = document.getElementById( "photo" );
+photo.setAttribute( "width", 50 );
+photo.removeAttribute( "width" );
+</code></pre>
+
+<p>Most of the time you'll probably want to use <code>setAttribute()</code> and <code>removeAttribute()</code> rather than the node-based approach. They're quick and easy, and you rarely need to work at the node level anyway.</p>
+
+<p>Now that you've read this tutorial, you have pretty much all you need to create an entire Web page from scratch using nothing but DOM objects. You also have the knowledge to manipulate an existing Web page using the DOM, including changing element content, adding and removing elements, moving elements around, and altering element attributes.</p>
+      
+      <!-- google_ad_section_end -->
+      
+            <div id="share" style="float: left; width: 48%; margin-top: 40px;">
+        <h2 style="margin-top: 0;"><span>Share This Page</span></h2>
+        
+        <div class="social">
+
+          <div style="float: left; width: 50%; margin-top: 7px;">
+
+            <div style="float: left; width: 66px;">
+              <iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="./Changing Page Elements with the DOM_files/tweet_button.1401325387(1).html" class="twitter-share-button twitter-tweet-button twitter-share-button twitter-count-vertical" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 56px; height: 62px;"></iframe><script type="text/javascript" src="./Changing Page Elements with the DOM_files/widgets.js"></script>
+            </div>
+
+          </div>
+ 
+          <div style="float: right; width: 42%; margin-right: -7px;">
+
+            <ul>
+              <li><a class="delicious" onclick="pageTracker._trackEvent(&#39;Share&#39;, &#39;Delicious&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);" href="http://del.icio.us/post?url=http://www.elated.com/articles/changing-page-elements-with-the-dom/&title=Changing+Page+Elements+with+the+DOM" title="Add to Del.icio.us"><span>Add to&nbsp;Del.icio.us</span></a></li>
+              
+              <li><a class="digg" onclick="pageTracker._trackEvent(&#39;Share&#39;, &#39;Digg&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);" href="http://digg.com/submit?phase=2&url=http://www.elated.com/articles/changing-page-elements-with-the-dom/&title=Changing+Page+Elements+with+the+DOM" title="Add to Digg"><span>Add to&nbsp;Digg</span></a></li>
+              
+              <li><a class="google-bookmarks" onclick="pageTracker._trackEvent(&#39;Share&#39;, &#39;Google Bookmarks&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);" href="http://www.google.com/bookmarks/mark?op=edit&output=popup&bkmk=http://www.elated.com/articles/changing-page-elements-with-the-dom/&title=Changing+Page+Elements+with+the+DOM" title="Add to Google Bookmarks"><span>Add to&nbsp;Google Bookmarks</span></a></li>
+              
+              <li><a class="reddit" onclick="pageTracker._trackEvent(&#39;Share&#39;, &#39;Reddit&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);" href="http://www.reddit.com/submit" title="Add to Reddit"><span>Add to Reddit</span></a></li>
+              
+              <li><a class="stumbleupon" onclick="pageTracker._trackEvent(&#39;Share&#39;, &#39;StumbleUpon&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);" href="http://www.stumbleupon.com/submit?url=http://www.elated.com/articles/changing-page-elements-with-the-dom/&title=Changing+Page+Elements+with+the+DOM" title="Add to StumbleUpon"><span>Add to&nbsp;StumbleUpon</span></a></li>
+              
+              <li><a class="yahoo-bookmarks" onclick="pageTracker._trackEvent(&#39;Share&#39;, &#39;Yahoo&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);" href="http://myweb2.search.yahoo.com/myresults/bookmarklet?u=http://www.elated.com/articles/changing-page-elements-with-the-dom/&t=Changing+Page+Elements+with+the+DOM" title="Add to Yahoo! Bookmarks"><span>Add to&nbsp;Yahoo! Bookmarks</span></a></li>
+            </ul>
+
+          </div>
+
+          <div class="clear" style="height: 1px;"> </div>
+          
+          <h3 style="margin-top: 20px; font-size: 1.1em;">Link to this page</h3>
+       
+          <form action="">
+            <div style="padding-top: 4px;">
+              <label class="fullwidthLeft" style="width: 28%; font-weight: normal;" for="linkHTML">Link HTML:</label>
+              <span class="fullwidthRight" style="width: 70%; margin-top: 3px; font-weight: bold;"> 
+                <input type="text" name="linkHTML" id="linkHTML" class="textField wide" style="width: 94%;" value="&lt;a href=&quot;http://www.elated.com/articles/changing-page-elements-with-the-dom/&quot;&gt;Changing Page Elements with the DOM&lt;/a&gt;" onfocus="this.select();" onclick="this.select(); pageTracker._trackEvent(&#39;Share&#39;, &#39;Link HTML&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);">
+              </span>
+              <br class="clear">
+              <label class="fullwidthLeft" style="width: 28%; font-weight: normal;" for="urlOnly">URL only:</label>
+              <span class="fullwidthRight" style="width: 70%; margin-top: 3px; font-weight: bold;"> 
+                <input type="text" name="urlOnly" id="urlOnly" class="textField wide" style="width: 94%;" value="http://www.elated.com/articles/changing-page-elements-with-the-dom/" onfocus="this.select();" onclick="this.select(); pageTracker._trackEvent(&#39;Share&#39;, &#39;URL only&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);">
+              </span>
+              <br class="clear">
+            </div>
+          </form>          
+          
+        </div>
+      </div>
+
+      <div id="follow" style="float: right; width: 48%; margin-top: 40px; padding: 0 0 4px 11px; border-left: 1px solid #ccc;">
+        <h2 style="margin-top: 0;">Follow Elated</h2>
+        
+        <div class="social">
+          <ul>
+            <li><a class="rss" onclick="pageTracker._trackEvent(&#39;Follow&#39;, &#39;RSS&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);" href="http://feeds.elated.com/ElatedNewStuff" title="Subscribe to our RSS feed"><span>Subscribe to our RSS feed</span></a></li>
+            <li><a class="twitter" onclick="pageTracker._trackEvent(&#39;Follow&#39;, &#39;Twitter&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);" href="http://twitter.com/ElatedDotCom" title="Follow us on Twitter"><span>Follow us on Twitter</span></a></li>
+            <li><a class="facebook" onclick="pageTracker._trackEvent(&#39;Follow&#39;, &#39;Facebook&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);" href="http://www.facebook.com/ElatedDotCom" title="Follow us on Facebook"><span>Follow us on Facebook</span></a></li>
+          </ul>
+          <div class="clear" style="height: 1px;"> </div>
+         
+          <h3 style="margin-top: 57px; font-size: 1.1em;">Subscribe to the Elated Newsletter</h3>
+
+          <p style="font-size: 0.9em; line-height: 1.6em;">Get <a href="http://www.elated.com/newsletter/">tips, tricks and site updates</a> once a month! <a href="http://www.elated.com/privacy/" style="font-size: 0.85em;">Privacy</a></p>
+    
+          <form method="post" action="http://www.elated.com/cgi-bin/listmailer/subscribe.cgi" onsubmit="return validateEmail(this)">
+            <div>
+              <input type="hidden" name="list_id" value="elated-extra">
+              <input type="text" class="textField" style="float: left; margin: 0; width: 209px;" name="email_address" id="email" value="Your Email Address..." onfocus="this.select(); if(this.value==&#39;Your Email Address...&#39;) this.value=&#39;&#39;">
+              <input type="submit" name="OK" value="Send" style="margin-left: 10px;" onclick="pageTracker._trackEvent(&#39;Follow&#39;, &#39;Newsletter&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);">
+              <div class="clear"> </div>
+    
+            </div>
+          </form>
+        </div>
+      </div>
+       
+      <div class="clear" style="height: 1px;"> </div>
+
+
+      
+      <h2>Related articles</h2>
+
+      <div style="float: right; width: 336px; position: relative; margin: 0 0 0 30px; padding-top: 0;">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-3174270072181405";
+/* ArtViewBotRightLgeRecV4Op */
+google_ad_slot = "2385172871";
+google_ad_width = 336;
+google_ad_height = 280;
+//-->
+</script>
+<script type="text/javascript" src="./Changing Page Elements with the DOM_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><ins id="aswift_0_anchor" style="display:block;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:336px;background-color:transparent"><iframe width="336" height="280" frameborder="0" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){setTimeout(h,0)}else if(h.match){try{h=s.upd(h,i)}catch(e){}w.location.replace(h)}}" id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;"></iframe></ins></ins>
+      </div>
+
+      <ul id="relatedArticles">
+
+      <li><a href="http://www.elated.com/articles/javascript-tabs/" title="Learn how to use JavaScript to create a tabbed Web page for holding lots of content. Full code included for copying and pasting into your website!">JavaScript Tabs - Create Tabbed Web Pages Easily</a></li>
+<li><a href="http://www.elated.com/articles/javascript-accordion/" title="Build a JavaScript accordion script that lets visitors show and hide parts of an HTML Web page.">A JavaScript Accordion to Show and Hide HTML</a></li>
+<li><a href="http://www.elated.com/articles/looking-inside-dom-page-elements/" title="This article shows you how to access the contents and attributes of any DOM element in a Web page. You also find out about node properties and relationships, and learn how to move around the DOM tree.">Looking Inside DOM Page Elements</a></li>
+<li><a href="http://www.elated.com/articles/javascript-retrieving-page-elements-via-the-dom/" title="How can you use the Document Object Model to access the various parts of your Web page? This tutorial shows you how to retrieve HTML elements using three handy DOM methods.">Retrieving Page Elements via the DOM</a></li>
+
+      </ul>
+
+      <div class="clear"></div>
+
+      
+
+      <h2>Responses to this article</h2>
+
+
+          <h3 style="margin-bottom: 18px;">2 responses <span style="font-style: italic; font-size: 0.85em; color: #333;">(oldest first)</span>:</h3>
+  
+      
+      <div class="articleResponseHeader">
+        <div class="username">
+          <a href="http://www.elated.com/member/profile/5510/">leanne</a>        </div>
+        <div class="date">
+          01-Feb-10          <span>20:27</span>
+        </div>
+        <div class="clear"> </div>
+      </div>
+      <div class="articleResponseBody">
+          I am a non-experienced coder. I can read tutorials, kind of understand, copy and paste code, and alter it.. and in many cases realise what Im doing<img class="emoticon" src="./Changing Page Elements with the DOM_files/emot_wink.gif"><br><br>I have seen other demo's of what your tute is about, and im looking for a solution for the following variation or your example:<br><br>I want to be able to change elements (such as clicking on an image 'red dot' and it changes to a 'green dot', then clicking on it again replaces with the initial 'red dot' and so on..). The difference being that I want this to effect the web page overall, for every viewer, not just current viewers browser. And i dont want the image to reset upon a page reload. I want ANY person to be able to change the image from green to red or red to green and i want the change to occur on any visitors browser, and remain that way, until the dot is clicked again (by anyone).<br><br>Is this possible and is there an easy/ basic way to implement this?      </div>
+
+      <div class="clear" style="padding-top: 16px;"> </div>
+
+      
+      <div class="articleResponseHeader">
+        <div class="username">
+          <a href="http://www.elated.com/member/profile/1/">matt</a>        </div>
+        <div class="date">
+          02-Feb-10          <span>01:47</span>
+        </div>
+        <div class="clear"> </div>
+      </div>
+      <div class="articleResponseBody">
+          Hi leanne, welcome to the forums.<img class="emoticon" src="./Changing Page Elements with the DOM_files/emot_happy.gif"><br><br>If you want the button change to be visible to anyone viewing the site, you're going to need to do some server-side coding I think (e.g. PHP), possibly combined with JavaScript in the browser to register the click and change the button.<br><br>A basic approach might be:<br><br>1. A PHP script (call it page.php) displays the page to the viewer containing (for example) a red button.<br><br>2. A viewer clicks the red button.<br><br>3. The button has an "onclick" JavaScript event handler which changes the button to green, and also sends an XML (Ajax) request to a server-side PHP script - something like button-click.php?newcolour=green .<br><br>4. The PHP script stores the new button state (green) in a text file or database.<br><br>5. When another person visits the page, the page.php script reads the current button state from the text file, and displays the appropriate button image in the page (green in this case).<br><br>As an alternative to step 5, you could use JavaScript to poll a PHP script every, say, 10 seconds to update the button image without having to reload the page. Again, you could do this with an XML request (Ajax).<br><br>I'd recommend using something like jQuery to do the XML requests - much easier than coding from scratch: <a rel="nofollow" href="http://jquery.com/">http://jquery.com/</a><br><br>Does that help?<br><br>Cheers,<br>Matt      </div>
+
+      <div class="clear" style="padding-top: 16px;"> </div>
+
+      
+      
+
+
+      <h3 id="post-response">Post a response</h3>
+
+      
+      <p>Want to add a comment, or ask a question about this article? <a href="http://www.elated.com/forums/topic/4712/post/new/">Post a response</a>.</p>
+
+
+      <p>To post responses you need to be a member. Not a member yet? Signing up is free, easy and only takes a minute. <a href="http://www.elated.com/member/register/?newPostTopic=4712">Sign up now</a>.</p>
+
+
+
+
+
+      <p style="text-align: center; margin-top: 20px;"><a href="http://www.elated.com/articles/changing-page-elements-with-the-dom/#top">Top of Page</a></p>
+      
+
+    </div>
+
+
+  <div id="mainBot"></div>
+  </div> <!-- /main -->
+  </div> <!-- /mainWrap -->
+
+  <div id="sidebarWrap">
+
+    <div id="sidebar">
+
+
+      <div style="overflow: hidden;">
+<!-- BuySellAds.com Zone Code -->
+<div id="bsap_1252044" class="bsap_1252044 bsap"><div class="bsa_it one"></div></div>
+<!-- END BuySellAds.com Zone Code -->
+      </div>
+
+      <div style="margin: 10px 0 20px -9px;">
+
+      
+            <a href="http://store.elated.com/?utm_source=http%3A%2F%2Fwww.elated.com%2Farticles%2Fchanging-page-elements-with-the-dom%2F&utm_medium=sidebar&utm_content=jqm-book-out-now-button&utm_campaign=jqm-book"><img src="./Changing Page Elements with the DOM_files/jqm-book-out-now-button.png" alt="jQuery Mobile Book Out Now! Detailed 446-page eBook." style="width: 310px; height: 210px; border: none;"></a>
+            
+      </div>
+
+      <div class="adBox" style="margin-top: 10px;">
+<!-- BuySellAds.com Zone Code -->
+<div id="bsap_1246938" class="bsap_1246938 bsap"><a href="http://stats.buysellads.com/click.go?z=1246938&b=557378&g=&s=&sw=1440&sh=900&br=chrome,35,linux&r=0.7636645829770714&link=http://www.dreamtemplate.com/?ref=bsa" onmouseover="window.status = &#39;http://www.dreamtemplate.com/?ref=bsa&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;" class="ad1 odd" title="Premium Website Templates &amp; WordPress Themes" id="bsa_557378" target="_blank"><img src="./Changing Page Elements with the DOM_files/a57e5523244502a1c8f5c164ee1268a2-1244306602.gif" width="125" height="125" alt="Premium Website Templates &amp; WordPress Themes"></a><a href="https://buysellads.com/buy/detail/25436/zone/1246938?utm_source=site_25436&utm_medium=website&utm_campaign=adhere&utm_content=zone_1246938" title="Advertise Here" class="adhere ad2 even" target="_blank">Advertise Here</a></div>
+<!-- END BuySellAds.com Zone Code -->
+      </div>
+
+      <div style="margin: 40px 0 40px -8px;">
+<!-- BuySellAds.com Zone Code -->
+<!--<div id="bsap_1249683" class="bsarocks bsap_10b1f1363e440baccdafa512ee9c9b28"></div>-->
+<!-- END BuySellAds.com Zone Code -->
+
+
+      </div>
+<!--
+      <div id="advertise-here-sidebar"><a rel="nofollow" href="http://buysellads.com/buy/detail/25436" onclick="pageTracker._trackEvent('Advertise Link', 'Sidebar, Below 125x125s', 'http://www.elated.com/articles/changing-page-elements-with-the-dom/');">200,000+ Impressions<br>From Just $120!</a></div>
+-->
+      <hr class="swirl">
+
+      <div>
+
+        <h3>Current forum topics</h3>
+        <ul id="currentForumTopics">
+                  <li><a href="http://www.elated.com/forums/topic/5700/">Consumer Furious With Rip Off Car Insurance Prices!</a></li>
+                  <li><a href="http://www.elated.com/forums/topic/5171/">How to Make a Slick Ajax Contact Form with jQuery and PHP</a></li>
+                  <li><a href="http://www.elated.com/forums/topic/4685/">Making CSS Rollover Buttons</a></li>
+                  <li><a href="http://www.elated.com/forums/topic/5136/">Drag-and-Drop with jQuery: Your Essential Guide</a></li>
+                  <li><a href="http://www.elated.com/forums/topic/5699/">How do I get this look on the homepage tab of my blog?</a></li>
+                </ul>
+
+        <p>Got a question about making a website? <a href="http://www.elated.com/forums/">Ask it in the forums</a> — we'd love to help you. All questions answered!</p>
+
+      </div>
+ 
+      <h3>Popular articles</h3>
+
+      <ul>
+        <li><a href="http://www.elated.com/articles/jquery-mobile-what-can-it-do-for-you/">jQuery Mobile: What Can It Do for You?</a></li>
+        <li><a href="http://www.elated.com/articles/javascript-tabs/">JavaScript Tabs - Create Tabbed Web Pages Easily</a></li>
+        <li><a href="http://www.elated.com/articles/slick-ajax-contact-form-jquery-php/">How to Make a Slick Ajax Contact Form with jQuery and PHP</a></li>
+        <li><a href="http://www.elated.com/articles/css-rollover-buttons/">Making CSS Rollover Buttons</a></li>
+        <li><a href="http://www.elated.com/articles/object-oriented-php-for-absolute-beginners/">Object-Oriented PHP for Absolute Beginners</a></li>
+
+      </ul>
+
+      <p>Never made a website before? Read <a href="http://www.elated.com/articles/how-to-make-a-website/">How to Make a Website</a>.</p>
+
+       
+    </div> <!-- /sidebar -->
+
+  </div> <!-- /sidebarWrap -->
+
+  <div class="clear"> </div>
+
+  <div style="height: 30px;"> </div>
+
+  <div id="pageFooter">
+
+    <ul id="footerNavOther">
+      <li class="first"><a href="http://www.elated.com/">Home</a></li>
+      <li><a href="http://www.elated.com/articles/">Articles</a></li>
+      <li><a href="http://www.elated.com/forums/">Forums</a></li>
+    </ul>
+
+    <ul id="footerNavMain">
+      <li class="first"><a href="http://www.elated.com/contact/">Contact Us</a></li>
+      <li><a href="http://www.elated.com/spamwars/">Spamwars</a></li>
+      <li><a href="http://feeds.elated.com/ElatedNewStuff">RSS</a></li>
+      <li><a href="http://twitter.com/ElatedDotCom">Twitter</a></li>
+      <li><a href="http://www.facebook.com/ElatedDotCom">Facebook</a></li>
+    </ul>
+
+    <p class="copyright">This site © Elated Communications 1996-2014. Unauthorised copying or redistribution prohibited.  By using this Website, you are indicating your acceptance of our <a href="http://www.elated.com/usage/">Terms of Use</a>.
+
+    <br><br>Please read our <a href="http://www.elated.com/privacy/">Privacy Policy</a>.</p>
+
+    <img src="./Changing Page Elements with the DOM_files/elated-love-your-site.png" alt="Elated: Love Your Site" width="240" height="63" style="border: none;">
+
+    <div class="clear">&nbsp;</div>
+  </div>
+
+  <div class="clear">&nbsp;</div>
+
+
+</div>
+
+<!-- End Outer Container -->
+
+<ul id="followTab">
+  <li><a class="newsletter" href="http://www.elated.com/newsletter/" title="Subscribe to the Elated Extra newsletter" onclick="pageTracker._trackEvent(&#39;Tab Follow&#39;, &#39;Newsletter&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);"><span>Subscribe to the Elated Extra newsletter</span></a></li>
+  <li><a class="rss" href="http://feeds.elated.com/ElatedNewStuff" title="Subscribe to Elated.com&#39;s RSS feed" onclick="pageTracker._trackEvent(&#39;Tab Follow&#39;, &#39;RSS&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);"><span>Subscribe to Elated.com's RSS feed</span></a></li>
+  <li><a class="twitter" href="http://twitter.com/ElatedDotCom" title="Follow Elated.com on Twitter" onclick="pageTracker._trackEvent(&#39;Tab Follow&#39;, &#39;Twitter&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);"><span>Follow Elated.com on Twitter</span></a></li>
+  <li><a class="facebook" href="http://www.facebook.com/ElatedDotCom" title="Follow Elated.com on Facebook" onclick="pageTracker._trackEvent(&#39;Tab Follow&#39;, &#39;Facebook&#39;, &#39;http://www.elated.com/articles/changing-page-elements-with-the-dom/&#39;);"><span>Follow Elated.com on Facebook</span></a></li>
+</ul>
+
+<script type="text/javascript">
+SyntaxHighlighter.defaults['toolbar'] = false;
+SyntaxHighlighter.all();
+</script>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="./Changing Page Elements with the DOM_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-92937-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+
+
+
+
+</body></html>

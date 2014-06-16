@@ -1,0 +1,31 @@
+<h1><%=@topic.name%></h1>
+
+<% for post in @topic.posts %>  
+<div class="post">  
+
+<p><%= post.content %></p>
+</div>  
+<% end %>  
+<br/>
+<%if admin_is_logged_in?%>
+<p>  
+	<%= link_to "Edit", edit_topic_path(@topic) %> |  
+	<%= link_to "Destroy Topic", @topic, :confirm => 'Are you sure?', :method => :delete %> |  
+	<%= link_to "View All", topics_path %>  
+</p> 
+<% end %>
+<br/>
+ <%if someone_is_logged_in?%>
+ <%=form_for ([@topic, @topic.posts.build]) do |f|%>
+ <p>  
+  <%= f.text_area :content %>  
+</p>
+<div class="actions">
+	<%= f.submit "Add Comment", class: "button radius" %>
+</div>
+<%end%>
+<% else %>
+<h1>You have to be logged in to add a comment</h1>
+
+ <%end%>
+

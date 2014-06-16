@@ -1,0 +1,73 @@
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+  }
+}
+
+header nav {
+  color: #ddd;
+}
+
+header nav a {
+  color: grey;
+}
+
+header h1 {
+  border-bottom: 1px solid #eee;
+  margin: 10px 0px 30px 0px;
+  padding-bottom: 10px;
+}
+
+header h1 a {
+  color: grey;
+}
+
+header h1 a:hover {
+  color: #000;
+  text-decoration: none;
+}
+
+p, ul li {
+  line-height: 1.8;
+}
+
+code {
+  border: none;
+  background-color: none;
+}
+
+.highlight {
+  margin: 5px 0px;
+}
+
+pre {
+  border-left:0;
+  border-right:0;
+  border-radius: 0;
+  padding: 10px 5px;
+  font-size: 12px;
+}
+
+h3 {
+  margin-top: 40px;
+}
+
+section .date {
+  float: right;
+  color: #ccc;
+  padding-top: 5px;
+}
+
+.screenshot img {
+  max-width: 100%;
+  margin: 5px 0px;
+}
+
+.filename {
+  float: right;
+  margin: 5px;
+  font-weight: bold;
+  color: #afafaf;
+}

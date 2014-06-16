@@ -1,0 +1,83 @@
+<!Doctype html>
+<html>
+<head>
+	<!--<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>-->
+	<style type="text/css" rel="stylesheet" href="style/main.css"></style>
+	<style type="text/css">
+		body{
+	background-color: green;
+	margin:0;
+	padding:0;
+}
+/*----------NAVBAR----------*/
+#navbar ul{
+	align:left;
+	margin-top:4px;
+	padding:5px;/*set margin and padding for crosbrowser consistency*/
+	list-style-type:none;/*eliminate list item marker*/
+	text-align:right;/*positions navbar*/
+	background-color: 	;
+}
+#navbar ul li{
+	display:inline;/*needed to create horizontal effect*/
+
+}
+#navbar ul li a{
+	font-family: cursive;
+	text-decoration:none;/*the setting of none allows the link not to be underlined this is up to user preference*/
+	padding:0.5em 1em; /*gives the link space inside its individual block*/
+	color: purple;/*set as desired*/
+	background-color: silver; 
+}
+#navbar ul li a:hover{
+	color:Yellow;
+	font-weight:bold;
+	background-color:purple; /*both of these valuues create the rollover effect. set as desired*/
+}
+
+/*----------NAVBAR----------*/
+#carousel img{
+	clear:both;
+	display:block;
+	opacity:1; 
+	min-width:0px;
+	min-height:0px; 
+	max-width:none;
+	max-height: none;
+	width:1170px;
+	height:450px;
+
+	position: absolute;
+	top: 0px; 
+	left:0px;
+}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<img src="banner image for Rnd">
+		iHub Research and Development. Or a punch line for it
+	</div>
+	<div id="navbar">
+		<ul>
+			<li><a href="#"> About</a></li>
+			<li><a href="kids_camp.html">Kids Hacker Camp</a></li>
+			<li><a href="projects.html">Projects</a></li>
+			<li><a href="user_profiles.html">User Profiles</li>
+			<li>Blogs</li>
+		</ul>
+	</div>
+	<div id="content">
+		<div id="spinner">Latest News</div><!--headline spinner for most recent news-->
+		<div id="carousel">
+			<img src="img/6563_520c41363d9a8.jpg"  >
+			<img src="img/20189_520bd0981950e.jpg" >
+			<img src="img/22658_520c3c0fa45b7.jpg" >
+			<img src="img/29780_520bab9bf410d.jpg" >
+			<img src="img/any-day-outfit-29890.jpg" >
+			<img src="img/beauty-school-top-161778.jpg" >
+			<img src="img/29816_520b9d9c88216.jpg" >
+		</div>
+	</div><!--content-->
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0053)http://www.hicksdesign.co.uk/else/cssnav/contact.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Current page higlighting with CSS</title>
+		
+		
+		<style type="text/css" media="screen"> 
+		@import url(nav.css);  
+		</style>
+
+	</head>
+	<body id="contact">
+
+	<h1><a href="http://www.hicksdesign.co.uk/" title="go to the main site"><img src="./Current page higlighting with CSS_files/bar_logo.gif" alt="hicksdesign" width="307" height="73"></a></h1>
+
+	<!-- List from Listomatic -->
+<div id="navcontainer">
+<ul id="navlist">
+	<li><a href="http://www.hicksdesign.co.uk/else/cssnav/index.html" id="homenav">Home</a></li>
+	<li><a href="http://www.hicksdesign.co.uk/else/cssnav/products.html" id="prodnav">Products</a></li>
+	<li><a href="http://www.hicksdesign.co.uk/else/cssnav/faq.html" id="faqnav">FAQ</a></li>
+	<li><a href="./Current page higlighting with CSS_files/Current page higlighting with CSS.html" id="connav">contact us</a></li>
+</ul>
+</div>
+
+<h2>Contact</h2>
+<p>This is a basic test page. You can read the article <a href="http://www.hicksdesign.co.uk/articles/archives/000271.php" title="go to the article page">here</a>.</p>
+
+<p>First we'll set up our navigation list. I have chosen 4 sections for ease, and its best if navigation sections are kept short anyway:</p>
+
+<pre><code>
+&lt;ul id="navlist"&gt;
+	&lt;li&gt;&lt;a href="index.html" &gt;Home&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="products.html"&gt;Products&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="faq.html"&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="contact.html"&gt;contact us&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>Next we need to add a unique class or id (doesn't really matter which) to each of the section pages: </p>
+
+<pre><code>
+&lt;ul id="navlist"&gt;
+	&lt;li&gt;&lt;a href="index.html" id="homenav"&gt;Home&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="products.html" id ="prodnav"&gt;Products&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="faq.html" id ="faqnav"&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;a href="contact.html" id ="connav"&gt;contact us&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>Before we leave the HTML, on each of the section pages we need to add a unique id to the body tag:</p>
+
+<pre><code>&lt;body id="home"&gt;</code></pre>
+
+<p>This allows us to specify the highlighted tab. Next we add the CSS for the menu (this is a simplified version). This has been taken directly from <a href="http://www.accessify.com/tools-and-wizards/list-o-matic/list-o-matic.asp">List-o-Matic</a>, with the Zeldman style, to save time:</p>
+
+<pre><code>
+#navcontainer ul {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+}
+
+#navcontainer ul li {
+	display: block;
+	float: left;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+#navcontainer ul li a {
+	background: #fff;
+	width: 78px;
+	height: 18px;
+	border-top: 1px solid #f5d7b4;
+	border-left: 1px solid #f5d7b4;
+	border-bottom: 1px solid #f5d7b4;
+	border-right: none;
+	padding: 0;
+	margin: 0 0 10px 0;
+	color: #f5d7b4;
+	text-decoration: none;
+	display: block;
+	text-align: center;
+	font: normal 10px/18px "Lucida Grande", "Lucida Sans Unicode", verdana, lucida, sans-serif;
+}
+
+#navcontainer ul li a:hover {
+	color: #930;
+	background: #f5d7b4;
+}
+</code></pre>
+
+<p>Finally, we add the css rules to highlight the correct tab. As all of these instances use the same rules, we can just list them all, seperated by commas, and the browser will apply the rules to every instance. These overrule the previous styles wherever &lt;body id="home"&gt; is on the same page as &lt;a id=“homenav'“&gt;.</p>
+
+<pre><code>
+body#home a#homenav,
+body#products a#prodnav,
+body#faq a#faqnav,
+body#contact a#connav {
+	color: #fff;
+	background: #930;
+}
+</code></pre>
+
+<p>This can also be used to introduce different coloured sections. Handy if the layout positioning stays similar and all you want to do is change the colour theme. </p>
+	
+</body></html>

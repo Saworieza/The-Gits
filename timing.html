@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		.box {
+  				background: blue;
+ 		 		width: 40px;
+		  		height: 40px;
+		  		-webkit-transition-duration: 2s;
+		  		transition-duration: 2s;
+			}
+
+		.linear .box {
+		  -webkit-transition-timing-function: linear;
+		  transition-timing-function: linear;
+		}
+		.ease-in .box {
+		  -webkit-transition-timing-function: ease-in;
+		  transition-timing-function: ease-in;
+		}
+		.ease-out .box {
+		  -webkit-transition-timing-function: ease-out;
+		  transition-timing-function: ease-out;
+		}
+		.ease-in-out .box {
+		  -webkit-transition-timing-function: ease-in-out;
+		  transition-timing-function: ease-in-out;
+		}
+
+		#go:target .box {
+		  -webkit-transform: translate(300px);
+		  transform: translate(300px);
+		}
+
+		body {
+		  font: .7em Arial;
+		}
+
+		h2 {
+		  margin: 20px 0 5px;
+		}
+
+		a {
+		  padding: 5px 10px;
+		  background: blue;
+		  color: #fff;
+		  border-radius: 8px;
+		  text-decoration: none;
+		  font-size: 1.2em;
+		  margin: 10px 0;
+		  display: inline-block;
+		}
+
+		a:hover {
+		  opacity: 0.6;
+		}
+
+		p {
+		  font-size: 1.2em;
+	}
+
+		/*-----THE BOUNCING BOX------*/
+	@-webkit-keyframes square {
+		
+		25% {
+			top:200px;
+			left:0;
+		}
+		
+		50% {
+			top:200px;
+			left:400px;
+		}
+		
+		75% {
+			top:0;
+			left:400px;
+		}
+		
+	}
+
+	@keyframes square {
+		
+		25% {
+			top:200px;
+			left:0;
+		}
+		
+		50% {
+			top:200px;
+			left:400px;
+		}
+		
+		75% {
+			top:0;
+			left:400px;
+		}
+		
+	}
+
+	.container {
+		margin:30px auto 0;
+		width:500px;
+		height:300px;
+		border:2px dashed #ccc;
+		position:relative;
+	}
+
+		.boxe {
+			-webkit-animation: square 8s infinite cubic-bezier(.65,1.95,.03,.32);
+			animation: square 8s infinite cubic-bezier(.65,1.95,.03,.32);
+			width:100px;
+			height:100px;
+			background:blue;
+			position:absolute;
+			top:0;
+			left:0;
+		}
+
+		/*----The transit---*/
+		.cartoon {
+		  width: 125px;
+		  height: 150px;
+		  background: url(piya.jpg) left;
+		  -webkit-transition: 2s steps(16);
+		  transition: 2s steps(16);
+		  border: 1px solid black;
+		  margin-top: 30px;
+		}
+
+		#go:target .cartoon {
+		  background-position: -4000px 0;
+		}
+
+		body {
+		  font: .7em Arial;
+		}
+
+		.containere {
+		  margin: 20px auto;
+		  width: 150px;
+		}
+
+		a {
+		  padding: 5px 10px;
+		  background: blue;
+		  color: #fff;
+		  border-radius: 8px;
+		  text-decoration: none;
+		  font-size: 1.2em;
+		}
+
+		a:hover {
+		  opacity: 0.6;
+		}
+
+		p {
+		  font-size: 1.2em;
+		}
+	</style>
+</head>
+<body>
+	<div id="go">
+		<!--how do these control the animations when clicked?-->
+		<a href="#go">Animate</a> <a href="#reset">Reset</a>
+
+		<p>All of the animations below last exactly 2 seconds</p>
+
+		<div class="ease">
+			<h2>Ease (default)</h2>
+			<div class="box">
+			</div>
+		</div>
+
+		<div class="linear">
+			<h2>Linear</h2>
+			<div class="box">
+			</div>
+		</div>
+
+		<div class="ease-in">
+			<h2>Ease In</h2>
+			<div class="box">
+			</div>
+		</div>
+
+		<div class="ease-out">
+			<h2>Ease Out</h2>
+			<div class="box">
+			</div>
+		</div>
+
+		<div class="ease-in-out">
+			<h2>Ease In-Out</h2>
+			<div class="box">
+			</div>
+		</div>
+
+	</div>
+
+	<div class="container" style="float:left">
+  		<div class="boxe"></div>
+	</div>
+
+	<div id="go" class="containere" style="float:right">
+		<a href="#go">Animate</a> <a href="#reset">Reset</a>
+		<div class="cartoon">
+  	</div>
+
+</div>
+</body>
+</html>

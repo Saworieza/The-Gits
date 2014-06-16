@@ -1,0 +1,177 @@
+/*  
+Theme Name: Kendra Schaefer Site
+Theme URI: http://www.kendraschaefer.com
+Description: Wordpress design for kendraschaefer.com
+Version: 1.0
+Author: Kendra Schaefer
+Author URI: http://www.kendraschaefer.com/
+
+*/
+
+/* RESET */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+/* FONT FACE */
+
+@font-face {
+    font-family: 'ReklameScriptRegular';
+    src: url('ReklameScript-Regular-webfont.eot');
+    src: url('ReklameScript-Regular-webfont.eot?iefix') format('eot'),
+         url('ReklameScript-Regular-webfont.woff') format('woff'),
+         url('ReklameScript-Regular-webfont.ttf') format('truetype'),
+         url('ReklameScript-Regular-webfont.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}@font-face {    font-family: 'LeagueGothicRegular';    src: url('http://www.kendraschaefer.com/wp-content/themes/kendraschaefer/League_Gothic-webfont.eot');    src: url('League_Gothic-webfont.eot') format('embedded-opentype'),         url('League_Gothic-webfont.woff') format('woff'),         url('League_Gothic-webfont.ttf') format('truetype'),         url('League_Gothic-webfont.svg') format('svg');    font-weight: normal;    font-style: normal;}
+
+strong {font-weight: bold; }
+
+
+/* HOME */
+body { font-family: Georgia, 'Microsoft Yahei', 微软黑体, Times New Roman, serif, STHeiti, "华文细黑"; background-color: #000000; }
+code { display: block; background-color: #ffffff; padding: 15px; font-size: 12px; font-family: 'courier new', 'Microsoft Yahei', 微软黑体, monospace, STHeiti, "华文细黑"; }
+table { margin-bottom: 20px; font-size: 12px; }
+table th { font-weight: bold; font-style: italic; font-size: 14px; }
+.clear { clear: both; }
+.alignleft { float: left; }
+.alignright { float: right; }
+#header { background-color: #000000; height: 95px; width: 100%; mid-width: 960px; top: 0; left: 0; position: absolute; }
+.wrapper { width: 960px; padding: 0 10px; margin-right: auto; margin-left: auto; }
+#logo { margin-top: 10px; float: left; }
+#topnavmenu { float: right;  font-family: 'ReklameScriptRegular'; font-size: 2em; color: #ffffff; padding-top: 30px; padding-bottom: 50px; }
+#topnavmenu ul li { display: inline; padding: 30px 15px 50px 15px; }
+#topnavmenu ul li a:link, #topnavmenu ul li a:visited { text-decoration: none; color: #ffffff; }
+#topnavmenu ul li a:hover { text-decoration: none; color: #f1f1f1; }
+#topnavmenu ul li.current_page_item, 
+#topnavmenu ul li.current-post-ancestor,
+#topnavmenu ul li.current-page-ancestor,
+#topnavmenu ul li.current-menu-parent,
+#topnavmenu ul li.current-post-parent { background-color: #69584f; }
+.splashTextHome { float: right; margin-top: 150px; margin-right: 20px; }
+#footerHome { padding: 20px 0; color: #ffffff; height: 140px; width: 100%; min-width: 960px; background: url('images/footer-bg-home.png') repeat-x; position: absolute; left: 0; margin-top: 550px; bottom: 20px; }
+#footerHome h2 { font-family: 'ReklameScriptRegular'; font-size: 2em; color: #ffffff; margin-bottom: 10px; }
+#footerHome a { font-weight: bold; color: #fd9805; text-decoration: none; }
+#footerHome a:hover { color: #feac04; }
+#footerHome p { line-height: 1.4em; font-size: .9em; }
+#footerHomeLeft { width: 200px; float: left; }
+#footerHomeRight { width: 495px; float: right; }
+
+.splashText404 { margin-top: 200px;  }
+
+#footer { padding: 20px 0; color: #ffffff; height: 167px; width: 100%; min-width: 960px; background-color: #131313; margin-bottom: 40px; margin-top: 70px; }
+#footer h2 { font-family: 'ReklameScriptRegular'; font-size: 2em; color: #ffffff; margin-bottom: 10px; }
+#footer a { font-weight: bold; color: #fd9805; text-decoration: none; }
+#footer a:hover { color: #feac04; }
+#footer p { line-height: 1.8em; font-size: .9em; }
+#footerLeft { width: 200px; float: left; overflow: hidden; }
+#footerLeft div.social { margin-top: 10px; }
+#footerLeft div.social a:link, #footerLeft div.social a:visited  { display: block; float: left; height: 32px; width: 32px; text-indent: 9999em; }
+#footerLeft div.social a:hover, #footerLeft div.social a.twitter:hover, #footerLeft div.social a.linkedin:hover, #footerLeft div.social a.skype:hover { background-position: 0 -32px; }
+#footerLeft div.social a.twitter {  background: url('images/icon-twitter.png') 0 0 no-repeat; margin-right: 20px; }
+#footerLeft div.social a.linkedin {  background: url('images/icon-linkedin.png') 0 0 no-repeat; }
+#footerLeft div.social a.skype {  background: url('images/icon-skype.png') 0 0 no-repeat; margin-right: 20px; }
+#footerRight { width: 495px; float: right; }
+
+#headerImageBlog { background: url('images/bg-img-blog.jpg') no-repeat; height: 866px; width: 1300px; overflow: hidden; margin-top: 70px; margin-right: auto; margin-left: auto; }
+#headerImageFreebies { background: url('images/bg-img-freebies.jpg') no-repeat; height: 866px; width: 1300px; overflow: hidden; margin-top: 70px; margin-right: auto; margin-left: auto; }
+#headerImagePortfolio { background: url('images/bg-img-portfolio.jpg') no-repeat; height: 866px; width: 1300px; overflow: hidden; margin-top: 70px; margin-right: auto; margin-left: auto; }
+#headerImageTutorials { background: url('images/bg-img-tutorials.jpg') no-repeat; height: 866px; width: 1300px; overflow: hidden; margin-top: 70px; margin-right: auto; margin-left: auto; }
+
+#contentArea { width: 526px; background: url('images/content-area-bg.png') repeat-y; float: right; margin-top: -450px; margin-right: 10px; font-size: 15px; color: #1d1d1d; line-height: 22px;  }
+#contentArea a:link, #contentArea a:visited { color: #eb8900; text-decoration: none; }
+#contentArea a:hover{ text-decoration: underline; }
+#contentArea .entry a:link, #contentArea a:visited { background-color: #eb8900; color: #ffffff; text-decoration: none; }
+#contentArea .entry a:hover{ background-color: #ff9e22; }
+#contentArea .post { margin-bottom: 40px; }
+#contentArea .post h3 { font-size: 20px; line-height: 28px; margin-bottom: 15px; }
+#contentArea .post h4 { font-size: 16px; line-height: 22px; font-style: italic; margin-bottom: 10px; font-weight: bold; }
+.contentAreaPadding { padding: 20px; }
+#contentArea h2.postTitle { font-weight: normal; font-size: 2em; line-height: 32px; margin-bottom: 5px; font-family: 'ReklameScriptRegular'; color: #fa2e21; }
+#contentArea h2.postTitle a:link, #contentArea h2.postTitle a:visited  { font-family: 'ReklameScriptRegular'; color: #fa2e21; text-decoration: none; }
+#contentArea h2.postTitle a:hover { color: #fd9805; }
+#contentArea span.postDate { font-family: Arial, Verdana, Helvetica, sans-serif; text-transform: uppercase; font-size: 12px; font-weight: bold; line-height: 15px; }
+#contentArea h5 { font-size: 18px; font-weight: bold; margin-bottom: 15px; }
+a.more-link { display: block; background: url('images/btn-readon.png') 0 0 no-repeat; height: 30px; width: 109px; margin-top: 10px; }
+a.more-link:hover { background-position: 0 -30px; }
+a.download{ display: block; background: url('images/btn-download.png') 0 0 transparent no-repeat !important; height: 30px; width: 140px; margin-top: 10px; text-indent: -9999px; }
+a.download:hover { background-position: 0 -30px; }
+.entry p { margin-bottom: 10px; }
+.attachment-post-thumbnail { margin-bottom: 10px; }
+.thumbnailLeft { float: left; margin-right: 20px; }
+.breadcrumbs, .backToAll { text-transform: uppercase; font-size: 10px; color: #c0c0c0; margin-bottom: 20px; font-family: Arial, Helvetica, Tahoma, sans-serif; }
+.wp-pagenavi a, .wp-pagenavi span { border: none !important; }
+#contentArea .wp-pagenavi a { background-color: #FA2E21; color: #ffffff; }
+.wp-pagenavi { text-transform: uppercase; font-family: Arial, Helvetica, Tahoma, sans-serif; font-size: 11px; font-weight: bold; }#contentArea ul.post-categories { list-style-type: none; margin-bottom: 15px; }#contentArea ul.post-categories li { display: inline-block; font-size: 11px; }#contentArea ul.post-categories li a{ color: #ffffff; text-decoration: none; background-color: #69584F; padding: 3px; }#contentArea ul.post-categories li a:hover { background-color: #FD9805;  }
+#contentArea .navigation a { color: #ffffff; text-decoration: none; background-color: #FA2E21; padding: 3px; }
+#contentArea .navigation a:hover { background-color: #FD9805;  }#contentArea #topperTitle { padding: 15px; background-color: #69584F; color: #ffffff; font-size: 25px; font-family: 'LeagueGothicRegular'; text-transform: uppercase; }
+#contentArea #topperTitle ul.post-categories { display: inline; }#contentArea #topperTitle ul.post-categories li a { background: none; font-size: 25px; }#contentArea #topperTitle a.allCatsLink { font-family: Georgia, 'Times New Roman', serif; text-align: right; font-size: 14px;}
+#portfolioContent { width: 780px; float: left; margin-top: -500px; }
+#portfolioContent img.portfolioItem { padding: 20px; }
+#portfolioContent .portfolioRow { margin-bottom: 20px; }
+#portfolioContent .portfolioItem { float: left; margin-right: 20px; }
+#portfolioContent .portfolioItemLast { float: left; clear: right;  }
+.boxgrid { width: 246px; height: 450px; float:left; overflow: hidden; position: relative; background: url('images/portfolio-img-bg.png') 0 0 repeat-y; }
+.boxgrid img{ position: absolute; top: 0; left: 0; border: 0; }
+.boxgrid p { margin-bottom: 10px; font-size: 20px; }
+.boxcaption { padding: 20px; }
+.captionfull .boxcaption { top: 260; left: 0; }
+.caption .boxcaption { top: 220; left: 0; }
+.gallerycaption { text-transform: uppercase; font-size: 10px; font-weight: bold; font-family: arial, Helvetica, tahoma, sans-serif; }
+a.seeItOnline { width: 167px; height: 46px; display: block; background: url('images/icon-seeitonline.png') 0 0 no-repeat; text-indent: -9999px; margin-left: 20px; margin-top: 100px; }
+a.seeItOnline:hover { background-position: 0 -46px;}
+a.buyItOnline { width: 167px; height: 46px; display: block; background: url('images/icon-buyitonline.png') 0 0 no-repeat; text-indent: -9999px; margin-left: 20px; margin-top: 100px; }
+a.buyItOnline:hover { background-position: 0 -46px;}
+#sidebar { margin-top: 20px; width: 400px; color: #353535; font-size: 16px; line-height: 26px; float: left; }
+#sidebar p { margin: 0 0 10px 0; }
+#sidebar a { text-decoration: none; color: #fd9805;}
+#sidebar h3 { font-family: 'ReklameScriptRegular'; font-size: 2em; color: #ffffff; background-color: #1b1b1b; padding: 20px; font-weight: normal; margin-bottom: 15px; }
+#sidebar h3 a { color: #ffffff; text-decoration: none; }
+#sidebar div { margin-top: 20px; }
+#sidebar ul { margin-bottom: 30px; }
+#sidebar ul li { margin-bottom: 10px; list-style-type: none; }
+

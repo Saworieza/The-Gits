@@ -1,0 +1,11 @@
+.st-plg-social > * {
+	display: block;
+	min-height: 30px;
+	float: left;
+	margin-right: 15px;
+}
+.st-plg-social:after {
+	content: '';
+	display: block;
+	clear: both;
+}

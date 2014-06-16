@@ -1,0 +1,46 @@
+body{
+	background-color: green;
+	margin:0;
+	padding:0;
+}
+/*----------NAVBAR----------*/
+#navbar ul{
+	align:left;
+	margin-top:4px;
+	padding:5px;/*set margin and padding for crosbrowser consistency*/
+	list-style-type:none;/*eliminate list item marker*/
+	text-align:right;/*positions navbar*/
+	background-color: 	;
+}
+#navbar ul li{
+	display:inline;/*needed to create horizontal effect*/
+
+}
+#navbar ul li a{
+	font-family: cursive;
+	text-decoration:none;/*the setting of none allows the link not to be underlined this is up to user preference*/
+	padding:0.5em 1em; /*gives the link space inside its individual block*/
+	color: purple;/*set as desired*/
+	background-color: silver; 
+}
+#navbar ul li a:hover{
+	color:Yellow;
+	font-weight:bold;
+	background-color:purple; /*both of these valuues create the rollover effect. set as desired*/
+}
+
+/*----------NAVBAR----------*/
+#carousel img{
+	display:block;
+	opacity:1; 
+	min-width:0px;
+	min-height:0px; 
+	max-width:none;
+	max-height: none;
+	width:1170px;
+	height:450px;
+
+	position: absolute;
+	top: 0px; 
+	left:0px;
+}

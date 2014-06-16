@@ -1,0 +1,32 @@
+<% title @forum.name  %>  
+
+<table>  
+  <tr>  
+    <th width="20%">Topic Title</th>  
+    <th width="20%">Replies</th> 
+    <th width="20%">Author</th>
+    <th width="20%">Created at</th> 
+    <th width="20%">Last Post</th>  
+  </tr>  
+  <% for topic in @forum.topics%>  
+  <tr>  
+    <th width="20%"><%= link_to topic.name, topic_path(topic.id) %></th>  
+      <th width="20%"><%= topic.posts.count - 1 %></th>
+      <th width="20%"><%= topic.username %></th>
+      <th width="20%"><%= topic.created_at %></th>
+      <th width="20%"><%= topic.last_post_at %></th>
+      <td class="right"></td>  
+      <!---
+      <td><%= link_to "Show", topic %></td>  
+      <td><%= link_to "Edit", edit_topic_path(topic) %></td>  
+      <td><%= link_to "Destroy", topic, :confirm => 'Are you sure?', :method => :delete %></td>  
+    -->
+  </tr>  
+  <% end %>  
+</table>
+
+<% if someone_is_logged_in? %>
+<p><%= link_to "Start a new Topic", "/topics/new?forum=#{@forum.id}", class: "button radius" %></p>
+<% else %>
+<p><strong>You have to be logged in to Start a new Topic.!!</strong></p>
+<% end %>

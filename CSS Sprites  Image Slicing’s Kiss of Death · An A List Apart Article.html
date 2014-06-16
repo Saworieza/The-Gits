@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://alistapart.com/article/sprites -->
+<html class=" js no-touch svg" lang="en" data-useragent="Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.114 Safari/537.36" data-platform="Linux i686"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta charset="utf-8">
+	
+	<link rel="dns-prefetch" href="http://d.alistapart.com/">
+	
+	<link rel="alternate" type="application/rss+xml" title="A List Apart: The Full Feed" href="http://alistapart.com/site/rss">
+	<link rel="alternate" type="application/rss+xml" title="A List Apart: The Abridged Feed (just articles and columns)" href="http://alistapart.com/site/abridged-rss">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" href="http://alistapart.com/d/_repo/site_assets/img/favicons/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="http://alistapart.com/d/_repo/site_assets/img/favicons/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="57x57" href="http://alistapart.com/d/_repo/site_assets/img/favicons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="http://alistapart.com/d/_repo/site_assets/img/favicons/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="http://alistapart.com/d/_repo/site_assets/img/favicons/apple-touch-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="http://alistapart.com/d/_repo/site_assets/img/favicons/apple-touch-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="http://alistapart.com/d/_repo/site_assets/img/favicons/apple-touch-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="http://alistapart.com/d/_repo/site_assets/img/favicons/apple-touch-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="http://alistapart.com/d/_repo/site_assets/img/favicons/apple-touch-icon-152x152.png">
+	
+	<meta name="application-name" content="A List Apart"> 
+	<meta name="msapplication-TileColor" content="#222222"> 
+	<meta name="msapplication-TileImage" content="/d/_repo/site_assets/img/favicons/windows-8-tile.png">
+	
+	<link href="https://plus.google.com/+alistapart/" rel="publisher">
+	
+	<meta http-equiv="imagetoolbar" content="false">
+
+	<link rel="stylesheet" href="http://d.alistapart.com/_cache/56692f5fbd66eae3cc106629481bd3338e0b5fdf.1399662546.css">
+	
+	<link rel="stylesheet" href="http://cloud.webtype.com/css/0f692040-baf5-44df-a4f8-c4666e3f1c6f.css">
+	
+	<script type="text/javascript" async="" src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/mixpanel-2.2.min.js"></script><script src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/ga.js"></script><script src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/quant.js" async="" type="text/javascript"></script><script src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/modernizr-custom.js"></script>
+	
+	
+
+	<title>CSS Sprites: Image Slicing’s Kiss of Death · An A List Apart Article</title>
+	
+	<link rel="alternate" type="application/rss+xml" title="A feed for comments on this article" href="http://alistapart.com/comments/feed/sprites">
+	
+	
+	
+		
+	
+	<style>
+	
+	.member_115918 {
+		border: 1px solid rgba(0,0,0,.4) !important;
+	}
+	
+	
+	.member_115918::before {
+		/*box-shadow: inset 0 0 18px -8px rgba(255,161,161,.9);*/
+		content: url(//d.alistapart.com/_repo/site_assets/img/laurel-white-2.svg) !important;
+		padding-top: 3px !important;
+		height: 23px !important;
+	}
+	</style>
+	
+	
+	
+	<style>
+		</style>
+	
+	<meta name="description" content="Say goodbye to old-school slicing and dicing when creating image maps, buttons, and navigation menus. Instead, say hello to a deceptively simple yet powerful sprite-based CSS solution.">
+	<meta name="author" content=" Dave Shea">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@alistapart">
+	<meta name="twitter:title" content="CSS Sprites: Image Slicing’s Kiss of Death">
+	<meta name="twitter:description" content="Say goodbye to old-school slicing and dicing when creating image maps, buttons, and navigation menus. Instead, say hello to a deceptively simple yet powerful sprite-based CSS solution.">
+	<meta name="twitter:url" content="http://alistapart.com/article/sprites">
+		
+	<meta property="og:title" content="CSS Sprites: Image Slicing’s Kiss of Death">
+	<meta property="og:description" content="Say goodbye to old-school slicing and dicing when creating image maps, buttons, and navigation menus. Instead, say hello to a deceptively simple yet powerful sprite-based CSS solution.">
+	<meta property="og:url" content="http://alistapart.com/article/sprites">
+	<meta property="og:image" content="">
+		
+<script type="text/javascript" async="" src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/pro.js"></script></head>
+
+<body class="printable comments-exist breakpoint-600">
+
+
+	
+		<header class="logo-holder">
+	
+		<h1 name="top" class="killer-logo"><a href="http://alistapart.com/"><img src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/ala-logo-big.png" alt="A List Apart"></a></h1>
+		
+		<a class="go-to-nav" href="http://alistapart.com/article/sprites#main-nav" title="skip to nav">Menu</a>
+
+	</header>
+	
+	<div role="main" class="main-wrapper">
+	
+		<article class="article-layout hentry">
+		
+			<header class="entry-header">
+			
+				
+				
+								
+								<a href="http://alistapart.com/issue/173" class="issue-number"><span>Issue №</span> 173</a>
+								
+				 
+				
+				<h1 class="entry-title">CSS Sprites: Image Slicing’s Kiss of Death</h1>
+				
+				<p class="entry-details">
+					
+					by <a class="author" rel="author" href="http://alistapart.com/author/daveshea"> Dave Shea</a>
+					
+					<time class="pubdate updated" datetime="2004-03-05T04:00:01-05:00">March 05, 2004</time>
+					
+					<span class="optional-break">
+					
+						Published in <a href="http://alistapart.com/topic/browsers">Browsers</a>, <a href="http://alistapart.com/topic/css">CSS</a>, <a href="http://alistapart.com/topic/html">HTML</a>
+						
+													∙ <a class="comment-count" href="http://alistapart.com/article/sprites#comments">184 Comments</a>
+											
+					</span>
+			
+				</p>
+				
+				
+								
+			
+			</header>
+		
+					
+					
+			<div class="main-content">
+			
+				
+				
+				
+				
+				
+				
+				<p>Back when video games were still fun (we’re talking about the 8-bit glory days here), 
+graphics were a much simpler matter by necessity. Bitmapped 2-dimensional character data
+and background scenery was individually drawn, much like today’s resurgent pixel art. 
+Hundreds and later thousands of small graphics called sprites were the building blocks
+for all things visual in a game.</p>
+
+<aside class="content-minutiae">
+															<h1 class="propagation-enablers">Share This:</h1>
+					<ul class="propagation-enablers">
+						<li><a href="http://twitter.com/intent/tweet?url=http://alistapart.com/article/sprites&text=CSS+Sprites%3A+Image+Slicing%26%238217%3Bs+Kiss+of+Death&via=alistapart" data-trackevent="Share: Twitter">Twitter</a></li>
+						<li><a href="http://www.facebook.com/sharer.php?u=http://alistapart.com/article/sprites&t=CSS+Sprites%3A+Image+Slicing%26%238217%3Bs+Kiss+of+Death" data-trackevent="Share: Facebook">Facebook</a></li>
+						<li><a href="https://plus.google.com/share?url=http://alistapart.com/article/sprites" data-trackevent="Share: Google+">Google+</a></li>
+					</ul>				
+				</aside><p>As game complexity increased, techniques developed to manage the multitude of sprites 
+while keeping game play flowing. One variation saw sprites being plugged into a master
+grid, then later pulled out as needed by code that mapped positions of each individual
+graphic, and selectively painted them on the screen.</p>
+
+<figure id="figure1"><img src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/sprites.gif" width="175" height="112" alt="example sprites"></figure>
+
+<h2 id="thewebconnection">And what does this have to do with the web?<a class="subhead-anchor" href="http://alistapart.com/article/sprites#thewebconnection">#thewebconnection</a></h2>
+
+<p>Everything old is new again, and though the rise of 3D games has made sprite maps
+obsolete, the concurrent rise of mobile devices with 2D gaming capabilities
+have brought them back into vogue. And now, with a bit of math and a lot of CSS,
+we’re going to take the basic concept and apply it to the world of web design.</p>
+
+<p>Specifically, we’re going to replace old-school image slicing and dicing (and the 
+necessary JavaScript) with a CSS solution. And because of the way CSS works, we’re
+going to take it further: by building a grid of images and devising a way to get each 
+individual cell out of the grid, we can store all buttons/navigation items/whatever we wish
+in a single master image file, along with the associated “before” and “after” link states.</p>
+
+<h2 id="howspriteswork">How do CSS Sprites work?<a class="subhead-anchor" href="http://alistapart.com/article/sprites#howspriteswork">#howspriteswork</a></h2>
+
+<p>As it turns out, the basic tools to do this are built into CSS, given a bit of creative
+thinking. </p>
+
+<p>Let’s start with the master image itself. Dividing a rectangle into four items, you’ll 
+observe in this <a href="http://d.alistapart.com/sprites/test-3.jpg">master image</a> that our intended “before” link 
+images are on the top row, with “after” <code>:hover</code> states immediately below. There’s
+no clear division between the four links at the moment, so imagine that each piece of text is
+a link for now. (For the sake of simplicity, we’ll continue to refer to link images as 
+“before” images and the <code>:hover</code> state as “after” for the rest of this article. 
+It’s possible to extend this method to <code>:active</code>, <code>:focus</code>, and 
+<code>:visited</code> links states as well, but we won’t go into that here.)</p>
+
+<p>Those familiar with Petr Stanicek’s (Pixy)
+<a href="http://wellstyled.com/css-nopreload-rollovers.html">Fast Rollovers</a> may
+already see where we’re going with this. This article owes a debt of gratitude to Pixy’s
+example for the basic function we’ll be relying on. But let’s not get ahead of ourselves.</p>
+
+<p>On to the HTML. Every good CSS trick strives to add a layer of visuals on top of a clean
+block of code, and this technique is no exception:</p>
+
+<pre id="snippet1"><code>&lt;ul id="skyline"&gt;
+    &lt;li id="panel1b"&gt;&lt;a href="#1"&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li id="panel2b"&gt;&lt;a href="#2"&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li id="panel3b"&gt;&lt;a href="#3"&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li id="panel4b"&gt;&lt;a href="#4"&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<p>This code will serve as a base for our example. Light-weight, simple markup that degrades
+well in older and CSS-disabled browsers is all the rage, and it’s a trend that’s good for the
+industry. It’s a great ideal to shoot for. (We’ll ignore any text inside the links for the 
+time being. Apply your favorite 
+<a href="http://www.mezzoblue.com/tests/revised-image-replacement/">image replacement 
+technique</a> later to hide the text you’ll end up adding.)</p>
+
+<h2 id="applyingcss">Applying the CSS<a class="subhead-anchor" href="http://alistapart.com/article/sprites#applyingcss">#applyingcss</a></h2>
+
+<p>With those basic building blocks, it’s time to build the CSS. A quick note before we 
+start — because of an IE glitch, we’ll be tiling the after image on top of the before image when we need it, instead of replacing one with the other. The result makes 
+no real visual difference if we line them up precisely, but this method avoids what
+otherwise would be an obvious “flicker” effect that we don’t want.</p>
+
+<pre id="snippet2"><code>#skyline {
+    width: 400px; height: 200px;
+    background: url(test-3.jpg);
+    margin: 10px auto; padding: 0;
+    position: relative;}
+  #skyline li {
+    margin: 0; padding: 0; list-style: none;
+    position: absolute; top: 0;}
+  #skyline li, #skyline a {
+    height: 200px; display: block;}</code></pre>
+
+<p>Counter-intuitively, we’re not assigning the before image to the links at all, it’s applied
+to the <code>&lt;ul&gt;</code> instead. You’ll see why in a moment.</p>
+
+<p>The rest of the CSS in the above example sets things like the dimensions of the <code>#skyline</code>
+block and the list items, starting positions for the list items, and it turns off the 
+unwanted list bullets.</p>
+
+<p>We’ll be leaving the links themselves as empty, transparent blocks (though with specific 
+dimensions) to trigger the link activity, and position them using the containing 
+<code>&lt;li&gt;</code>s. If we were to position the links themselves and effectively ignore
+the <code>&lt;li&gt;</code>s, we’d start seeing errors in older browsers, so let’s avoid 
+this.</p>
+
+<h2 id="positioninglinks">Positioning the links<a class="subhead-anchor" href="http://alistapart.com/article/sprites#positioninglinks">#positioninglinks</a></h2>
+
+<p>The <code>&lt;li&gt;</code>s are absolutely positioned, so why aren’t they at the top of the browser 
+window? A quirky but useful property of positioned elements is that all descendent elements contained within them base their absolute position not off the corners of the browser window, but off the corners of the nearest positioned ancestor element.The upshot of this is that since we applied 
+<code>position: relative;</code> to <code>#skyline</code>, we’re able to absolutely position the 
+<code>&lt;li&gt;</code>s from the top left corner of <code>#skyline</code> itself.</p>
+
+<pre id="snippet3"><code>#panel1b {left: 0; width: 95px;}
+  #panel2b {left: 96px; width: 75px;}
+  #panel3b {left: 172px; width: 110px;}
+  #panel4b {left: 283px; width: 117px;}</code></pre>
+
+<p>So <code>#panel1</code> isn’t horizontally positioned at all, <code>#panel2b</code> is positioned 96px to the left of
+<code>#skyline</code>’s left edge, and so on. We assigned the links a <code>display: block;</code> value
+and the same height as the <code>&lt;li&gt;</code>s in the past listing, so they’ll end up 
+filling their containing <code>&lt;li&gt;</code>s, which is exactly what we want.</p>
+
+<p>At this point we have a basic image map with links, but no <code>:hover</code> states. 
+<a href="http://d.alistapart.com/sprites/ala-image1.html">See the example</a>. It’s probably easier to see what’s happening
+with <a href="http://d.alistapart.com/sprites/ala-image1a.html">borders turned on</a>.</p><h2 id="hovers">Hovers<a class="subhead-anchor" href="http://alistapart.com/article/sprites#hovers">#hovers</a></h2>
+
+<p>In the past we would have applied some JavaScript to swap in a new image for the after
+state. Instead our after states are in one image, so all we need is a way
+to selectively pull each state out for the appropriate link.</p>
+
+<p>If we apply the master image to the <code>:hover</code> state without additional values,
+we make only the top left corner visible — not what we want, though clipped by the link 
+area, which <em>is</em> what we want. We need to move the position of the image somehow.</p>
+
+<p>We’re dealing with known pixel values; a little bit of math should enable us to offset
+that background image enough both vertically and horizontally so that only the piece
+containing the after state shows.</p>
+
+<p>That’s exactly what we’ll do:</p>
+
+<pre id="snippet4"><code>#panel1b a:hover {
+    background: transparent url(test-3.jpg)
+    0 -200px no-repeat;}
+  #panel2b a:hover {
+    background: transparent url(test-3.jpg)
+    -96px -200px no-repeat;}
+  #panel3b a:hover {
+    background: transparent url(test-3.jpg)
+    -172px -200px no-repeat;}
+  #panel4b a:hover {
+    background: transparent url(test-3.jpg)
+    -283px -200px no-repeat;}</code></pre>
+
+<p>Where did we get those pixel values? Let’s break it down: the first value is of course
+the horizontal offset (from the left edge), and the second is the vertical.</p>
+
+<p>Each vertical value is equal; since the master image is 400 pixels high and the after 
+states sit in the bottom half, we’ve simply divided the height. Shifting the whole background
+image up by 200px requires us to apply the value as a negative number. Think of the top 
+edge of the link as the starting point, or 0. To position the background image 200 pixels 
+above this point, it makes sense to move the starting point -200px.</p>
+
+<p>Likewise, if the left edge of each link is effectively 0, we’ll need to offset the 
+background image horizontally by the width of all <code>&lt;li&gt;</code>s prior to the one
+we’re working with. So the first link doesn’t require an offset, since there are no pixels 
+before its horizontal starting point. The second link requires an offset the width of the 
+first, the third link requires an offset of the combined width of the first two links, and 
+the last requires an offset of the combined width of all three previous links.</p>
+
+<p>It’s a bit cumbersome to explain the process, but playing around with the values will
+quickly show you how the offsets work, and once you’re familiar it’s not all that hard to
+do.</p>
+
+<p>So <a href="http://d.alistapart.com/sprites/ala-image3.html">there you have it</a>. Single-image CSS rollovers, degradable
+to a simple unordered list. </p>
+
+<h2 id="buttons">Buttons<a class="subhead-anchor" href="http://alistapart.com/article/sprites#buttons">#buttons</a></h2>
+
+<p>There’s no reason why we have to leave the links touching each other, side-by-side as they
+were in the previous example. Image maps may be convenient in some spots, but what about 
+separating each link into its own stand-alone button? That way we can add borders and
+margins, let the underlying background show through, and generally treat them as separately
+as we need to.</p>
+
+<p>In fact, the building blocks are already in place. We really don’t need to 
+modify our code too radically; the main change is in creating a new background image that
+doesn’t continue from link to link like the last example did. Since we can’t rely on the 
+<code>&lt;ul&gt;</code> for placing the original background image, we’ll end up
+applying it to all <code>&lt;li&gt;</code>s instead and offsetting each the same way we 
+offset the after states in the prior example.</p>
+
+<p>With an <a href="http://d.alistapart.com/sprites/icons.gif">appropriate image</a> and a bit of spacing between each 
+<code>&lt;li&gt;</code>, <a href="http://d.alistapart.com/sprites/ala-buttons1.html">we’ve got buttons</a>.</p>
+
+<p>Note that in this example we’ve added 1px borders which, of course, count toward the final
+width of the links. This affects our offset values; we’ve compensated by adding 2px to the 
+offsets where appropriate.</p>
+
+<h2 id="irregularshapes">Irregular shapes<a class="subhead-anchor" href="http://alistapart.com/article/sprites#irregularshapes">#irregularshapes</a></h2>
+
+<p>Up till now we’ve focused only on rectangular, non-overlapping shapes. What about the more
+complex image maps that image slicers like Fireworks and ImageReady export so easily? Relax, 
+we’ve got you covered there too.</p>
+
+<p>We’ll start the same way as the first example, by applying the background image to the 
+<code>&lt;ul&gt;</code> and turning off list item bullets and setting widths and so forth. 
+The big difference is where we position the <code>&lt;li&gt;</code>s; the goal is to 
+surround each graphical element with <a href="http://d.alistapart.com/sprites/ala-blobs1.html">a box that tightly hugs the
+edges</a>.</p>
+
+<p>Again, because of the ability to use absolute positioning relative to the top left corner
+of the <code>&lt;ul&gt;</code>, we’re able to precisely place our links exactly where we want them. Now
+all that’s left is to set up the <a href="http://d.alistapart.com/sprites/ala-blobs2.html">hover states</a>.</p>
+
+<p>Worth noting is that in this case, a single set of before and after images wasn’t enough.
+Because of the overlapping objects, relying on only one after state would show pieces of
+surrounding objects’ after states. In fact, it would show precisely the pieces that fall
+within the link’s borders. (Easiest to just <a href="http://d.alistapart.com/sprites/ala-blobs3.html">see it in action</a>.)</p>
+
+<p>How to avoid this? By adding a second after state, and carefully selecting which objects go
+where. <a href="http://d.alistapart.com/sprites/blobs.gif">The master image</a> in this case has split the purple and blue
+objects into the first after state, and the green, orange and yellow objects into the second.
+This order allows boxes to be drawn around each object’s after state without including
+pieces of the surrounding objects. And the <a href="http://d.alistapart.com/sprites/ala-blobs2.html">illusion is complete</a>.</p>
+
+<h2 id="benefitspitfalls">Benefits and pitfalls<a class="subhead-anchor" href="http://alistapart.com/article/sprites#benefitspitfalls">#benefitspitfalls</a></h2>
+
+<p>A couple of final thoughts. Our new CSS Sprite method tests well in most modern browsers. 
+The notable exception is Opera 6, which doesn’t apply a background image on link hover states.
+Why, we’re not sure, but it means that our hovers don’t work. The links still do, and if 
+they’ve been labeled properly, the net result will be a static, but usable image map in 
+Opera 6. We’re willing to live with that, especially now that Opera 7 has been around for a 
+while.</p>
+
+<p>The other concern is familiar to anyone who has spent time with 
+<a href="http://www.alistapart.com/articles/fir/">FIR</a>. In the rare cases in which users 
+have turned off images in their browsers but retained CSS, a big empty hole will appear
+in the page where we expect our images to be placed. The links are still there and clickable,
+but nothing visually appears. At press time, there was no known way around this.</p>
+
+				
+				
+				
+				
+								<aside class="sidebar">
+				
+					<h1>Also in Issue № 173</h1>
+									<h2><a href="http://alistapart.com/article/zebratables">Zebra Tables</a></h2>
+					
+					<p>by David F. Miller</p>
+								</aside>
+								
+				
+				<p>Then there’s file size. The natural tendency is to assume that a full double-sized image must be heavier than a
+similar set of sliced images, since the overall image area will usually be larger. All image
+formats have a certain amount of overhead though (which is why a 1px by 1px white GIF 
+saves to around 50 bytes), and the more slices you have, the more quickly that overhead adds up.
+Plus, one master image requires only a single color table when using a GIF, but each slice 
+would need its own. Preliminary tests suggest that all this indicates smaller total file 
+sizes for CSS Sprites, or at the very least not appreciably larger sizes.</p>
+
+<p>And lastly, let’s not forget that our markup is nice and clean, with all the advantages that go
+along with that. HTML lists degrade wonderfully, and a proper image replacement technique 
+will leave the text links accessible to screenreaders. Replacing the sprite imagery is dead 
+simple, since all of our dimensions and offsets are controlled in a single CSS file, and all 
+of our imagery sits in a single image.</p>
+				
+				
+				
+								
+			</div>
+			
+			<footer class="entry-footer">
+				
+									
+				<h1>About the Author</h1>
+				<div class="byline author vcard">
+				
+										
+					<h2><a class="fn" href="http://alistapart.com/author/daveshea"> Dave Shea</a></h2>
+					
+					<div class="author-bio"><p>Dave Shea runs his own studio <a href="http://www.brightcreative.com/">Bright Creative</a> in (not very) sunny Vancouver. He blogs sometimes at <a href="http://www.mezzoblue.com/">Mezzoblue</a> and <a href="http://www.flickr.com/photos/mezzoblue/">Flickrs</a> a bit more often than that. Oh, and he’s <a href="http://brightcreative.com/portfolio/events/">done</a> <a href="http://brightcreative.com/portfolio/publications/">other</a> stuff too.</p></div>
+					
+									
+								
+								<h3>More from this Author</h3>
+				
+				<ul class="author-more">
+								
+									<li><a href="http://alistapart.com/article/sprites2">CSS Sprites2 - It’s JavaScript Time</a></li>
+								
+								
+								
+				
+								
+								
+								
+				</ul>				
+								
+				
+
+				</div>
+
+
+
+			</footer>
+			
+			<div class="post-article">
+			
+				<div class="column-holder unequal-columns">
+					
+					<section id="comments" class="column comment-holder">
+						
+												<h1 class="classy">184 Reader Comments</h1>
+						
+												
+						<a href="http://alistapart.com/comments/sprites" id="load-comments" data-url-title="sprites" class="buttonish">Load Comments</a>
+												
+						
+						
+					</section>
+					
+					<aside class="column more-content">
+						
+												<aside class="the-deck">
+							<div class="deck-inner">
+								<script>
+									//<![CDATA[
+									(function(id) {
+									  document.write('<script type="text/javascript" src="' +
+									    'http://www.northmay.com/deck/deck' + id + '_js.php?' +
+									    (new Date().getTime()) + '"></' + 'script>');
+									})("AL");
+									//]]>
+								</script><script type="text/javascript" src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/deckAL_js.php"></script><a href="http://myemma.com/brainiac/stats?utm_source=Deck&utm_medium=bannerad&utm_content=Agenciesbranding&utm_campaign=Deck-bannerad-Agenciesbranding-120x90_static"><img class="ad" alt="Emma" src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/emma_agency.jpg" border="0" width="120" height="90"></a><p class="ads"><a href="http://myemma.com/brainiac/stats?utm_source=Deck&utm_medium=bannerad&utm_content=Agenciesbranding&utm_campaign=Deck-bannerad-Agenciesbranding-120x90_static">Emma For Agencies:</a> The email marketing platform built for agencies.</p>
+								<p><a href="http://www.coudal.com/deck/">Ad via The Deck</a></p>
+							</div>
+						</aside><!--
+						
+						--><aside class="job-board">
+							<h4>Job Board</h4>
+							<script src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/random.js"></script><div class="job">
+  <a href="https://weworkremotely.com/jobs/619">KBMax is looking for a C# Backend Developer.</a>
+</div>
+
+
+							<p class="board-link">Job listings via <a href="https://weworkremotely.com/?source=ala">We Work Remotely</a></p>
+						</aside>
+					
+						
+						<h1 class="classy">More from ALA</h1>
+						
+						
+						
+												<h2>Columns</h2>
+												
+												<article class="item-summary article">
+				
+							<span class="column-name">Lyza Danger Gardner <i>on</i> Building the Web Everywhere</span>
+				
+							<h1><a href="http://alistapart.com/column/look-at-the-big-picture">Look at the Big Picture</a></h1>
+				
+												
+										<img src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/photo_129828_60_60_c1.jpg" alt="">
+										
+					
+							<p>It’s easy to see that automation can streamline image-optimization for all the varied contexts on the pan-device web. What’s harder to imagine is a future where foregrounding meaningful content in images can be handled by an algorithm. Art direction still requires human intervention, and that’s often a luxury in high-production environments.</p>
+					
+							<footer class="byline">
+								<time class="pubdate updated" datetime="2014-05-08T08:30:19-05:00">May 08, 2014</time>
+							</footer>
+						
+						</article>
+						
+						
+						
+												
+												<article class="item-summary article">
+				
+							<span class="column-name">Cennydd Bowles <i>on</i> UX &amp; Design</span>
+				
+							<h1><a href="http://alistapart.com/column/letter-to-a-junior-designer">Letter to a Junior Designer</a></h1>
+				
+												
+										<img src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/photo_116112_60_60_c1.jpg" alt="">
+										
+					
+							<p>When you’re starting out in design you hunger to fix all the things. Your imagination and passion are boundless. So what turns a junior designer into a seasoned pro? It’s more than experience—it’s an ability to be in the moment and be a whole person.</p>
+					
+							<footer class="byline">
+								<time class="pubdate updated" datetime="2014-04-17T08:30:57-05:00">April 17, 2014</time>
+							</footer>
+						
+						</article>
+						
+						
+						
+						
+						
+												<h2>From the Blog</h2>
+												
+												<article class="item-summary article">
+					
+							<h1><a href="http://alistapart.com/blog/post/on-styled-form-elements">On Styled Form Elements</a></h1>
+							
+							<p>For almost 20 years, we’ve had the same input types and form elements we still use today: text fields and areas, password fields, select dropdowns, radio buttons, checkboxes, file fields, hidden fields, and the menagerie of button types including <code>submit</code>, <code>reset,</code> <code>image</code>, and plain old <code>button</code>.</p>							
+							<footer>
+								<a class="aside-author" href="http://alistapart.com/author/acolangelo">Anthony Colangelo</a>
+								<time class="pubdate updated" datetime="2014-05-30T08:30:21-05:00"><a href="http://alistapart.com/blog/post/on-styled-form-elements">May 30, 2014</a></time>
+							</footer>
+						
+						</article>
+												
+						
+						
+												
+												<article class="item-summary article">
+					
+							<h1><a href="http://alistapart.com/blog/post/work-to-do-yesallwomen">We Have Work to Do: #yesallwomen and the Web</a></h1>
+							
+							<p>Why does #yesallwomen matter for the web—and for <cite>A List Apart</cite>? Editor-in-chief Sara Wachter-Boettcher explains why making our industry a welcoming place for people of all kinds of backgrounds is the only way we’ll build the web we need. </p>							
+							<footer>
+								<a class="aside-author" href="http://alistapart.com/author/sboettcher">Sara Wachter-Boettcher</a>
+								<time class="pubdate updated" datetime="2014-05-29T09:25:46-05:00"><a href="http://alistapart.com/blog/post/work-to-do-yesallwomen">May 29, 2014</a></time>
+							</footer>
+						
+						</article>
+												
+						
+						
+												
+												<article class="item-summary article">
+					
+							<h1><a href="http://alistapart.com/blog/post/ten-years-ago-in-ala-art-direction-and-drop-shadows">Ten Years Ago in ALA: Art Direction and Drop Shadows</a></h1>
+							
+							<p>Ten years ago in May, <cite>A List Apart</cite> published Issues 180–182, featuring <a href="http://alistapart.com/article/artdirweb">Art Direction and the Web</a> by Stephen Hay and <a href="http://alistapart.com/article/onionskin">Onion Skinned Drop Shadows</a> by Brian Williams.</p>							
+							<footer>
+								<a class="aside-author" href="http://alistapart.com/author/mikepick">Mike Pick</a>
+								<time class="pubdate updated" datetime="2014-05-20T08:30:45-05:00"><a href="http://alistapart.com/blog/post/ten-years-ago-in-ala-art-direction-and-drop-shadows">May 20, 2014</a></time>
+							</footer>
+						
+						</article>
+												
+						
+						
+												
+												<article class="item-summary article">
+					
+							<h1><a href="http://alistapart.com/blog/post/global-accessibility-awareness-day-getting-the-word-out">Global Accessibility Awareness Day: Getting the Word Out</a></h1>
+							
+							<p>Today is Global Accessibility Awareness Day. To mark the day and promote the goal of the day, groups of developers and designers interested in accessibility offer webinars, presentations, and networking events to interest and educate more people about why accessibility is important and how to address accessibility in web content, documents, and software.</p>							
+							<footer>
+								<a class="aside-author" href="http://alistapart.com/author/andrewkirkpatrick"> Andrew Kirkpatrick</a>
+								<time class="pubdate updated" datetime="2014-05-15T16:50:39-05:00"><a href="http://alistapart.com/blog/post/global-accessibility-awareness-day-getting-the-word-out">May 15, 2014</a></time>
+							</footer>
+						
+						</article>
+												
+						
+						
+												
+												<article class="item-summary link-post">
+			
+							<h1><a href="https://dearfcc.org/">“Dear FCC,”</a></h1>
+					
+							<p>Every voice counts! Please share your thoughts with the FCC before they vote later today to destroy net neutrality. This is an issue of justice and access. Save our shared web and help ensure that others can access it.</p>					
+							<footer>
+								dearfcc.org
+								
+							</footer>
+				
+						</article>
+												
+						
+						
+						
+						<div id="bsap_1032" class="bsaPROrocks" data-serve="C67DL2E"></div>
+					
+					</aside>
+				
+				</div>
+				
+			</div>
+		
+		</article>
+		
+		
+	
+	</div>
+	
+			<footer class="global-footer">
+			
+			<h1 class="deadly-subtitle">For people who make websites.</h1>
+			
+			<ul class="inline-items">
+				<li><a href="http://alistapart.com/about">About</a></li>
+				<li><a href="http://alistapart.com/authors">Authors</a></li>
+				<li><a href="http://alistapart.com/about/masthead">Masthead</a></li>
+				<li><a href="http://alistapart.com/about/style-guide">Style Guide</a></li>
+				<li><a href="http://alistapart.com/contact">Contact</a></li>
+				<li><a href="http://alistapart.com/about/sponsor">Sponsorships</a></li>
+				<li class="head-east-young-man">
+					
+					Follow us: 
+					<a href="http://alistapart.com/about/rss">RSS</a> · 
+					<a href="http://www.facebook.com/alistapart">Facebook</a> · 
+					<a href="https://plus.google.com/107749003388305496076" rel="publisher">Google+</a> · 
+					<a href="http://www.twitter.com/alistapart">Twitter</a>
+					
+				</li>
+			</ul>
+			
+			<aside class="promo-holder">
+			
+				<ul class="partner-promos">
+					<li>
+						<a href="http://abookapart.com/">
+							<img src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/promo_aba.png" alt="">
+							<h1>A Book Apart</h1>
+							<p>Mobile First &amp; Responsive Web Design bundle.</p>
+							<p>Buy both and save!</p>
+							<p class="arrow">Order now</p>
+						</a>
+					</li><!--
+					
+					--><li>
+						<a href="http://aneventapart.com/">
+							<img src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/promo_aea.png" alt="">
+							<h1>An Event Apart</h1>
+							<p>Three days of design, code, and content for people who make websites.</p>
+							<p class="arrow">See the 2014 schedule</p>
+						</a>
+					</li>
+				</ul>
+			
+			</aside>
+			
+			<ul class="inline-items copyright">
+			
+				<li>
+					<small>ISSN 1534-0295 · Copyright © 1998-2014 A List Apart &amp; Our Authors</small>
+					<small><a href="http://alistapart.com/about/copyright">Permissions &amp; Copyright</a> · <a href="http://webtype.com/">Fonts by Webtype</a></small></li>
+			
+				<li class="affiliates head-east-young-man">
+					
+					<a class="aea" href="http://aneventapart.com/" title="An Event Apart">An Event Apart</a>
+					<a class="aba" href="http://abookapart.com/" title="A Book Apart">A Book Apart</a>
+					<a class="hc" href="http://happycog.com/" title="Happy Cog">Happy Cog</a>
+					<!--<a class="eh" href="http://enginehosting.com" title="Engine Hosting">Engine Hosting</a>-->
+					
+				</li>
+				
+			</ul>
+			
+		</footer>
+	
+	<div id="bsap_1031" class="bsaPROrocks" data-serve="C67DL2V"></div>
+
+		<nav class="global-nav deluxe" id="main-nav" role="navigation">
+	
+		<ul class="inline-items">
+			<li><a href="http://alistapart.com/">Home</a></li>
+			
+			<li><a href="http://alistapart.com/articles">Articles</a></li>
+			<li><a href="http://alistapart.com/columns">Columns</a></li>
+			<li><a href="http://alistapart.com/blog">Blog</a></li>
+			<li><a href="http://alistapart.com/topics">Topics</a></li>
+			<li><a href="http://alistapart.com/about/contribute">Write for us</a></li>
+			<li class="back-to-top"><a href="http://alistapart.com/article/sprites#top">Back to top</a></li>
+			<li class="head-east-young-man">
+				<form class="main-search" method="post" action="http://alistapart.com/">
+<div class="hiddenFields">
+<input type="hidden" name="ACT" value="19">
+<input type="hidden" name="XID" value="af28113c49fb516a6c033c537cc33e435efe94c3">
+<input type="hidden" name="RES" value="">
+<input type="hidden" name="meta" value="Ffseekua+rUE8oK/pEbUJWWxDpWf2BoUqFDIvQXjhXZvhxjFg5cTF6MP3Rxtt3h0gzE57XPQfXWvg0nj9Y1Ez9CgWwEnGRAY6knFpH19HNpmm1rhGuRr9ebnQRbp5gzUuAi3HijGA9yRR/+duNMWasUPa0S3ri5kufvn1cJZoXtDEJrakAi4Zi6hXmR7jAoMS32IN2Nnt91qJWBa39w1AJV8sd0qnhHhIINlcsb02vkMpG4eYA2mBCdk4rLBnTtcWm9lsqpzcAbw41a/SSQd1uwuL6FhRywCkesIprmpX/V39TUIrB+WBENjD8PfBNuRIPltmq7vNFIS4c6H83tmAdIBYa09YmGift5UU60UI5sm+GsyNXJMWvj4CA9wCX3q">
+<input type="hidden" name="site_id" value="1">
+</div>
+
+
+					<label for="search-keywords"><input id="search-keywords" type="search" name="keywords" placeholder="Search" aria-label="Search" value="" required="required"></label>
+					<label class="submit-search" for="submit-search"><input id="submit-search" name="submit" type="image" src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/icon_magnify_v.svg" onerror="this.src=&#39;//d.alistapart.com/_repo/site_assets/img/icon_magnify_v.png&#39;;" alt="Submit"></label>
+				</form>
+			</li>
+		</ul>
+	
+	</nav>
+
+		
+	<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+		 chromium.org/developers/how-tos/chrome-frame-getting-started -->
+	<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+	
+	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+	<script src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/jquery.min.js"></script>
+	<script>window.jQuery || document.write('/d/_repo/site_assets/js/libs/jquery-1.8.2.min.js"><\/script>')</script>
+
+	<script src="./CSS Sprites  Image Slicing’s Kiss of Death · An A List Apart Article_files/d17f5833a253c191b1d7c933685a45afc12377d8.1399662552.js"></script>
+	
+	<!-- BuySell Ads -->
+	<script>(function(){var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = '//cdn.buysellads.com/ac/pro.js';document.getElementsByTagName('head')[0].appendChild(bsa);})();</script>
+	
+	<script>
+	var _qevents = _qevents || [];
+	
+	(function() {
+	var elem = document.createElement('script');
+	elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+	elem.async = true;
+	elem.type = "text/javascript";
+	var scpt = document.getElementsByTagName('script')[0];
+	scpt.parentNode.insertBefore(elem, scpt);
+	})();
+	
+	_qevents.push({qacct:"p-0Gb-D0fnDnm2s"});
+	</script>
+	
+	<noscript>
+	&lt;div style="display:none;"&gt;
+	&lt;img src="//pixel.quantserve.com/pixel/p-0Gb-D0fnDnm2s.gif" height="1" width="1" alt=""/&gt;
+	&lt;/div&gt;
+	</noscript>
+
+	<script>
+	var _gaq=[['_setAccount','UA-11757054-1'],['_trackPageview']];
+	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g,s)}(document,'script'));
+	</script>
+	
+	<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+	typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+	b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+	mixpanel.init("204b563994d022408e4b540a66fe6136");</script><!-- end Mixpanel -->
+
+
+</body></html>

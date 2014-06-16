@@ -1,0 +1,141 @@
+@import url(http://fonts.googleapis.com/css?family=Capriola);
+/* Let's import the lovely google font. please leave this line up here */
+/* Menu CSS */#cssmenu,
+#cssmenu ul,
+#cssmenu ul li,
+#cssmenu ul li a {
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  font-family: 'Capriola', sans-serif;
+}
+#cssmenu:before,
+#cssmenu:after,
+#cssmenu > ul:before,
+#cssmenu > ul:after {
+  content: '';
+  display: table;
+}
+#cssmenu:after,
+#cssmenu > ul:after {
+  clear: both;
+}
+#cssmenu {
+  zoom: 1;
+  height: 69px;
+  background: url(bottom-bg.png) repeat-x center bottom;
+  border-radius: 2px;
+  width: auto;
+  position:fixed;
+  background-color:#999999;
+  opacity:.8;
+  float:right;
+
+}
+#cssmenu ul {
+  background: url(nav-bg.png) repeat-x 0px 4px;
+  height: 69px;
+}
+#cssmenu ul li {
+  float: left;
+  list-style: none;
+}
+#cssmenu ul li a {
+  display: block;
+  height: 37px;
+  padding: 22px 30px 0;
+  margin: 4px 2px 0;
+  border-radius: 2px 2px 0 0;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+  font-weight: 400;
+  opacity: .9;
+}
+#cssmenu ul li:first-child a {
+  margin: 4px 2px 0 0;
+}
+#cssmenu ul li a:hover,
+#cssmenu ul li.active a {
+  background: url(color.png) center bottom;
+  display: block;
+  height: 37px;
+  margin-top: 0px;
+  padding-top: 26px;
+  color: #004f7c;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.55);
+  opacity: 1;
+}
+
+/*the above code ni navbar pekee....wa!. Hapa chini ni the page divs*/
+#page1{
+	height:950px;
+	background-color:#0d0d0d;
+	width:95%;
+	padding:0 20px 0 20px;
+	margin:0 20px 0 20px;
+}
+#page2{
+	height:950px;
+	background-color:#003173;
+	width:95%;
+}
+#page3{
+	height:950px;
+	background-color:green;
+	width:95%;
+}
+.holder{
+  float:left;
+  height:500px;
+  width:500px;
+  display:inline-block;
+}
+.nawajua{
+	height:100px;
+	width:100px;
+	/*border:1px dotted black;*/
+	border-radius:100%;
+  -webkit-transition:width 2s, height 2s, -webkit-transform 2s; /* For Safari 3.1 to 6.0 */
+  transition:width 2s, height 2s, transform 2s;
+
+}
+.nawajua img{
+  width:100px;
+  height:100px;
+  border-radius:100%;
+  display:inline-block;
+}
+.nawajua:hover
+{
+width:200px;
+height:200px;
+-webkit-transform:rotate(360deg); /* Chrome, Safari, Opera */
+transform:rotate(360deg);
+}
+
+/*some evil experiment below*/
+.evil
+{
+width:100px;
+height:100px;
+background:brown;
+border-radius:100%;
+-webkit-transition:width 2s, height 2s, -webkit-transform 2s; /* For Safari 3.1 to 6.0 */
+transition:width 2s, height 2s, transform 2s;
+}
+.evil img{
+  width:100px;
+  height:100px;
+  border-radius:100%;
+}
+
+.evil:hover
+{
+width:200px;
+height:200px;
+-webkit-transform:rotate(360deg); /* Chrome, Safari, Opera */
+transform:rotate(180deg);
+}
+/*end of evil experiment*/

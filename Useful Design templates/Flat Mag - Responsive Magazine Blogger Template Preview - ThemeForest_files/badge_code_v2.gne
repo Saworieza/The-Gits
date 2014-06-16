@@ -1,0 +1,36 @@
+var b_txt = '';
+
+// write the badge
+	
+	
+		 	 		
+	b_txt+= '<div class="flickr_badge_image" id="flickr_badge_image1"><a href="http://www.flickr.com/photos/we-are-envato/13090561633/"><img src="http://farm4.staticflickr.com/3165/13090561633_e9c5d3c072_s.jpg" alt="A photo on Flickr" title="Around the Envato Office - Jess &amp; Terry" height="75" width="75"></a></div>';
+	
+		 	 		
+	b_txt+= '<div class="flickr_badge_image" id="flickr_badge_image2"><a href="http://www.flickr.com/photos/we-are-envato/13090570003/"><img src="http://farm3.staticflickr.com/2697/13090570003_021f405fbf_s.jpg" alt="A photo on Flickr" title="Around the Envato Office - Briany &amp; Carmen in deep conversation" height="75" width="75"></a></div>';
+	
+		 	 		
+	b_txt+= '<div class="flickr_badge_image" id="flickr_badge_image3"><a href="http://www.flickr.com/photos/we-are-envato/13090762874/"><img src="http://farm4.staticflickr.com/3596/13090762874_5f9d99f4e5_s.jpg" alt="A photo on Flickr" title="Around the Envato Office - Ben &amp; Jane" height="75" width="75"></a></div>';
+	
+		 	 		
+	b_txt+= '<div class="flickr_badge_image" id="flickr_badge_image4"><a href="http://www.flickr.com/photos/we-are-envato/13090422515/"><img src="http://farm3.staticflickr.com/2279/13090422515_cabc9c447c_s.jpg" alt="A photo on Flickr" title="Around the Envato Office - Becca" height="75" width="75"></a></div>';
+	
+		 	 		
+	b_txt+= '<div class="flickr_badge_image" id="flickr_badge_image5"><a href="http://www.flickr.com/photos/we-are-envato/13090456565/"><img src="http://farm4.staticflickr.com/3715/13090456565_df81e68627_s.jpg" alt="A photo on Flickr" title="Around the Envato Office - Selina" height="75" width="75"></a></div>';
+	
+		 	 		
+	b_txt+= '<div class="flickr_badge_image" id="flickr_badge_image6"><a href="http://www.flickr.com/photos/we-are-envato/13090549273/"><img src="http://farm8.staticflickr.com/7325/13090549273_ee5c732ce1_s.jpg" alt="A photo on Flickr" title="Around the Envato Office - Highfive!" height="75" width="75"></a></div>';
+	
+		 	 		
+	b_txt+= '<div class="flickr_badge_image" id="flickr_badge_image7"><a href="http://www.flickr.com/photos/we-are-envato/13090409365/"><img src="http://farm4.staticflickr.com/3419/13090409365_5d3172a7dc_s.jpg" alt="A photo on Flickr" title="Around the Envato Office - Amber in a HR Meeting" height="75" width="75"></a></div>';
+	
+		 	 		
+	b_txt+= '<div class="flickr_badge_image" id="flickr_badge_image8"><a href="http://www.flickr.com/photos/we-are-envato/12333892565/"><img src="http://farm8.staticflickr.com/7302/12333892565_fa980bc87f_s.jpg" alt="A photo on Flickr" title="Melbourne Meetup" height="75" width="75"></a></div>';
+	
+		 	 		
+	b_txt+= '<div class="flickr_badge_image" id="flickr_badge_image9"><a href="http://www.flickr.com/photos/we-are-envato/12334281344/"><img src="http://farm6.staticflickr.com/5521/12334281344_d9b279095f_s.jpg" alt="A photo on Flickr" title="Melbourne Meetup" height="75" width="75"></a></div>';
+
+
+b_txt += '<span style="position:absolute;left:-999em;top:-999em;visibility:hidden" class="flickr_badge_beacon"><img src="http://geo.yahoo.com/p?s=792600102&t=ef1cf117bfce87a14b6b7af4fb162b20&fl_ev=0&lang=en&intl=us" width="0" height="0" alt="" /></span>';
+
+document.write(b_txt);

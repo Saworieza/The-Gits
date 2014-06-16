@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+#dj-suggester {
+	-webkit-animation-duration: 500ms;
+	animation-duration: 500ms;
+}
+#dj-suggester.fast {
+	-webkit-animation-duration: 250ms;
+	animation-duration: 250ms;
+}
+#dj-suggester.slow {
+	-webkit-animation-duration: 750ms;
+	animation-duration: 750ms;
+}
+#dj-suggester.hinge {
+	-webkit-animation-duration: 1500ms;
+	animation-duration: 1500ms;
+}
+/* no animation support browsers */
+#dj-suggester.showBox {
+	display: block;
+}
+#dj-suggester.hideBox {
+	display: none;
+}
